@@ -17,7 +17,6 @@
 
 Users should be able to:
 
-
 ### Links
 
 - Solution URL: [Github Repo]()
@@ -35,6 +34,6 @@ Users should be able to:
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript - Strongly typed programming language on top of JS
 - [React](https://reactjs.org/) - JS library
 - [React Router](https://reactrouter.com/en/main) - React routing library
-
+- [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
 ### Continued development
