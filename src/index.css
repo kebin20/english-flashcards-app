@@ -4,11 +4,54 @@
 
 /* https://piccalil.li/blog/a-modern-css-reset/ */
 
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Mochiy+Pop+One&family=Quicksand&display=swap');
+
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+
+:root {
+  /* colors */
+  --clr-dark: #03045e;
+  --clr-white: #f8f9fa;
+  --clr-blue: linear-gradient(
+    to right top,
+    #0096c7,
+    #009ccb,
+    #00a2ce,
+    #00a7d1,
+    #00add4,
+    #21b3d7,
+    #33b9da,
+    #41bfdd,
+    #59c7e1,
+    #6dd0e6,
+    #7fd8ea,
+    #90e0ef
+  );
+
+  /* font-sizes */
+  --fs-900: 9.375rem;
+  --fs-800: 6.25rem;
+  --fs-700: 3.5rem;
+  --fs-600: 2rem;
+  --fs-500: 1.75rem;
+  --fs-400: 1.125rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
+
+  /* font-families */
+  --ff-eng-text: 'Quicksand', sans-serif;
+  --ff-jp-text: 'Kosugi Maru', sans-serif;
+  --ff-jp-title: 'Mochiy Pop One', sans-serif;
+}
+
 /* Box sizing */
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Reset margins */
@@ -21,20 +64,24 @@ h5,
 p,
 figure,
 picture {
-    margin: 0; 
+  margin: 0;
 }
 
 /* set up the body */
 body {
-    line-height: 1.5;
-    min-height: 100vh;
+  font-family: var(--ff-jp-text);
+  font-size: var(--fs-400);
+  color: var(--clr-dark);
+  background-image: var(--clr-blue);
+  line-height: 1.5;
+  min-height: 100vh;
 }
 
 /* make images easier to work with */
 img,
-picutre {
-    max-width: 100%;
-    display: block;
+picture {
+  max-width: 100%;
+  display: block;
 }
 
 /* make form elements easier to work with */
@@ -42,11 +89,11 @@ input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /* remove animations for people who've turned them off */
-@media (prefers-reduced-motion: reduce) {  
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -57,25 +104,24 @@ select {
   }
 }
 
-
 /* ------------------- */
 /* Utility classes     */
 /* ------------------- */
 
 .flex {
-    display: flex;
-    gap: var(--gap, 1rem);
+  display: flex;
+  gap: var(--gap, 1rem);
 }
 
 .grid {
-    display: grid;
-    gap: var(--gap, 1rem);
+  display: grid;
+  gap: var(--gap, 1rem);
 }
 
 .container {
-    padding-inline: 2em;
-    margin-inline: auto;
-    max-width: 80rem;
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
 }
 
 .sr-only {
@@ -88,4 +134,84 @@ select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap; /* added line */
   border: 0;
+}
+
+/* colors */
+
+.bg-dark {
+  background-color: var(--clr-dark);
+}
+.bg-main {
+  background-color: var(--clr-blue);
+}
+.bg-white {
+  background-color: var(--clr-white);
+}
+
+.text-dark {
+  color: var(--clr-dark);
+}
+.text-main {
+  color: var(--clr-blue);
+}
+.text-white {
+  color: var(--clr-white);
+}
+
+/* typography */
+
+.ff-eng-text {
+  font-family: var(--ff-eng-text);
+}
+.ff-jp-text {
+  font-family: var(--ff-jp-tex);
+}
+.ff-jp-title {
+  font-family: var(--ff-jp-title);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+  line-height: 1.1;
 }
