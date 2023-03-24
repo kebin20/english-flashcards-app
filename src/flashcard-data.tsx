@@ -35,6 +35,12 @@ export const decks = [
         english: 'I am tired.',
         japanese: '私は疲れています。',
       },
+      {
+        id: 6,
+        furigana: 'ハウ　メニイ　アプルズ　ドゥー　ユー　ヒャブ',
+        english: '  How many apples do you have?',
+        japanese: '  あなたはリンゴを何個持っていますか。',
+      },
     ],
   },
 ];

@@ -13,7 +13,6 @@ const StyledButton = styled.button`
   font-size: 1.25rem;
   line-height: 1.6rem;
   cursor: pointer;
-  grid-column: span 3;
   
 &:hover, &:active {
   background-color: var(--clr-orange-hover);

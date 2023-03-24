@@ -1,19 +1,11 @@
 import NavBar from './Navbar';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Container from '../UI/Container';
 
 import Button from '../UI/Button';
 
 import welcomeImage from '../assets/welcome-image.png';
-
-const WelcomeScreenContainer = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-height: 100vh;
-gap: 2em;
-`;
 
 const WelcomeBox = styled.div`
 border-radius: var(--round);
@@ -39,7 +31,7 @@ function WelcomeScreen() {
   return (
     <>
       <NavBar />
-      <WelcomeScreenContainer>
+      <Container>
         <WelcomeBox>
           <WelcomeTitle>単語練習</WelcomeTitle>
           <p>3年生～6年生の単語を復習しよう！</p>
@@ -48,7 +40,7 @@ function WelcomeScreen() {
         <Link to="/menu">
           <Button>スタート！</Button>
         </Link>
-      </WelcomeScreenContainer>
+      </Container>
     </>
   );
 }

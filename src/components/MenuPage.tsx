@@ -1,16 +1,10 @@
 import NavBar from './Navbar';
 import Button from '../UI/Button';
-import styled from 'styled-components';
 import DeckButton from '../UI/DeckButton';
+import Container from '../UI/Container';
 
-const MenuContainer = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-height: 100vh;
-gap: 2em;
-`;
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const MenuBox = styled.div`
 display: grid;
@@ -29,9 +23,11 @@ function Menu() {
   return (
     <>
       <NavBar />
-      <MenuContainer>
+      <Container>
         <MenuBox>
-          <Button>全部復習</Button>
+          <Link className="grid-prop" to="/flashcard-page">
+            <Button>全部復習</Button>
+          </Link>
           <DeckButton>セット 1</DeckButton>
           <DeckButton>セット 2</DeckButton>
           <DeckButton>セット 3</DeckButton>
@@ -39,7 +35,7 @@ function Menu() {
           <DeckButton>セット 5</DeckButton>
           <DeckButton>セット 6</DeckButton>
         </MenuBox>
-      </MenuContainer>
+      </Container>
     </>
   );
 }

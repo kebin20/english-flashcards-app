@@ -139,3 +139,7 @@ a:active {
   white-space: nowrap; /* added line */
   border: 0;
 }
+
+.grid-prop {
+  grid-column: span 3;
+}
