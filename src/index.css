@@ -94,6 +94,7 @@ select {
 
 li {
   list-style-type: none;
+  cursor: pointer;
 }
 
 /* remove animations for people who've turned them off */
