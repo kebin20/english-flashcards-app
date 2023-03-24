@@ -27,7 +27,7 @@ max-width: 60%;
 `;
 
 const WelcomeTitle = styled.h1`
-text-align: center;s
+text-align: center;
 `;
 
 function WelcomeScreen() {

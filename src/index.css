@@ -15,20 +15,14 @@
   /* colors */
   --clr-dark: #03045e;
   --clr-white: #f8f9fa;
+  --clr-yellow: #f9f871;
   --clr-blue: linear-gradient(
-    to right top,
-    #0096c7,
-    #009ccb,
-    #00a2ce,
-    #00a7d1,
-    #00add4,
-    #21b3d7,
-    #33b9da,
-    #41bfdd,
-    #59c7e1,
-    #6dd0e6,
-    #7fd8ea,
-    #90e0ef
+    to top,
+    #00b1cd,
+    #00b8cc,
+    #00bec9,
+    #00c4c5,
+    #00cac0
   );
 
   /* font-sizes */
