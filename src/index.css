@@ -14,6 +14,7 @@
 :root {
   /* colors */
   --clr-dark: #002d56;
+  --clr-dark-hover: #9aaebbf1;
   --clr-white: #f8f9fa;
   --clr-orange: #ed982b;
   --clr-orange-hover: #edba2b;
@@ -93,9 +94,19 @@ select {
   font: inherit;
 }
 
-li {
+li,
+a {
+  color: inherit;
+  text-decoration: none;
   list-style-type: none;
   cursor: pointer;
+}
+
+li:hover,
+a:hover,
+li:active,
+a:active {
+  color: var(--clr-dark-hover);
 }
 
 /* remove animations for people who've turned them off */

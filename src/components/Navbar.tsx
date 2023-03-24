@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import logo from '../assets/flash-card.png';
 
 const StyledNavBar = styled.nav`
@@ -33,7 +34,7 @@ function Navbar() {
       <Logo src={logo} alt="ロゴ" />
       <NavTitle>フラッシュカード</NavTitle>
       <NavMenu>
-        <li>デック</li>
+        <Link to="/menu">デック</Link>
         <li>編集</li>
       </NavMenu>
     </StyledNavBar>

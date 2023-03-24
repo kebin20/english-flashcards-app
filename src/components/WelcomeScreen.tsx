@@ -1,7 +1,10 @@
 import NavBar from './Navbar';
-import Button from '../UI/Button';
-import welcomeImage from '../assets/welcome-image.png';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Button from '../UI/Button';
+
+import welcomeImage from '../assets/welcome-image.png';
 
 const WelcomeScreenContainer = styled.div`
 display: flex;
@@ -42,7 +45,9 @@ function WelcomeScreen() {
           <p>3年生～6年生の単語を復習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
-        <Button>スタート！</Button>
+        <Link to="/menu">
+          <Button>スタート！</Button>
+        </Link>
       </WelcomeScreenContainer>
     </>
   );
