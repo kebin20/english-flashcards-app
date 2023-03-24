@@ -1,5 +1,5 @@
 import NavBar from './Navbar';
-import Button from '../UI/Button';
+import { MainButton } from '../UI/Buttons';
 import DeckButton from '../UI/DeckButton';
 import Container from '../UI/Container';
 
@@ -26,7 +26,7 @@ function Menu() {
       <Container>
         <MenuBox>
           <Link className="grid-prop" to="/flashcard-page">
-            <Button>全部復習</Button>
+            <MainButton>全部復習</MainButton>
           </Link>
           <DeckButton>セット 1</DeckButton>
           <DeckButton>セット 2</DeckButton>

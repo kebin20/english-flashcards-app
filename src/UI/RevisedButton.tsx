@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -19,12 +18,17 @@ const StyledButton = styled.button`
 }
 `;
 
-function MainButton(props) {
+const StyledRevisedButton = styled(StyledButton)`
+background-color: var(--clr-alert);
+color: var(--clr-white);
+`;
+
+function RevisedButton(props) {
   return (
-    <StyledButton type={props.type || 'button'} onClick={props.onClick}>
+    <StyledRevisedButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
-    </StyledButton>
+    </StyledRevisedButton>
   );
 }
 
-export default MainButton;
+export default RevisedButton;

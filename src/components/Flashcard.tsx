@@ -24,8 +24,8 @@ const Circle = styled.span`
 background-image: var(--clr-blue);
 display: grid;
 place-items: center;
-width: 3.5em;
-height: 3.5em;
+width: 3.3em;
+height: 3.3em;
 border-radius: 50%;
 aspect-ratio: 1;
 text-decoration: none;

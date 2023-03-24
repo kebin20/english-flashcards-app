@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Container from '../UI/Container';
 
-import Button from '../UI/Button';
+import { MainButton } from '../UI/Buttons';
 
 import welcomeImage from '../assets/welcome-image.png';
 
@@ -38,7 +38,7 @@ function WelcomeScreen() {
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
         <Link to="/menu">
-          <Button>スタート！</Button>
+          <MainButton>スタート！</MainButton>
         </Link>
       </Container>
     </>
