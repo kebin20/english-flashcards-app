@@ -1,11 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import WelcomeScreen from './components/WelcomeScreen';
 
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="container"></div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<WelcomeScreen />} />
+          {/* <Route path="/registration" element={<Registration />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/subscribe" element={<Subscribe />} />
+          <Route path="/coffee" element={coffeeContent} /> */}
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

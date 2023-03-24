@@ -45,6 +45,9 @@
   --ff-eng-text: 'Quicksand', sans-serif;
   --ff-jp-text: 'Kosugi Maru', sans-serif;
   --ff-jp-title: 'Mochiy Pop One', sans-serif;
+
+  /*border-radius*/
+  --round: 8px;
 }
 
 /* Box sizing */
@@ -124,9 +127,11 @@ li {
 }
 
 .container {
-  padding-inline: 2em;
-  margin-inline: auto;
-  max-width: 80rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .sr-only {
