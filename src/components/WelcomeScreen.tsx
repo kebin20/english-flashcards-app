@@ -18,7 +18,7 @@ gap: 2em;
 const WelcomeBox = styled.div`
 border-radius: var(--round);
 background-color: var(--clr-white);
-box-shadow: var(--shadow);
+box-shadow: var(--lg-shadow);
 display: flex;
 flex-direction: column;
 align-items: center;

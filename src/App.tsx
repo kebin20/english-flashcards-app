@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WelcomeScreen from './components/WelcomeScreen';
-import MenuPage from './components/Menu';
+import MenuPage from './components/MenuPage';
 
 function App() {
   return (

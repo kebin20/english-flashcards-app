@@ -11,7 +11,7 @@ align-items: center;
 justify-content: space-between;
 gap: 1em;
 background-color: var(--clr-white);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+box-shadow: var(--lg-shadow);
 `;
 
 const Logo = styled.img`
@@ -34,9 +34,7 @@ function Navbar() {
       <Link to="/">
         <Logo src={logo} alt="ロゴ" />
       </Link>
-      <Link to="/">
-        <NavTitle>フラッシュカード</NavTitle>
-      </Link>
+      <NavTitle>フラッシュカード</NavTitle>
       <NavMenu>
         <Link to="/menu">デック</Link>
         <li>編集</li>
