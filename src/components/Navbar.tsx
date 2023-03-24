@@ -31,8 +31,12 @@ gap: 1em;
 function Navbar() {
   return (
     <StyledNavBar>
-      <Logo src={logo} alt="ロゴ" />
-      <NavTitle>フラッシュカード</NavTitle>
+      <Link to="/">
+        <Logo src={logo} alt="ロゴ" />
+      </Link>
+      <Link to="/">
+        <NavTitle>フラッシュカード</NavTitle>
+      </Link>
       <NavMenu>
         <Link to="/menu">デック</Link>
         <li>編集</li>
