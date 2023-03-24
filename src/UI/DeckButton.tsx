@@ -5,6 +5,7 @@ position: relative;
 display: flex;
 justify-content: space-between;
 align-items: center;
+gap: 0.5em;
 padding: 0.7em 1em;
 font-family: var(--ff-jp-title);
 background-color: var(--clr-cream);
