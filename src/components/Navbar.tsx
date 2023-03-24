@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import logo from '../assets/flash-card.png';
 
@@ -31,7 +30,7 @@ gap: 1em;
 function Navbar() {
   return (
     <StyledNavBar>
-      <Logo src={logo} alt="flashcard logo" />
+      <Logo src={logo} alt="ロゴ" />
       <NavTitle>フラッシュカード</NavTitle>
       <NavMenu>
         <li>デック</li>
