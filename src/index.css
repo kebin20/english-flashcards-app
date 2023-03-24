@@ -13,9 +13,10 @@
 
 :root {
   /* colors */
-  --clr-dark: #03045e;
+  --clr-dark: #002d56;
   --clr-white: #f8f9fa;
-  --clr-yellow: #f9f871;
+  --clr-orange: #ed982b;
+  --clr-orange-hover: #edba2b;
   --clr-blue: linear-gradient(
     to top,
     #00b1cd,
@@ -42,6 +43,9 @@
 
   /*border-radius*/
   --round: 8px;
+
+  /*box-shadow*/
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* Box sizing */

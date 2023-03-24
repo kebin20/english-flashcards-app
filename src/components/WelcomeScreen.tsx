@@ -1,4 +1,5 @@
 import NavBar from './Navbar';
+import Button from '../UI/Button';
 import welcomeImage from '../assets/welcome-image.png';
 import styled from 'styled-components';
 
@@ -8,12 +9,13 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 height: 100vh;
+gap: 2em;
 `;
 
 const WelcomeBox = styled.div`
 border-radius: var(--round);
 background-color: var(--clr-white);
-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+box-shadow: var(--shadow);
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -40,6 +42,7 @@ function WelcomeScreen() {
           <p>3年生～6年生の単語を復習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
+        <Button>スタート！</Button>
       </WelcomeScreenContainer>
     </>
   );

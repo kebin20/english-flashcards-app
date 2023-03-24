@@ -5,28 +5,28 @@ const StyledButton = styled.button`
   display: inline-block;
   padding: 1em 2em;
   font-family: var(--ff-jp-title);
-  background-color: var(--main-button-default);
-  color: var(--lightCream);
-  border-radius: 6px;
+  background-color: var(--clr-orange);
+  color: var(--clr-dark);
+  border-radius: var(--round);
   border: none;
+  box-shadow: var(--shadow);
   font-size: 1.125rem;
   line-height: 1.6rem;
   cursor: pointer;
 
 &:hover, &:active {
-  background-color: var(--main-button-hover);
+  background-color: var(--clr-orange-hover);
 }
-
 `;
 
 export default function MainButton(props) {
   return (
-    <button
+    <StyledButton
       type={props.type || 'button'}
       onClick={props.onClick}
       disabled={props.disabled}
     >
       {props.children}
-    </button>
+    </StyledButton>
   );
 }
