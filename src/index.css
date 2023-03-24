@@ -92,6 +92,10 @@ select {
   font: inherit;
 }
 
+li {
+  list-style-type: none;
+}
+
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
