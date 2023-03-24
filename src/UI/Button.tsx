@@ -13,20 +13,19 @@ const StyledButton = styled.button`
   font-size: 1.25rem;
   line-height: 1.6rem;
   cursor: pointer;
-
+  grid-column: span 3;
+  
 &:hover, &:active {
   background-color: var(--clr-orange-hover);
 }
 `;
 
-export default function MainButton(props) {
+function MainButton(props) {
   return (
-    <StyledButton
-      type={props.type || 'button'}
-      onClick={props.onClick}
-      disabled={props.disabled}
-    >
+    <StyledButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
     </StyledButton>
   );
 }
+
+export default MainButton;
