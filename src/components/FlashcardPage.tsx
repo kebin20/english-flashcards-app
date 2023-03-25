@@ -1,16 +1,15 @@
-import NavBar from './Navbar';
-import DeckButton from '../UI/DeckButton';
-import Container from '../UI/Container';
-import Flashcard from './Flashcard';
-import { ReviseButton, LearntButton } from '../UI/Buttons';
+import NavBar from "./Navbar";
+import DeckButton from "../UI/DeckButton";
+import Container from "../UI/Container";
+import Flashcard from "./Flashcard";
+import { ReviseButton, LearntButton } from "../UI/Buttons";
 
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
-display: flex;
-gap: 6em;
-padding: 2em;
+  display: flex;
+  gap: 6em;
+  padding: 2em;
 `;
 
 function FlashcardPage() {
@@ -18,7 +17,8 @@ function FlashcardPage() {
     <>
       <NavBar />
       <Container>
-        <DeckButton>セット　1</DeckButton>
+        <p>セットボタンを押す時にメニューに戻る</p>
+        <DeckButton to="/menu">セット　1</DeckButton>
         <Flashcard />
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
