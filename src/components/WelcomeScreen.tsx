@@ -1,30 +1,29 @@
-import NavBar from './Navbar';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Container from '../UI/Container';
+import NavBar from "./Navbar";
+import styled from "styled-components";
+import Container from "../UI/Container";
 
-import { MainButton } from '../UI/Buttons';
+import { MainLink } from "../UI/Buttons";
 
-import welcomeImage from '../assets/welcome-image.png';
+import welcomeImage from "../assets/welcome-image.png";
 
 const WelcomeBox = styled.div`
-border-radius: var(--round);
-background-color: var(--clr-white);
-box-shadow: var(--lg-shadow);
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 2em;
-margin-inline: 2em;
-text-align: center;
+  border-radius: var(--round);
+  background-color: var(--clr-white);
+  box-shadow: var(--lg-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  margin-inline: 2em;
+  text-align: center;
 `;
 
 const WelcomeImage = styled.img`
-max-width: 60%;
+  max-width: 60%;
 `;
 
 const WelcomeTitle = styled.h1`
-text-align: center;
+  text-align: center;
 `;
 
 function WelcomeScreen() {
@@ -37,9 +36,7 @@ function WelcomeScreen() {
           <p>3年生～6年生の単語を復習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
-        <Link to="/menu">
-          <MainButton>スタート！</MainButton>
-        </Link>
+        <MainLink to="/menu">スタート!</MainLink>
       </Container>
     </>
   );

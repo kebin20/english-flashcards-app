@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Button = styled.button`
   display: inline-block;
@@ -15,43 +16,58 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const StyledMainButton = styled(Button)`
-background-color: var(--clr-orange); 
-color: var(--clr-dark);
+const StyledLinkButton = styled(Link)`
+  display: inline-block;
+  padding: 1em 3em;
+  font-family: var(--ff-jp-title);
+  background-color: var(--clr-orange);
+  color: var(--clr-dark);
+  border-radius: var(--round);
+  border: none;
+  box-shadow: var(--md-shadow);
+  font-size: 1.25rem;
+  line-height: 1.6rem;
+  cursor: pointer;
 
-&:hover, &:active {
-  background-color: var(--clr-orange-hover);
-}
+  background-color: var(--clr-orange);
+  color: var(--clr-dark);
+
+  &:hover,
+  &:active {
+    background-color: var(--clr-orange-hover);
+  }
 `;
 
 const StyledLearntButton = styled(Button)`
-background-color: var(--clr-success);
+  background-color: var(--clr-success);
 
-&:hover, &:active {
-  background-color: var(--clr-success-hover);
-}
+  &:hover,
+  &:active {
+    background-color: var(--clr-success-hover);
+  }
 `;
 
 const StyledReviseButton = styled(Button)`
-background-color: var(--clr-alert);
-color: var(--clr-white);
+  background-color: var(--clr-alert);
+  color: var(--clr-white);
 
-&:hover, &:active {
-  background-color: var(--clr-alert-hover);
-}
+  &:hover,
+  &:active {
+    background-color: var(--clr-alert-hover);
+  }
 `;
 
-function MainButton(props) {
+function MainLink(props) {
   return (
-    <StyledMainButton type={props.type || 'button'} onClick={props.onClick}>
+    <StyledLinkButton className={props.className} to={props.to}>
       {props.children}
-    </StyledMainButton>
+    </StyledLinkButton>
   );
 }
 
 function ReviseButton(props) {
   return (
-    <StyledReviseButton type={props.type || 'button'} onClick={props.onClick}>
+    <StyledReviseButton type={props.type || "button"} onClick={props.onClick}>
       {props.children}
     </StyledReviseButton>
   );
@@ -59,10 +75,10 @@ function ReviseButton(props) {
 
 function LearntButton(props) {
   return (
-    <StyledLearntButton type={props.type || 'button'} onClick={props.onClick}>
+    <StyledLearntButton type={props.type || "button"} onClick={props.onClick}>
       {props.children}
     </StyledLearntButton>
   );
 }
 
-export { MainButton, LearntButton, ReviseButton };
+export { MainLink, LearntButton, ReviseButton };
