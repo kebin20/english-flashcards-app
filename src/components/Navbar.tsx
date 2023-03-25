@@ -37,7 +37,7 @@ function Navbar() {
       <NavTitle>フラッシュカード</NavTitle>
       <NavMenu>
         <Link to="/menu">デック</Link>
-        <li>編集</li>
+        <Link to="/edit-deck">編集</Link>
       </NavMenu>
     </StyledNavBar>
   );
