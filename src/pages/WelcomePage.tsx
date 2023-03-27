@@ -1,8 +1,8 @@
-import NavBar from "./Navbar";
+import NavBar from "../components/Navbar";
 import styled from "styled-components";
 import Container from "../UI/Container";
 
-import { MainLink } from "../UI/Buttons";
+import { MainLink } from "../UI/Buttons/Buttons";
 
 import welcomeImage from "../assets/welcome-image.png";
 

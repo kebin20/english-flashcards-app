@@ -1,9 +1,9 @@
-import NavBar from "./Navbar";
-import DeckButton from "../UI/DeckButton";
+import NavBar from "../components/Navbar";
+import DeckButton from "../UI/Buttons/DeckButton";
 import Container from "../UI/Container";
-import Flashcard from "./Flashcard";
-import { ReviseButton, LearntButton } from "../UI/Buttons";
-import { ArrowForward, ArrowBack } from "../UI/Arrows";
+import Flashcard from "../components/Flashcard";
+import { ReviseButton, LearntButton } from "../UI/Buttons/Buttons";
+import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
 import styled from "styled-components";
 
@@ -18,13 +18,15 @@ const FlashcardContainer = styled.div`
   align-items: center;
 `;
 
-function FlashcardPage() {
+function FlashcardPage(props) {
+  const { deckData } = props;
+
   return (
     <>
       <NavBar />
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
-        <DeckButton to="/menu">セット　1</DeckButton>
+        <DeckButton to="/menu">セット 1</DeckButton>
         <FlashcardContainer>
           <ArrowBack onClick={undefined} />
           <Flashcard />
