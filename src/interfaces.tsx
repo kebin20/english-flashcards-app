@@ -10,12 +10,14 @@ export interface FlashcardType {
   }[];
 }
 
-export interface CardType {
-  card: {
+export interface FlashcardProps {
+  isFlipped: boolean;
+  currentCard: {
     id: string;
     cardNumber: number;
     english: string;
     furigana: string;
     japanese: string;
-  }[];
+  };
 }
+

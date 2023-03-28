@@ -5,7 +5,7 @@ import Flashcard from "./Flashcard";
 import { ReviseButton, LearntButton } from "../UI/Buttons/Buttons";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { FlashcardType, CardType } from "../interfaces";
+import { FlashcardType } from "../interfaces";
 
 import styled from "styled-components";
 import { useState } from "react";
@@ -24,7 +24,8 @@ const FlashcardContainer = styled.div`
 function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   const { setNumber, card } = deckData;
 
-  const [cardData, setCardData] = useState<CardType>(card);
+  const [currentCard, setCurrentCard] = useState(card[0]);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <>
@@ -34,7 +35,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         <DeckButton to="/menu">セット {setNumber}</DeckButton>
         <FlashcardContainer>
           <ArrowBack onClick={undefined} />
-          <Flashcard cardData={cardData} />
+          <Flashcard currentCard={currentCard} isFlipped={isFlipped} />
           <ArrowForward onClick={undefined} />
         </FlashcardContainer>
         <ButtonContainer>

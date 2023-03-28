@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FlashcardProps } from "../interfaces";
 
 const StyledCard = styled.div`
   display: flex;
@@ -31,14 +32,21 @@ const Circle = styled.span`
   text-decoration: none;
 `;
 
-function Flashcard(props) {
+function Flashcard({ isFlipped, currentCard }: FlashcardProps) {
+  const { cardNumber, english, furigana, japanese } = currentCard;
 
   return (
     <StyledCard>
-      <CardNumber>29</CardNumber>
+      <CardNumber>{cardNumber}</CardNumber>
       <InnerContainer>
         <Circle />
-        <h1>あなたの誕生日はいつですか。</h1>
+        <h1>{japanese}</h1>
+        {isFlipped && (
+          <>
+            <p>{furigana}</p>
+            <h1>{english}</h1>
+          </>
+        )}
       </InnerContainer>
     </StyledCard>
   );
