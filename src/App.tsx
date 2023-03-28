@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomeScreen from "./pages/WelcomePage";
 import MenuPage from "./pages/MenuPage";
-import FlashcardPage from "./pages/FlashcardPage";
 import EditDeck from "./pages/EditDeckPage";
+import SetOne from "./pages/Sets/SetOne";
+
+import deckData from "./flashcard-data";
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomeScreen />} />
           <Route path="/menu" element={<MenuPage />} />
-          <Route path="/flashcard-page" element={<FlashcardPage />} />
+          <Route path="/set-one" element={<SetOne deckData={deckData[0]} />} />
           <Route path="/edit-deck" element={<EditDeck />} />
           {/* <Route path="/revise" element={<Revise/>} /> */}
         </Routes>

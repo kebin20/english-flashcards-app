@@ -32,6 +32,7 @@ const Circle = styled.span`
 `;
 
 function Flashcard(props) {
+
   return (
     <StyledCard>
       <CardNumber>29</CardNumber>

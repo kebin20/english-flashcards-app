@@ -33,7 +33,7 @@ function Menu() {
           >
             全部復習
           </MainLink>
-          <DeckButton deckData={deckData[0]}>
+          <DeckButton to="/set-one">
             セット {deckData[0].setNumber}
           </DeckButton>
           <DeckButton>セット 2</DeckButton>

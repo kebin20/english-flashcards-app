@@ -1,11 +1,14 @@
-import NavBar from "../components/Navbar";
+import NavBar from "./Navbar";
 import DeckButton from "../UI/Buttons/DeckButton";
 import Container from "../UI/Container";
-import Flashcard from "../components/Flashcard";
+import Flashcard from "./Flashcard";
 import { ReviseButton, LearntButton } from "../UI/Buttons/Buttons";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
+import { FlashcardType, CardType } from "../interfaces";
+
 import styled from "styled-components";
+import { useState } from "react";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -18,18 +21,20 @@ const FlashcardContainer = styled.div`
   align-items: center;
 `;
 
-function FlashcardPage(props) {
-  const { deckData } = props;
+function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
+  const { setNumber, card } = deckData;
+
+  const [cardData, setCardData] = useState<CardType>(card);
 
   return (
     <>
       <NavBar />
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
-        <DeckButton to="/menu">セット 1</DeckButton>
+        <DeckButton to="/menu">セット {setNumber}</DeckButton>
         <FlashcardContainer>
           <ArrowBack onClick={undefined} />
-          <Flashcard />
+          <Flashcard cardData={cardData} />
           <ArrowForward onClick={undefined} />
         </FlashcardContainer>
         <ButtonContainer>
