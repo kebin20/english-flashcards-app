@@ -24,8 +24,24 @@ const FlashcardContainer = styled.div`
 function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   const { setNumber, card } = deckData;
 
-  const [currentCard, setCurrentCard] = useState(card[0]);
+  const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+
+  function goForward() {
+    setCardIndex((prevIndex) =>
+      cardIndex >= card.length - 1 ? 0 : prevIndex + 1
+    );
+  }
+
+  function goBack() {
+    setCardIndex((prevIndex) =>
+      cardIndex <= card.length - 1 ? 0 : prevIndex - 1
+    );
+  }
+
+  function flipCard() {
+    setIsFlipped((prevFlip) => !prevFlip);
+  }
 
   return (
     <>
@@ -34,9 +50,13 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         <p>セットボタンを押す時にメニューに戻る</p>
         <DeckButton to="/menu">セット {setNumber}</DeckButton>
         <FlashcardContainer>
-          <ArrowBack onClick={undefined} />
-          <Flashcard currentCard={currentCard} isFlipped={isFlipped} />
-          <ArrowForward onClick={undefined} />
+          <ArrowBack onClick={goBack} />
+          <Flashcard
+            currentCard={card[cardIndex]}
+            onFlip={flipCard}
+            isFlipped={isFlipped}
+          />
+          <ArrowForward onClick={goForward} />
         </FlashcardContainer>
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>

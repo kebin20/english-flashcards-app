@@ -12,6 +12,7 @@ export interface FlashcardType {
 
 export interface FlashcardProps {
   isFlipped: boolean;
+  onFlip: () => void;
   currentCard: {
     id: string;
     cardNumber: number;
@@ -20,4 +21,3 @@ export interface FlashcardProps {
     japanese: string;
   };
 }
-

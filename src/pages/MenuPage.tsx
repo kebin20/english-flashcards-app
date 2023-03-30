@@ -26,16 +26,10 @@ function Menu() {
       <NavBar />
       <Container>
         <MenuBox>
-          <MainLink
-            deckData={deckData}
-            className="grid-prop"
-            to="/flashcard-page"
-          >
+          <MainLink deckData={deckData} className="grid-prop">
             全部復習
           </MainLink>
-          <DeckButton to="/set-one">
-            セット {deckData[0].setNumber}
-          </DeckButton>
+          <DeckButton to="/set-one">セット {deckData[0].setNumber}</DeckButton>
           <DeckButton>セット 2</DeckButton>
           <DeckButton>セット 3</DeckButton>
           <DeckButton>セット 4</DeckButton>

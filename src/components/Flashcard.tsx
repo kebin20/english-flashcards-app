@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { FlashcardProps } from "../interfaces";
 
-const StyledCard = styled.div`
+const StyledCardButton = styled.button`
   display: flex;
   flex-direction: column;
   padding: 1.5em 5em 3em 2.8em;
   border-radius: var(--rounder);
+  border: transparent;
   background-color: var(--clr-white);
   box-shadow: var(--lg-shadow);
   margin-inline: 2em;
@@ -32,23 +33,28 @@ const Circle = styled.span`
   text-decoration: none;
 `;
 
-function Flashcard({ isFlipped, currentCard }: FlashcardProps) {
+const EnglishSide = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
   const { cardNumber, english, furigana, japanese } = currentCard;
 
   return (
-    <StyledCard>
+    <StyledCardButton onClick={onFlip}>
       <CardNumber>{cardNumber}</CardNumber>
       <InnerContainer>
         <Circle />
-        <h1>{japanese}</h1>
+        {!isFlipped && <h1>{japanese}</h1>}
         {isFlipped && (
-          <>
+          <EnglishSide>
             <p>{furigana}</p>
             <h1>{english}</h1>
-          </>
+          </EnglishSide>
         )}
       </InnerContainer>
-    </StyledCard>
+    </StyledCardButton>
   );
 }
 
