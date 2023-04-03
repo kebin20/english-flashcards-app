@@ -27,32 +27,34 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // useEffect(() => {
-  //   function handleKeyDown(event: { code: string }) {
-  //     if (event.code === "ArrowLeft") {
-  //       // Handle left arrow key press
-  //       goBack();
-  //     } else if (event.code === "ArrowRight") {
-  //       // Handle right arrow key press
-  //       goForward();
-  //     }
-  //   }
-  //   document.addEventListener("keydown", handleKeyDown);
+  useEffect(() => {
+    function handleKeyDown(event: { code: string }) {
+      if (event.code === "ArrowLeft") {
+        // Handle left arrow key press
+        goBack();
+      } else if (event.code === "ArrowRight") {
+        // Handle right arrow key press
+        goForward();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
 
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   function goForward() {
+    debugger
     setCardIndex((prevIndex) =>
-      cardIndex >= card.length - 1 ? 0 : prevIndex + 1
+      prevIndex >= card.length - 1 ? 0 : prevIndex + 1
     );
   }
 
   function goBack() {
+    debugger
     setCardIndex((prevIndex) =>
-      cardIndex <= card.length - 1 ? 0 : prevIndex - 1
+      prevIndex > 0 ? prevIndex - 1 : card.length - 1
     );
   }
 
