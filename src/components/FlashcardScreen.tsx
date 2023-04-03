@@ -67,8 +67,6 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     );
   }
 
-  console.log(cardDeck);
-
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);
   }
@@ -95,7 +93,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
             </p>
           </>
         )}
-        {cardDeck.length === 0 && <h1>Everything is learnt!</h1>}
+        {cardDeck.length === 0 && <h1>全部習った！</h1>}
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
           <LearntButton onClick={wordLearnt}>習った！</LearntButton>
