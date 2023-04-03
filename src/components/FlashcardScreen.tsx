@@ -42,7 +42,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [cardDeck]);
+  }, [cardDeck, goForward, goBack]);
 
   function goForward() {
     console.log("cardIndex:", cardIndex);
@@ -79,18 +79,23 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
         <DeckButton to="/menu">セット {setNumber}</DeckButton>
-        <FlashcardContainer>
-          <ArrowBack onClick={goBack} />
-          <Flashcard
-            currentCard={cardDeck[cardIndex]}
-            onFlip={flipCard}
-            isFlipped={isFlipped}
-          />
-          <ArrowForward onClick={goForward} />
-        </FlashcardContainer>
-        <p>
-          {cardIndex + 1}/{cardDeck.length}
-        </p>
+        {cardDeck.length !== 0 && (
+          <>
+            <FlashcardContainer>
+              <ArrowBack onClick={goBack} />
+              <Flashcard
+                currentCard={cardDeck[cardIndex]}
+                onFlip={flipCard}
+                isFlipped={isFlipped}
+              />
+              <ArrowForward onClick={goForward} />
+            </FlashcardContainer>
+            <p>
+              {cardIndex + 1}/{cardDeck.length}
+            </p>
+          </>
+        )}
+        {cardDeck.length === 0 && <h1>Everything is learnt!</h1>}
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
           <LearntButton onClick={wordLearnt}>習った！</LearntButton>
