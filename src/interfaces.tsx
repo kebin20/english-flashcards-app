@@ -1,7 +1,7 @@
 export interface FlashcardType {
   id: string;
   setNumber: number;
-  card: {
+  cards: {
     id: string;
     cardNumber: number;
     english: string;

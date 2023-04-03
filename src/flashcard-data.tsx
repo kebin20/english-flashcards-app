@@ -4,7 +4,7 @@ const decks = [
   {
     id: nanoid(),
     setNumber: 1,
-    card: [
+    cards: [
       {
         id: nanoid(),
         cardNumber: 1,
