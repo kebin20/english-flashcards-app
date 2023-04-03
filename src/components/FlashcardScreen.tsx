@@ -13,7 +13,6 @@ import { useState, useEffect } from "react";
 const ButtonContainer = styled.div`
   display: flex;
   gap: 6em;
-  padding: 2em;
 `;
 
 const FlashcardContainer = styled.div`
@@ -22,8 +21,9 @@ const FlashcardContainer = styled.div`
 `;
 
 function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
-  const { setNumber, card } = deckData;
+  const { setNumber, cards } = deckData;
 
+  const [cardDeck, setCardDeck] = useState(cards);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -42,21 +42,32 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [cardDeck]);
 
   function goForward() {
-    debugger
+    console.log("cardIndex:", cardIndex);
+    console.log("cardDeck.length:", cardDeck.length);
     setCardIndex((prevIndex) =>
-      prevIndex >= card.length - 1 ? 0 : prevIndex + 1
+      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
     );
   }
 
   function goBack() {
-    debugger
+    console.log("cardIndex:", cardIndex);
+    console.log("cardDeck.length:", cardDeck.length);
     setCardIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : card.length - 1
+      prevIndex > 0 ? prevIndex - 1 : cardDeck.length - 1
     );
   }
+
+  function wordLearnt() {
+    setCardDeck((prevCardDeck) =>
+      //underscore is used since we don't need the current element
+      prevCardDeck.filter((_, index) => index !== cardIndex)
+    );
+  }
+
+  console.log(cardDeck);
 
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);
@@ -71,15 +82,18 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         <FlashcardContainer>
           <ArrowBack onClick={goBack} />
           <Flashcard
-            currentCard={card[cardIndex]}
+            currentCard={cardDeck[cardIndex]}
             onFlip={flipCard}
             isFlipped={isFlipped}
           />
           <ArrowForward onClick={goForward} />
         </FlashcardContainer>
+        <p>
+          {cardIndex + 1}/{cardDeck.length}
+        </p>
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
-          <LearntButton>習った！</LearntButton>
+          <LearntButton onClick={wordLearnt}>習った！</LearntButton>
         </ButtonContainer>
       </Container>
     </>
