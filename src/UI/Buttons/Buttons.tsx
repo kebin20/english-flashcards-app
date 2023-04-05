@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Button = styled.button`
   display: inline-block;
@@ -57,6 +57,16 @@ const StyledReviseButton = styled(Button)`
   }
 `;
 
+const StyledResetButton = styled(Button)`
+  background-color: var(--clr-orange;
+  color: var(--clr-dark);
+
+  &:hover,
+  &:active {
+    background-color: var(--clr-orange-hover);
+  }
+`;
+
 function MainLink(props) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
@@ -67,7 +77,7 @@ function MainLink(props) {
 
 function ReviseButton(props) {
   return (
-    <StyledReviseButton type={props.type || "button"} onClick={props.onClick}>
+    <StyledReviseButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
     </StyledReviseButton>
   );
@@ -75,10 +85,18 @@ function ReviseButton(props) {
 
 function LearntButton(props) {
   return (
-    <StyledLearntButton type={props.type || "button"} onClick={props.onClick}>
+    <StyledLearntButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
     </StyledLearntButton>
   );
 }
 
-export { MainLink, LearntButton, ReviseButton };
+function ResetButton(props) {
+  return (
+    <StyledResetButton type={props.type || 'button'} onClick={props.onClick}>
+      {props.children}
+    </StyledResetButton>
+  );
+}
+
+export { MainLink, LearntButton, ReviseButton, ResetButton };

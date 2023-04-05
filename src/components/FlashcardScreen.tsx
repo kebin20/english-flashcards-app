@@ -2,7 +2,7 @@ import NavBar from './Navbar';
 import DeckButton from '../UI/Buttons/DeckButton';
 import Container from '../UI/Container';
 import Flashcard from './Flashcard';
-import { ReviseButton, LearntButton } from '../UI/Buttons/Buttons';
+import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
 import { FlashcardType } from '../interfaces';
@@ -114,6 +114,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
           <LearntButton onClick={wordLearnt}>習った！</LearntButton>
+          <ResetButton>リセット</ResetButton>
         </ButtonContainer>
       </Container>
     </>
