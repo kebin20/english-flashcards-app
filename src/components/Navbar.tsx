@@ -44,12 +44,19 @@ const NavTitle = styled.h1`
 `;
 
 const NavMenu = styled.ul`
+display: flex;
+gap: 1em;
+
+@media only screen and (max-width: 600px) {
+  display: none;
+}
+`
+
+const NavMobileMenu = styled(NavMenu)`
   background-color: var(--clr-white);
   box-shadow: var(--lg-shadow);
   height: fit-content;
-  display: flex;
   flex-direction: column;
-  gap: 1em;
   align-items: center;
   position: absolute;
   inset: 70% 0 0 0;
@@ -58,9 +65,8 @@ const NavMenu = styled.ul`
   font-weight: 900;
   font-size: var(--fs-500);
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (max-width: 600px) {
     display: flex;
-    gap: 1em;
   }
 `;
 
@@ -96,19 +102,23 @@ function Navbar() {
       </HamburgerButton>
 
       {toggle && (
-        <NavMenu>
+        <NavMobileMenu>
           <li>
             <Link to="/menu">デック</Link>
           </li>
           <li>
             <Link to="/edit-deck">編集</Link>
           </li>
-        </NavMenu>
+        </NavMobileMenu>
       )}
-      {/* <NavMenu>
-        <Link to="/menu">デック</Link>
-        <Link to="/edit-deck">編集</Link>
-      </NavMenu> */}
+      <NavMenu>
+        <li>
+            <Link to="/menu">デック</Link>
+          </li>
+          <li>
+            <Link to="/edit-deck">編集</Link>
+          </li>
+      </NavMenu>
     </StyledNavBar>
   );
 }
