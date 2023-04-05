@@ -5,7 +5,7 @@ import { MainLink } from "../UI/Buttons/Buttons";
 function EditDeck() {
   return (
     <>
-      <NavBar />
+      <p>placeholder</p>
     </>
   );
 }

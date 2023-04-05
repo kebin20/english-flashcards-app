@@ -89,7 +89,6 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
 
   return (
     <>
-      <NavBar />
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
         <AltDeckButton to="/menu" className={undefined}>

@@ -24,7 +24,6 @@ const MenuBox = styled.div`
 function Menu() {
   return (
     <>
-      <NavBar />
       <Container>
         <MenuBox>
           <MainLink deckData={deckData} className="grid-prop" to={""}>

@@ -30,7 +30,6 @@ const WelcomeTitle = styled.h1`
 function WelcomeScreen() {
   return (
     <>
-      <NavBar />
       <Container>
         <WelcomeBox>
           <WelcomeTitle>単語練習</WelcomeTitle>

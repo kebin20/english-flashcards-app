@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./components/Navbar";
 import WelcomeScreen from "./pages/WelcomePage";
 import MenuPage from "./pages/MenuPage";
 import EditDeck from "./pages/EditDeckPage";
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path="/" element={<WelcomeScreen />} />
           <Route path="/menu" element={<MenuPage />} />
