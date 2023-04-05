@@ -22,6 +22,12 @@ const StyledDeckButton = styled(Link)`
   &:active {
     color: var(--clr-dark-hover);
   }
+
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7em 1.5em;
+  }
 `;
 
 const Circle = styled.span`
