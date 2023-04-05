@@ -58,19 +58,18 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     };
   }, [cardDeck, goForward, goBack]);
 
+  console.log('cardIndex:', cardIndex);
+  console.log('cardDeck.length:', cardDeck.length);
+
   function goForward() {
-    console.log('cardIndex:', cardIndex);
-    console.log('cardDeck.length:', cardDeck.length);
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
     );
   }
 
   function goBack() {
-    console.log('cardIndex:', cardIndex);
-    console.log('cardDeck.length:', cardDeck.length);
     setCardIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : cardDeck.length - 1
+      prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
     );
   }
 
@@ -78,6 +77,10 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     setCardDeck((prevCardDeck) =>
       //underscore is used since we don't need the current element
       prevCardDeck.filter((_, index) => index !== cardIndex)
+    );
+    // Update cardIndex if it is pointing to an index that is out of range after removing cards
+    setCardIndex((prevIndex) =>
+      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
   }
 
