@@ -25,7 +25,6 @@ const HamburgerButton = styled.button`
   position: relative;
   border: none;
   background-color: transparent;
-
   &:focus {
     outline: none;
   }
@@ -47,23 +46,14 @@ const NavTitle = styled.h1`
 const NavMenu = styled.ul`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    180deg,
-    rgba(254, 252, 247, 0.504981) 0%,
-    var(--clr-white) 55.94%
-  );
   gap: 1em;
   align-items: center;
   position: absolute;
-  top: 2.9em;
-  left: 0;
-  right: 0;
-  bottom: 0em;
+  inset: 70% 0 0 0;
   padding: 1.25em 1.5em;
   font-family: var(--ff-jp-text);
   font-weight: 900;
   font-size: var(--fs-500);
-  z-index: 1;
 
   @media only screen and (min-width: 600px) {
     display: flex;
