@@ -6,7 +6,7 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 height: 100vh;
-gap: 2em;
+gap: 1.3em;
 z-index: -1;
 `;
 

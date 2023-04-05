@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 6em;
+  gap: 2em;
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
@@ -23,6 +23,7 @@ const ButtonContainer = styled.div`
 const FlashcardContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5em;
 `;
 
 const FinishTitle = styled.h1`
@@ -113,7 +114,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         {cardDeck.length === 0 && <FinishTitle>全部習った！</FinishTitle>}
         <ButtonContainer>
           <ReviseButton>まだ。。</ReviseButton>
-          <LearntButton onClick={wordLearnt}>習った！</LearntButton>
+          <LearntButton onClick={wordLearnt}>覚えた！</LearntButton>
           <ResetButton>リセット</ResetButton>
         </ButtonContainer>
       </Container>
