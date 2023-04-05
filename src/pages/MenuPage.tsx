@@ -1,11 +1,11 @@
-import NavBar from "../components/Navbar";
-import { MainLink } from "../UI/Buttons/Buttons";
-import DeckButton from "../UI/Buttons/DeckButton";
-import Container from "../UI/Container";
+import NavBar from '../components/Navbar';
+import { MainLink } from '../UI/Buttons/Buttons';
+import { DeckButton } from '../UI/Buttons/DeckButton';
+import Container from '../UI/Container';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import deckData from "../flashcard-data";
+import deckData from '../flashcard-data';
 
 const MenuBox = styled.div`
   display: grid;

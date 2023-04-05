@@ -1,7 +1,7 @@
 import NavBar from './Navbar';
-import { AltDeckButton } from '../UI/Buttons/DeckButton';
 import Container from '../UI/Container';
 import Flashcard from './Flashcard';
+import { AltDeckButton } from '../UI/Buttons/DeckButton';
 import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
