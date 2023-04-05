@@ -6,6 +6,7 @@ import Container from '../UI/Container';
 import styled from 'styled-components';
 
 import deckData from '../flashcard-data';
+import React from 'react';
 
 const MenuBox = styled.div`
   display: grid;

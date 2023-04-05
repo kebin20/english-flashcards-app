@@ -1,5 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
-import { FlashcardProps } from '../interfaces';
+import { FlashcardType } from '../interfaces';
 
 const StyledCardButton = styled.button`
   display: flex;
@@ -52,7 +53,7 @@ const EnglishSide = styled.div`
   flex-direction: column;
 `;
 
-function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
+function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardType) {
   const { cardNumber, english, furigana, japanese } = currentCard;
 
   return (

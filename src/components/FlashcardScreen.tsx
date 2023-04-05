@@ -9,6 +9,7 @@ import { FlashcardType } from '../interfaces';
 
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import React from 'react';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -72,9 +73,9 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   }
 
   function wordLearnt() {
-    setCardDeck((prevCardDeck) =>
+    setCardDeck((prevCardDeck: any[]) =>
       //underscore is used since we don't need the current element
-      prevCardDeck.filter((_, index) => index !== cardIndex)
+      prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
     );
     // Update cardIndex if it is pointing to an index that is out of range after removing cards
     setCardIndex((prevIndex) =>
@@ -91,7 +92,9 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
       <NavBar />
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
-        <AltDeckButton to="/menu">セット {setNumber}</AltDeckButton>
+        <AltDeckButton to="/menu" className={undefined}>
+          セット {setNumber}
+        </AltDeckButton>
         {cardDeck.length !== 0 && (
           <>
             <FlashcardContainer>
@@ -110,8 +113,10 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         )}
         {cardDeck.length === 0 && <FinishTitle>全部習った！</FinishTitle>}
         <ButtonContainer>
-          <ReviseButton>まだ。。</ReviseButton>
-          <LearntButton onClick={wordLearnt}>覚えた！</LearntButton>
+          <ReviseButton to={''}>まだ。。</ReviseButton>
+          <LearntButton onClick={wordLearnt} to={''}>
+            覚えた！
+          </LearntButton>
           <ResetButton>リセット</ResetButton>
         </ButtonContainer>
       </Container>

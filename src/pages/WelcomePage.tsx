@@ -5,6 +5,7 @@ import Container from "../UI/Container";
 import { MainLink } from "../UI/Buttons/Buttons";
 
 import welcomeImage from "../assets/welcome-image.png";
+import React from "react";
 
 const WelcomeBox = styled.div`
   border-radius: var(--round);

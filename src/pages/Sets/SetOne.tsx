@@ -1,3 +1,4 @@
+import React from "react";
 import FlashcardScreen from "../../components/FlashcardScreen";
 import { FlashcardType } from "../../interfaces";
 
