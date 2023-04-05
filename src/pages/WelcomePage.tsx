@@ -37,7 +37,7 @@ function WelcomeScreen() {
           <p>3年生～6年生の単語を復習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
-        <MainLink to="/menu">スタート!</MainLink>
+        <MainLink to="/menu" deckData={[]}>スタート!</MainLink>
       </Container>
     </>
   );

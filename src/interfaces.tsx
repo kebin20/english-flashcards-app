@@ -35,6 +35,15 @@ export interface FlashcardType {
   isFlipped: boolean;
   onFlip: () => void;
   currentCard: any;
+  setNumber: number;
+  cards: {
+    id: string;
+    cardNumber: number;
+    furigana: string;
+    english: string;
+    japanese: string;
+  }[];
+
 }
 
 export interface FlashcardDeckType {

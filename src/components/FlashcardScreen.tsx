@@ -103,6 +103,8 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
                 currentCard={cardDeck[cardIndex]}
                 onFlip={flipCard}
                 isFlipped={isFlipped}
+                setNumber={0}
+                cards={[]}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>
