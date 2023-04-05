@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledDeckButton = styled(Link)`
   position: relative;
@@ -49,4 +49,8 @@ function DeckButton(props) {
   );
 }
 
-export default DeckButton;
+function AltDeckButton(props) {
+  return <StyledDeckButton to={props.to}>{props.children}</StyledDeckButton>;
+}
+
+export { DeckButton, AltDeckButton };

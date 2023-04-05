@@ -1,5 +1,5 @@
 import NavBar from './Navbar';
-import DeckButton from '../UI/Buttons/DeckButton';
+import { AltDeckButton } from '../UI/Buttons/DeckButton';
 import Container from '../UI/Container';
 import Flashcard from './Flashcard';
 import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
@@ -91,7 +91,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
       <NavBar />
       <Container>
         <p>セットボタンを押す時にメニューに戻る</p>
-        <DeckButton to="/menu">セット {setNumber}</DeckButton>
+        <AltDeckButton to="/menu">セット {setNumber}</AltDeckButton>
         {cardDeck.length !== 0 && (
           <>
             <FlashcardContainer>
