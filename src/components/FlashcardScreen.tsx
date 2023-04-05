@@ -1,15 +1,15 @@
-import NavBar from "./Navbar";
-import Container from "../UI/Container";
-import Flashcard from "./Flashcard";
-import { AltDeckButton } from "../UI/Buttons/DeckButton";
-import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
-import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
+import NavBar from './Navbar';
+import Container from '../UI/Container';
+import Flashcard from './Flashcard';
+import { AltDeckButton } from '../UI/Buttons/DeckButton';
+import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
+import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { FlashcardType } from "../interfaces";
+import { FlashcardType } from '../interfaces';
 
-import styled from "styled-components";
-import { useState, useEffect } from "react";
-import React from "react";
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import React from 'react';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -45,18 +45,18 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
 
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
-      if (event.code === "ArrowLeft") {
+      if (event.code === 'ArrowLeft') {
         // Handle left arrow key press
         goBack();
-      } else if (event.code === "ArrowRight") {
+      } else if (event.code === 'ArrowRight') {
         // Handle right arrow key press
         goForward();
       }
     }
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [cardDeck, goForward, goBack]);
 
@@ -87,6 +87,12 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     setIsFlipped((prevFlip) => !prevFlip);
   }
 
+  function reset() {
+    setCardDeck(cards);
+    setCardIndex(0);
+    setIsFlipped(false);
+  }
+
   return (
     <>
       <Container>
@@ -112,13 +118,15 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
             </p>
           </>
         )}
-        {cardDeck.length === 0 && <FinishTitle>全部習った！</FinishTitle>}
+        {cardDeck.length === 0 && <FinishTitle>全部覚えた！</FinishTitle>}
         <ButtonContainer>
-          <ReviseButton to={""}>まだ。。</ReviseButton>
-          <LearntButton onClick={wordLearnt} to={""}>
+          <ReviseButton to={''}>まだ。。</ReviseButton>
+          <LearntButton onClick={wordLearnt} to={''}>
             覚えた！
           </LearntButton>
-          <ResetButton to={""}>リセット</ResetButton>
+          <ResetButton onClick={reset} to={''}>
+            リセット
+          </ResetButton>
         </ButtonContainer>
       </Container>
     </>
