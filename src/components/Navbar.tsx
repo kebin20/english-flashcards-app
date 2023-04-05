@@ -44,6 +44,9 @@ const NavTitle = styled.h1`
 `;
 
 const NavMenu = styled.ul`
+  background-color: var(--clr-white);
+  box-shadow: var(--lg-shadow);
+  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -94,8 +97,12 @@ function Navbar() {
 
       {toggle && (
         <NavMenu>
-          <Link to="/menu">デック</Link>
-          <Link to="/edit-deck">編集</Link>
+          <li>
+            <Link to="/menu">デック</Link>
+          </li>
+          <li>
+            <Link to="/edit-deck">編集</Link>
+          </li>
         </NavMenu>
       )}
       {/* <NavMenu>
