@@ -1,12 +1,12 @@
-import NavBar from '../components/Navbar';
-import { MainLink } from '../UI/Buttons/Buttons';
-import { DeckButton } from '../UI/Buttons/DeckButton';
-import Container from '../UI/Container';
+import NavBar from "../components/Navbar";
+import { MainLink } from "../UI/Buttons/Buttons";
+import { DeckButton } from "../UI/Buttons/DeckButton";
+import Container from "../UI/Container";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import deckData from '../flashcard-data';
-import React from 'react';
+import deckData from "../flashcard-data";
+import React from "react";
 
 const MenuBox = styled.div`
   display: grid;
@@ -27,15 +27,15 @@ function Menu() {
       <NavBar />
       <Container>
         <MenuBox>
-          <MainLink deckData={deckData} className="grid-prop">
+          <MainLink deckData={deckData} className="grid-prop" to={""}>
             全部復習
           </MainLink>
           <DeckButton to="/set-one">セット {deckData[0].setNumber}</DeckButton>
-          <DeckButton>セット 2</DeckButton>
-          <DeckButton>セット 3</DeckButton>
-          <DeckButton>セット 4</DeckButton>
-          <DeckButton>セット 5</DeckButton>
-          <DeckButton>セット 6</DeckButton>
+          <DeckButton to={""}>セット 2</DeckButton>
+          <DeckButton to={""}>セット 3</DeckButton>
+          <DeckButton to={""}>セット 4</DeckButton>
+          <DeckButton to={""}>セット 5</DeckButton>
+          <DeckButton to={""}>セット 6</DeckButton>
         </MenuBox>
       </Container>
     </>
