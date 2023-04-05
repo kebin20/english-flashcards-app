@@ -13,6 +13,20 @@ export interface ButtonType {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+export interface MainLinkProps extends ButtonType {
+  deckData: {
+    id: string;
+    setNumber: number;
+    cards: {
+      id: string;
+      cardNumber: number;
+      furigana: string;
+      english: string;
+      japanese: string;
+    }[];
+  }[];
+}
+
 export interface ContainerType {
   children?: ReactNode;
 }

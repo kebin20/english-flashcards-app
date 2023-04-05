@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ButtonType } from '../../interfaces';
+import { ButtonType, MainLinkProps } from '../../interfaces';
 
 const Button = styled.button`
   displa
@@ -72,7 +72,7 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
-function MainLink(props: ButtonType) {
+function MainLink(props: MainLinkProps) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
       {props.children}
