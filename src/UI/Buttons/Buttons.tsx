@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import { ButtonType, MainLinkProps } from '../../interfaces';
 
 const Button = styled.button`
-  displa
-type: string;
-[x: string]: string;
-type: string;
-type: string;y: inline-block;
+  display: inline-block;
   padding: 1em 3em;
   font-family: var(--ff-jp-title);
   background-color: var(--clr-orange);
