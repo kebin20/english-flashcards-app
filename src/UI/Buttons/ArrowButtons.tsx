@@ -1,13 +1,16 @@
+import React from 'react';
 import styled from 'styled-components';
+import { ArrowButtonType } from '../../interfaces';
 
 const StyledArrowBack = styled.svg`
 transform: rotate(-0.5turn);
 `;
 
-function ArrowForward({ onClick }) {
+function ArrowForward({ onClick }: ArrowButtonType) {
   return (
     <svg
       onClick={onClick}
+      style={{ cursor: 'pointer' }}
       role="button"
       xmlns="http://www.w3.org/2000/svg"
       height="48"
@@ -19,10 +22,11 @@ function ArrowForward({ onClick }) {
   );
 }
 
-function ArrowBack({ onClick }) {
+function ArrowBack({ onClick }: ArrowButtonType) {
   return (
     <StyledArrowBack
       onClick={onClick}
+      style={{ cursor: 'pointer' }}
       role="button"
       xmlns="http://www.w3.org/2000/svg"
       height="48"

@@ -1,8 +1,14 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { ButtonType } from '../../interfaces';
 
 const Button = styled.button`
-  display: inline-block;
+  displa
+type: string;
+[x: string]: string;
+type: string;
+type: string;y: inline-block;
   padding: 1em 3em;
   font-family: var(--ff-jp-title);
   background-color: var(--clr-orange);
@@ -66,7 +72,7 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
-function MainLink(props) {
+function MainLink(props: ButtonType) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
       {props.children}
@@ -74,7 +80,7 @@ function MainLink(props) {
   );
 }
 
-function ReviseButton(props) {
+function ReviseButton(props: ButtonType) {
   return (
     <StyledReviseButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
@@ -82,7 +88,7 @@ function ReviseButton(props) {
   );
 }
 
-function LearntButton(props) {
+function LearntButton(props: ButtonType) {
   return (
     <StyledLearntButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}
@@ -90,7 +96,7 @@ function LearntButton(props) {
   );
 }
 
-function ResetButton(props) {
+function ResetButton(props: ButtonType) {
   return (
     <StyledResetButton type={props.type || 'button'} onClick={props.onClick}>
       {props.children}

@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomeScreen from "./pages/WelcomePage";
 import MenuPage from "./pages/MenuPage";

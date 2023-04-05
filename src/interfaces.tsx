@@ -1,23 +1,18 @@
-export interface FlashcardType {
-  id: string;
-  setNumber: number;
-  cards: {
-    id: string;
-    cardNumber: number;
-    english: string;
-    furigana: string;
-    japanese: string;
-  }[];
+import React, { ReactNode } from 'react';
+import { To } from 'react-router-dom';
+
+export interface ArrowButtonType {
+  onClick: React.MouseEventHandler<SVGSVGElement>;
 }
 
-export interface FlashcardProps {
-  isFlipped: boolean;
-  onFlip: () => void;
-  currentCard: {
-    id: string;
-    cardNumber: number;
-    english: string;
-    furigana: string;
-    japanese: string;
-  };
+export interface ButtonType {
+  className: string | undefined;
+  to: To;
+  children?: ReactNode;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface ContainerType {
+  children?: ReactNode;
 }
