@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { To } from 'react-router-dom';
+import React, { ReactNode } from "react";
+import { To } from "react-router-dom";
 
 export interface ArrowButtonType {
   onClick: React.MouseEventHandler<SVGSVGElement>;
@@ -7,9 +7,9 @@ export interface ArrowButtonType {
 
 export interface ButtonType {
   className?: string | undefined;
-  to?: To;
+  to: To;
   children?: ReactNode;
-  type?: 'submit' | 'reset' | 'button' | undefined;
+  type?: "submit" | "reset" | "button" | undefined;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -32,9 +32,9 @@ export interface ContainerType {
 }
 
 export interface FlashcardType {
-  isFlipped: boolean;
-  onFlip: () => void;
-  currentCard: any;
+  isFlipped?: boolean;
+  onFlip?: () => void;
+  currentCard?: any;
   setNumber: number;
   cards: {
     id: string;
@@ -43,19 +43,16 @@ export interface FlashcardType {
     english: string;
     japanese: string;
   }[];
-
 }
 
-export interface FlashcardDeckType {
-  deckData: {
+export interface FlashcardDeckType extends FlashcardType {
+  id: string;
+  setNumber: number;
+  cards: {
     id: string;
-    setNumber: number;
-    cards: {
-      id: string;
-      cardNumber: number;
-      furigana: string;
-      english: string;
-      japanese: string;
-    }[];
+    cardNumber: number;
+    furigana: string;
+    english: string;
+    japanese: string;
   }[];
 }
