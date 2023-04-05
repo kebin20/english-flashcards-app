@@ -14,6 +14,7 @@ const StyledNavBar = styled.nav`
   gap: 1em;
   background-color: var(--clr-white);
   box-shadow: var(--lg-shadow);
+  z-index: 1000;
 `;
 
 const HamburgerButton = styled.button`

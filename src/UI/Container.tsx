@@ -7,6 +7,7 @@ justify-content: center;
 flex-direction: column;
 height: 100vh;
 gap: 2em;
+z-index: -1;
 `;
 
 function Container(props) {
