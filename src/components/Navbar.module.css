@@ -1,0 +1,37 @@
+.hamburgerTop,
+.hamburgerMiddle,
+.hamburgerBottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 3px;
+  border-radius: 1.5px;
+  background: var(--clr-dark);
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+
+.hamburgerMiddle {
+  transform: translateY(7px);
+}
+
+.hamburgerBottom {
+  transform: translateY(14px);
+}
+
+.open {
+  transform: rotate(90deg) translateY(0px);
+}
+
+.openHamburgerTop {
+  transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.openHamburgerMiddle {
+  display: none;
+}
+
+.openHamburgerBottom {
+  transform: rotate(-45deg) translateY(6px) translate(-6px);
+}

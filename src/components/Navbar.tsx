@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import logo from "../assets/flash-card.png";
+import React, { useState } from 'react';
+import classes from './Navbar.module.css';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import logo from '../assets/flash-card.png';
 
 const StyledNavBar = styled.nav`
   position: fixed;
@@ -14,6 +16,25 @@ const StyledNavBar = styled.nav`
   box-shadow: var(--lg-shadow);
 `;
 
+const HamburgerButton = styled.button`
+  display: block;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+  border: none;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media only screen and (min-width: 600px) {
+    display: none;
+  }
+`;
+
 const Logo = styled.img`
   width: 3em;
 `;
@@ -25,20 +46,72 @@ const NavTitle = styled.h1`
 
 const NavMenu = styled.ul`
   display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 252, 247, 0.504981) 0%,
+    var(--clr-white) 55.94%
+  );
   gap: 1em;
+  align-items: center;
+  position: absolute;
+  top: 2.9em;
+  left: 0;
+  right: 0;
+  bottom: 0em;
+  padding: 1.25em 1.5em;
+  font-family: var(--ff-jp-text);
+  font-weight: 900;
+  font-size: var(--fs-500);
+  z-index: 1;
+
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    gap: 1em;
+  }
 `;
 
 function Navbar() {
+  const [toggle, setToggle] = useState(false);
+
+  function toggleHamburgerMenu() {
+    setToggle((prevToggle) => !prevToggle);
+  }
   return (
     <StyledNavBar>
       <Link to="/">
         <Logo src={logo} alt="ロゴ" />
       </Link>
       <NavTitle>フラッシュカード</NavTitle>
-      <NavMenu>
+
+      <HamburgerButton onClick={toggleHamburgerMenu}>
+        <span
+          className={`${classes.hamburgerTop} ${toggle && classes.open} ${
+            toggle && classes.openHamburgerTop
+          }`}
+        ></span>
+        <span
+          className={`${classes.hamburgerMiddle} ${toggle && classes.open} ${
+            toggle && classes.openHamburgerMiddle
+          }`}
+        ></span>
+        <span
+          className={`${classes.hamburgerBottom} ${toggle && classes.open} ${
+            toggle && classes.openHamburgerBottom
+          }`}
+        ></span>
+      </HamburgerButton>
+
+      {toggle && (
+        <NavMenu>
+          <Link to="/menu">デック</Link>
+          <Link to="/edit-deck">編集</Link>
+        </NavMenu>
+      )}
+      {/* <NavMenu>
         <Link to="/menu">デック</Link>
         <Link to="/edit-deck">編集</Link>
-      </NavMenu>
+      </NavMenu> */}
     </StyledNavBar>
   );
 }
