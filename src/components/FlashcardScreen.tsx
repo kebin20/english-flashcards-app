@@ -59,9 +59,6 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     };
   }, [cardDeck, goForward, goBack]);
 
-  console.log('cardIndex:', cardIndex);
-  console.log('cardDeck.length:', cardDeck.length);
-
   function goForward() {
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
