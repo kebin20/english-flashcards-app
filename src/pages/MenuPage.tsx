@@ -1,4 +1,3 @@
-import NavBar from "../components/Navbar";
 import { MainLink } from "../UI/Buttons/Buttons";
 import { DeckButton } from "../UI/Buttons/DeckButton";
 import Container from "../UI/Container";

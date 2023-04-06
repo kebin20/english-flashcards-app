@@ -1,4 +1,3 @@
-import NavBar from './Navbar';
 import Container from '../UI/Container';
 import Flashcard from './Flashcard';
 import { AltDeckButton } from '../UI/Buttons/DeckButton';
