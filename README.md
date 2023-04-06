@@ -16,11 +16,15 @@
 ### Main Function
 
 Users should be able to:
+- Access flashcard sets and start revising 
+- Store cards needing to be learnt and revise them in a separate page
+- Remove cards that have been learnt from current deck
+- Being able to edit the master deck, editing as the user wishes
 
 ### Links
 
-- Solution URL: [Github Repo]()
-- Live Site URL: []()
+- Solution URL: [Github Repo](https://github.com/kebin20/english-flashcards-app)
+- Live Site URL: [Flashcard](https://lucky-lily-d6b76f.netlify.app/)
 
 ## My process
 
@@ -30,7 +34,7 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
+- CSS Modules
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript - Strongly typed programming language on top of JS
 - [React](https://reactjs.org/) - JS library
 - [React Router](https://reactrouter.com/en/main) - React routing library
