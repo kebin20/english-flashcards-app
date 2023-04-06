@@ -11,16 +11,22 @@ import deckData from './flashcard-data';
 
 function App() {
   const [vocabData, setVocabData] = useState([]);
-
+  const [deck, setDeck] = useState(deckData);
+  
   /* Fetching vocabs function (USING localStorage)*/
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-  }, [vocabData]);
+    localStorage.setItem('storedDeck', JSON.stringify(deck));
+  }, [vocabData, deck]);
 
   useEffect(() => {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
+    const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
     if (storedVocabs) {
       setVocabData(storedVocabs);
+    }
+    if (storedDeck) {
+      setDeck(storedDeck);
     }
   }, []);
 
@@ -38,10 +44,7 @@ function App() {
           <Route
             path="/set-one"
             element={
-              <SetOne
-                onPassVocabDataUp={handleVocabData}
-                deckData={deckData[0]}
-              />
+              <SetOne onPassVocabDataUp={handleVocabData} deckData={deck[0]} />
             }
           />
           <Route path="/edit-deck" element={<EditDeckPage />} />

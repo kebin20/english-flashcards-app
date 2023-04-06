@@ -83,7 +83,6 @@ function RevisePage({ vocabData }: { vocabData: CardContentType[] }) {
   }
 
   function reset() {
-    localStorage.removeItem('storedVocabs');
     setCardDeck(vocabData);
     setCardIndex(0);
     setIsFlipped(false);
