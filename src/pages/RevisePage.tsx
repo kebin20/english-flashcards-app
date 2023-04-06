@@ -33,7 +33,7 @@ const FinishTitle = styled.h1`
   text-align: center;
 `;
 
-function RevisePage({ vocabData }: { vocabData: CardContentType }) {
+function RevisePage({ vocabData }: { vocabData: CardContentType[] }) {
   const [cardDeck, setCardDeck] = useState(vocabData);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
