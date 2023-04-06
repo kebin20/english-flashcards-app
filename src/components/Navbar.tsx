@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import classes from './Navbar.module.css';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import logo from '../assets/flash-card.png';
+import React, { useState } from "react";
+import classes from "./Navbar.module.css";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logo from "../assets/flash-card.png";
 
 const StyledNavBar = styled.nav`
   position: fixed;
@@ -45,12 +45,12 @@ const NavTitle = styled.h1`
 `;
 
 const NavMenu = styled.ul`
-display: flex;
-gap: 1em;
+  display: flex;
+  gap: 2em;
 
-@media only screen and (max-width: 600px) {
-  display: none;
-}
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const NavMobileMenu = styled(NavMenu)`
@@ -73,7 +73,6 @@ const NavMobileMenu = styled(NavMenu)`
 
 function Navbar() {
   const [toggle, setToggle] = useState(false);
-  const [closeMenu, setCloseMenu] = useState(false);
 
   function toggleHamburgerMenu() {
     setToggle((prevToggle) => !prevToggle);
