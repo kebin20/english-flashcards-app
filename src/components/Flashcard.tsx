@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FlashcardType } from '../interfaces';
+import React from "react";
+import styled from "styled-components";
+import { FlashcardProps } from "../interfaces";
 
 const StyledCardButton = styled.button`
   display: flex;
@@ -30,7 +30,7 @@ const InnerContainer = styled.div`
   gap: 2em;
 
   @media only screen and (max-width: 600px) {
-    gap:3em;
+    gap: 3em;
   }
 `;
 
@@ -53,7 +53,7 @@ const EnglishSide = styled.div`
   flex-direction: column;
 `;
 
-function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardType) {
+function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
   const { cardNumber, english, furigana, japanese } = currentCard;
 
   return (

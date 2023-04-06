@@ -4,7 +4,7 @@ import Flashcard from '../components/Flashcard';
 import { LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { CardContentType } from '../interfaces';
+import { CardsContentType } from '../interfaces';
 
 import styled from 'styled-components';
 
@@ -33,7 +33,7 @@ const FinishTitle = styled.h1`
   text-align: center;
 `;
 
-function RevisePage({ vocabData }: { vocabData: CardContentType[] }) {
+function RevisePage({ vocabData }: { vocabData: CardsContentType[] }) {
   const [cardDeck, setCardDeck] = useState(vocabData);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
