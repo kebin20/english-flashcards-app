@@ -38,6 +38,8 @@ function RevisePage({ vocabData }: { vocabData: CardContentType[] }) {
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
+  console.log(cardDeck);
+
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>

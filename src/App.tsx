@@ -15,20 +15,21 @@ function App() {
 
   /* Fetching vocabs function (USING localStorage)*/
   useEffect(() => {
-    localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-    localStorage.setItem('storedDeck', JSON.stringify(deck));
-  }, [vocabData, deck]);
-
-  useEffect(() => {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
     const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
     if (storedVocabs) {
-      setVocabData(storedVocabs);
+      const storedNewVocabs: any = [...vocabData, storedVocabs];
+      setVocabData(storedNewVocabs);
     }
     if (storedDeck) {
       setDeck(storedDeck);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
+    localStorage.setItem('storedDeck', JSON.stringify(deck));
+  }, [vocabData, deck]);
 
   function handleVocabData(newVocabData: React.SetStateAction<never[]>) {
     setVocabData(newVocabData);
