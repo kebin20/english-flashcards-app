@@ -8,7 +8,6 @@ import RevisePage from './pages/RevisePage';
 import SetOne from './pages/Sets/SetOne';
 
 import deckData from './flashcard-data';
-import { FlashcardDeckType } from './interfaces';
 
 function App() {
   const [vocabData, setVocabData] = useState([]);
