@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
-import WelcomeScreen from './pages/WelcomePage';
+import WelcomePage from './pages/WelcomePage';
 import MenuPage from './pages/MenuPage';
-import EditDeck from './pages/EditDeckPage';
+import EditDeckPage from './pages/EditDeckPage';
+import RevisePage from './pages/RevisePage';
 import SetOne from './pages/Sets/SetOne';
 
 import deckData from './flashcard-data';
@@ -20,7 +21,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<WelcomeScreen />} />
+          <Route path="/" element={<WelcomePage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route
             path="/set-one"
@@ -31,8 +32,11 @@ function App() {
               />
             }
           />
-          <Route path="/edit-deck" element={<EditDeck />} />
-          {/* <Route path="/revise" element={<Revise/>} /> */}
+          <Route path="/edit-deck" element={<EditDeckPage />} />
+          <Route
+            path="/revise"
+            element={<RevisePage vocabData={vocabData} />}
+          />
         </Routes>
       </BrowserRouter>
     </>

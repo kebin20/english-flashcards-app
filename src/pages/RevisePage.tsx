@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from '../UI/Container';
-import Flashcard from './Flashcard';
-import { AltDeckButton } from '../UI/Buttons/DeckButton';
-import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
+import Flashcard from '../components/Flashcard';
+import { LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
 import { FlashcardType, CardContentType } from '../interfaces';
@@ -34,19 +33,10 @@ const FinishTitle = styled.h1`
   text-align: center;
 `;
 
-function FlashcardScreen({
-  deckData,
-  onPassVocabDataUp,
-}: {
-  deckData: FlashcardType;
-  onPassVocabDataUp: any;
-}) {
-  const { setNumber, cards } = deckData;
-
-  const [cardDeck, setCardDeck] = useState(cards);
+function RevisePage({ vocabData }: { vocabData: CardContentType }) {
+  const [cardDeck, setCardDeck] = useState(vocabData);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [vocabToLearn, setVocabToLearn] = useState<CardContentType[]>([]);
 
   //Vocab navigation
   function goForward() {
@@ -80,6 +70,7 @@ function FlashcardScreen({
   }, [cardDeck, goForward, goBack]);
 
   // Main button functions
+
   function vocabLearnt() {
     setCardDeck((prevCardDeck) =>
       //underscore is used since we don't need the current element
@@ -91,27 +82,10 @@ function FlashcardScreen({
     );
   }
 
-  function reviseVocab() {
-    const newDeck: any[] = cardDeck.filter(
-      (_: any, index: number) => index !== cardIndex
-    );
-    const removedVocabArrItem = cardDeck[cardIndex];
-    const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
-
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    );
-    setCardDeck(newDeck);
-    setVocabToLearn(vocabToLearnArr);
-  }
-
-  useEffect(() => onPassVocabDataUp(vocabToLearn), [vocabToLearn]);
-
   function reset() {
-    setCardDeck(cards);
+    setCardDeck(vocabData);
     setCardIndex(0);
     setIsFlipped(false);
-    setVocabToLearn([]);
   }
 
   function flipCard() {
@@ -121,10 +95,6 @@ function FlashcardScreen({
   return (
     <>
       <Container>
-        <p>セットボタンを押す時にメニューに戻る</p>
-        <AltDeckButton to="/menu" className={undefined}>
-          セット {setNumber}
-        </AltDeckButton>
         {cardDeck.length !== 0 && (
           <>
             <FlashcardContainer>
@@ -144,13 +114,8 @@ function FlashcardScreen({
             </p>
           </>
         )}
-        {cardDeck.length === 0 && (
-          <FinishTitle>勉強できる単語がない。</FinishTitle>
-        )}
+        {cardDeck.length === 0 && <FinishTitle>全部覚えた！</FinishTitle>}
         <ButtonContainer>
-          <ReviseButton onClick={reviseVocab} to={''}>
-            まだ。。
-          </ReviseButton>
           <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！
           </LearntButton>
@@ -163,4 +128,4 @@ function FlashcardScreen({
   );
 }
 
-export default FlashcardScreen;
+export default RevisePage;

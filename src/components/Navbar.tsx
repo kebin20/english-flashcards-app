@@ -51,7 +51,7 @@ gap: 1em;
 @media only screen and (max-width: 600px) {
   display: none;
 }
-`
+`;
 
 const NavMobileMenu = styled(NavMenu)`
   background-color: var(--clr-white);
@@ -108,17 +108,23 @@ function Navbar() {
             <Link to="/menu">デック</Link>
           </li>
           <li>
+            <Link to="/revise">復習</Link>
+          </li>
+          <li>
             <Link to="/edit-deck">編集</Link>
           </li>
         </NavMobileMenu>
       )}
       <NavMenu>
         <li>
-            <Link to="/menu">デック</Link>
-          </li>
-          <li>
-            <Link to="/edit-deck">編集</Link>
-          </li>
+          <Link to="/menu">デック</Link>
+        </li>
+        <li>
+          <Link to="/revise">復習</Link>
+        </li>
+        <li>
+          <Link to="/edit-deck">編集</Link>
+        </li>
       </NavMenu>
     </StyledNavBar>
   );

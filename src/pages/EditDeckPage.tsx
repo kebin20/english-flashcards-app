@@ -1,7 +1,7 @@
-import React from "react";
-import { MainLink } from "../UI/Buttons/Buttons";
+import React from 'react';
+import { MainLink } from '../UI/Buttons/Buttons';
 
-function EditDeck() {
+function EditDeckPage() {
   return (
     <>
       <p>placeholder</p>
@@ -9,4 +9,4 @@ function EditDeck() {
   );
 }
 
-export default EditDeck;
+export default EditDeckPage;

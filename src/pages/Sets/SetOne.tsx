@@ -1,6 +1,6 @@
 import React from 'react';
 import FlashcardScreen from '../../components/FlashcardScreen';
-import { CardContentType, FlashcardDeckType } from '../../interfaces';
+import { FlashcardDeckType } from '../../interfaces';
 
 function SetOne({
   deckData,
