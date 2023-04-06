@@ -5,6 +5,7 @@ import { FlashcardDeckType } from '../../interfaces';
 function SetOne({
   deckData,
   onPassVocabDataUp,
+  vocabData,
 }: {
   deckData: FlashcardDeckType;
   onPassVocabDataUp: (newVocabData: React.SetStateAction<never[]>) => void;
@@ -13,6 +14,7 @@ function SetOne({
     <FlashcardScreen
       onPassVocabDataUp={onPassVocabDataUp}
       deckData={deckData}
+      vocabData={vocabData}
     />
   );
 }

@@ -18,8 +18,7 @@ function App() {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
     const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
     if (storedVocabs) {
-      const storedNewVocabs: any = [...vocabData, storedVocabs];
-      setVocabData(storedNewVocabs);
+      setVocabData(storedVocabs);
     }
     if (storedDeck) {
       setDeck(storedDeck);
@@ -45,7 +44,11 @@ function App() {
           <Route
             path="/set-one"
             element={
-              <SetOne onPassVocabDataUp={handleVocabData} deckData={deck[0]} />
+              <SetOne
+                onPassVocabDataUp={handleVocabData}
+                deckData={deck[0]}
+                vocabData={vocabData}
+              />
             }
           />
           <Route path="/edit-deck" element={<EditDeckPage />} />

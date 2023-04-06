@@ -37,16 +37,19 @@ const FinishTitle = styled.h1`
 function FlashcardScreen({
   deckData,
   onPassVocabDataUp,
+  vocabData,
 }: {
   deckData: FlashcardType;
   onPassVocabDataUp: any;
+  vocabData: any;
 }) {
   const { setNumber, cards } = deckData;
 
   const [cardDeck, setCardDeck] = useState(cards);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [vocabToLearn, setVocabToLearn] = useState<CardContentType[]>([]);
+  const [vocabToLearn, setVocabToLearn] =
+    useState<CardContentType[]>(vocabData);
 
   //Vocab navigation
   function goForward() {
