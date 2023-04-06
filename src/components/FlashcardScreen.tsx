@@ -100,12 +100,11 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     setVocabToLearn(vocabToLearnArr);
   }
 
-  console.log(vocabToLearn);
-
   function reset() {
     setCardDeck(cards);
     setCardIndex(0);
     setIsFlipped(false);
+    setVocabToLearn([]);
   }
 
   function flipCard() {
