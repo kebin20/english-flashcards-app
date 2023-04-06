@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { ButtonType } from '../../interfaces';
+import { ButtonProps } from '../../interfaces';
 
 const StyledDeckButton = styled(Link)`
   position: relative;
@@ -42,7 +42,7 @@ const Circle = styled.span`
   text-decoration: none;
 `;
 
-function DeckButton(props: ButtonType) {
+function DeckButton(props: ButtonProps) {
   return (
     <StyledDeckButton to={props.to}>
       <Circle />
@@ -51,7 +51,7 @@ function DeckButton(props: ButtonType) {
   );
 }
 
-function AltDeckButton(props: ButtonType) {
+function AltDeckButton(props: ButtonProps) {
   return <StyledDeckButton to={props.to}>{props.children}</StyledDeckButton>;
 }
 

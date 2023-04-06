@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ContainerType } from '../interfaces';
+import { ContainerProps } from '../interfaces';
 
 const StyledContainer = styled.div`
 display: flex;
@@ -12,7 +12,7 @@ gap: 1.3em;
 z-index: -1;
 `;
 
-function Container(props: ContainerType) {
+function Container(props: ContainerProps) {
   return <StyledContainer>{props.children}</StyledContainer>;
 }
 

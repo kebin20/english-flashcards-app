@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ArrowButtonType } from '../../interfaces';
+import { ArrowButtonProps } from '../../interfaces';
 
 const StyledArrowBack = styled.svg`
 transform: rotate(-0.5turn);
 `;
 
-function ArrowForward({ onClick }: ArrowButtonType) {
+function ArrowForward({ onClick }: ArrowButtonProps) {
   return (
     <svg
       onClick={onClick}
@@ -22,7 +22,7 @@ function ArrowForward({ onClick }: ArrowButtonType) {
   );
 }
 
-function ArrowBack({ onClick }: ArrowButtonType) {
+function ArrowBack({ onClick }: ArrowButtonProps) {
   return (
     <StyledArrowBack
       onClick={onClick}
