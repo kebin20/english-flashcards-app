@@ -105,25 +105,37 @@ function Navbar() {
       {toggle && (
         <NavMobileMenu>
           <li>
-            <Link to="/menu">デック</Link>
+            <Link onClick={() => setToggle(false)} to="/menu">
+              デック
+            </Link>
           </li>
           <li>
-            <Link to="/revise">復習</Link>
+            <Link onClick={() => setToggle(false)} to="/revise">
+              復習
+            </Link>
           </li>
           <li>
-            <Link to="/edit-deck">編集</Link>
+            <Link onClick={() => setToggle(false)} to="/edit-deck">
+              編集
+            </Link>
           </li>
         </NavMobileMenu>
       )}
       <NavMenu>
         <li>
-          <Link to="/menu">デック</Link>
+          <Link onClick={() => setToggle(false)} to="/menu">
+            デック
+          </Link>
         </li>
         <li>
-          <Link to="/revise">復習</Link>
+          <Link onClick={() => setToggle(false)} to="/revise">
+            復習
+          </Link>
         </li>
         <li>
-          <Link to="/edit-deck">編集</Link>
+          <Link onClick={() => setToggle(false)} to="/edit-deck">
+            編集
+          </Link>
         </li>
       </NavMenu>
     </StyledNavBar>
