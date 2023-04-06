@@ -4,7 +4,7 @@ import Flashcard from '../components/Flashcard';
 import { LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { FlashcardType, CardContentType } from '../interfaces';
+import { CardContentType } from '../interfaces';
 
 import styled from 'styled-components';
 

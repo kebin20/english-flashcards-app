@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
@@ -11,6 +11,18 @@ import deckData from './flashcard-data';
 
 function App() {
   const [vocabData, setVocabData] = useState([]);
+
+  /* Fetching vocabs function (USING localStorage)*/
+  useEffect(() => {
+    localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
+  }, [vocabData]);
+
+  useEffect(() => {
+    const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
+    if (storedVocabs) {
+      setVocabData(storedVocabs);
+    }
+  }, []);
 
   function handleVocabData(newVocabData: React.SetStateAction<never[]>) {
     setVocabData(newVocabData);
