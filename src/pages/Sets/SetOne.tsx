@@ -9,6 +9,7 @@ function SetOne({
 }: {
   deckData: FlashcardDeckType;
   onPassVocabDataUp: (newVocabData: React.SetStateAction<never[]>) => void;
+  vocabData: any[];
 }) {
   return (
     <FlashcardScreen
