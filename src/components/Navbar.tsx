@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Navbar.module.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -73,6 +73,7 @@ const NavMobileMenu = styled(NavMenu)`
 
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const [closeMenu, setCloseMenu] = useState(false);
 
   function toggleHamburgerMenu() {
     setToggle((prevToggle) => !prevToggle);
