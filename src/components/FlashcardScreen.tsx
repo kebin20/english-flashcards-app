@@ -42,7 +42,22 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   const [cardDeck, setCardDeck] = useState(cards);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [vocabToLearn, setVocabToLearn] = useState();
 
+  //Vocab navigation
+  function goForward() {
+    setCardIndex((prevIndex) =>
+      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
+    );
+  }
+
+  function goBack() {
+    setCardIndex((prevIndex) =>
+      prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
+    );
+  }
+
+  //Vocab navigation with arrow keys
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
       if (event.code === 'ArrowLeft') {
@@ -60,20 +75,9 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     };
   }, [cardDeck, goForward, goBack]);
 
-  function goForward() {
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
-    );
-  }
-
-  function goBack() {
-    setCardIndex((prevIndex) =>
-      prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
-    );
-  }
-
-  function wordLearnt() {
-    setCardDeck((prevCardDeck: any[]) =>
+  // Main button functions
+  function vocabLearnt() {
+    setCardDeck((prevCardDeck) =>
       //underscore is used since we don't need the current element
       prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
     );
@@ -83,14 +87,30 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     );
   }
 
-  function flipCard() {
-    setIsFlipped((prevFlip) => !prevFlip);
+  function reviseVocab() {
+    let initialArr = [];
+    const newDeck: any[] = cardDeck.filter(
+      (_: any, index: number) => index !== cardIndex
+    );
+    const removedVocabArrItem = cardDeck[cardIndex];
+    const vocabToLearnArr = initialArr.push(removedVocabArrItem);
+    console.log(vocabToLearnArr);
+
+    setCardIndex((prevIndex) =>
+      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    );
+    setCardDeck(newDeck);
+    // setVocabToLearn();
   }
 
   function reset() {
     setCardDeck(cards);
     setCardIndex(0);
     setIsFlipped(false);
+  }
+
+  function flipCard() {
+    setIsFlipped((prevFlip) => !prevFlip);
   }
 
   return (
@@ -120,8 +140,10 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
         )}
         {cardDeck.length === 0 && <FinishTitle>全部覚えた！</FinishTitle>}
         <ButtonContainer>
-          <ReviseButton to={''}>まだ。。</ReviseButton>
-          <LearntButton onClick={wordLearnt} to={''}>
+          <ReviseButton onClick={reviseVocab} to={''}>
+            まだ。。
+          </ReviseButton>
+          <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！
           </LearntButton>
           <ResetButton onClick={reset} to={''}>
