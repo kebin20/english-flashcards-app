@@ -35,7 +35,13 @@ const FinishTitle = styled.h1`
   text-align: center;
 `;
 
-function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
+function FlashcardScreen({
+  deckData,
+  onPassVocabDataUp,
+}: {
+  deckData: FlashcardType;
+  onPassVocabDataUp: any;
+}) {
   const { setNumber, cards } = deckData;
 
   const [cardDeck, setCardDeck] = useState(cards);
@@ -100,6 +106,10 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
     setVocabToLearn(vocabToLearnArr);
   }
 
+  useEffect(() => onPassVocabDataUp(vocabToLearn), [vocabToLearn]);
+
+  console.log('FLASHCARDSCREEN:', vocabToLearn);
+
   function reset() {
     setCardDeck(cards);
     setCardIndex(0);
@@ -154,4 +164,4 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   );
 }
 
-export default FlashcardPage;
+export default FlashcardScreen;
