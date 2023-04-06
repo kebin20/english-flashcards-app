@@ -129,6 +129,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
                 isFlipped={isFlipped}
                 setNumber={0}
                 cards={[]}
+                id={''}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>
