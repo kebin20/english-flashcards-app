@@ -5,7 +5,7 @@ import { AltDeckButton } from '../UI/Buttons/DeckButton';
 import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { FlashcardType } from '../interfaces';
+import { FlashcardType, CardContentType } from '../interfaces';
 
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
@@ -42,7 +42,7 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   const [cardDeck, setCardDeck] = useState(cards);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [vocabToLearn, setVocabToLearn] = useState();
+  const [vocabToLearn, setVocabToLearn] = useState<CardContentType[]>([]);
 
   //Vocab navigation
   function goForward() {
@@ -88,20 +88,20 @@ function FlashcardPage({ deckData }: { deckData: FlashcardType }) {
   }
 
   function reviseVocab() {
-    let initialArr = [];
     const newDeck: any[] = cardDeck.filter(
       (_: any, index: number) => index !== cardIndex
     );
     const removedVocabArrItem = cardDeck[cardIndex];
-    const vocabToLearnArr = initialArr.push(removedVocabArrItem);
-    console.log(vocabToLearnArr);
+    const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
 
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
     setCardDeck(newDeck);
-    // setVocabToLearn();
+    setVocabToLearn(vocabToLearnArr);
   }
+
+  console.log(vocabToLearn);
 
   function reset() {
     setCardDeck(cards);
