@@ -79,7 +79,7 @@ function Navbar() {
   }
   return (
     <StyledNavBar>
-      <Link to="/">
+      <Link onClick={() => setToggle(false)} to="/">
         <Logo src={logo} alt="ロゴ" />
       </Link>
       <NavTitle>フラッシュカード</NavTitle>
