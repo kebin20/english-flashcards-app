@@ -40,9 +40,8 @@ function FlashcardScreen({
   vocabData,
 }: {
   deckData: FlashcardProps;
-  onPassVocabDataUp: any;
-  onPassDeckStateUp: any;
-  vocabData: any[];
+  onPassVocabDataUp: (vocabData: CardsContentType[]) => void;
+  vocabData: CardsContentType[];
 }) {
   const { setNumber, cards } = deckData;
 
@@ -51,6 +50,15 @@ function FlashcardScreen({
   const [isFlipped, setIsFlipped] = useState(false);
   const [vocabToLearn, setVocabToLearn] =
     useState<CardsContentType[]>(vocabData);
+
+  console.log(cardDeck);
+
+  useEffect(() => {
+    const storedCardDeck = JSON.parse(localStorage.getItem('cardDeck') || '[]');
+    if (storedCardDeck.length > 0) {
+      setCardDeck(storedCardDeck);
+    }
+  }, []);
 
   //Vocab navigation
   function goForward() {
@@ -94,6 +102,12 @@ function FlashcardScreen({
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
+    localStorage.setItem(
+      'cardDeck',
+      JSON.stringify(
+        cardDeck.filter((_: any, index: number) => index !== cardIndex)
+      )
+    );
   }
 
   function reviseVocab() {
@@ -115,6 +129,7 @@ function FlashcardScreen({
   }, [vocabToLearn]);
 
   function reset() {
+    localStorage.removeItem('cardDeck');
     setCardDeck(cards);
     setCardIndex(0);
     setIsFlipped(false);

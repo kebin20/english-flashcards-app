@@ -10,7 +10,7 @@ import SetOne from './pages/Sets/SetOne';
 import deckData from './flashcard-data';
 
 function App() {
-  const [deck, setDeck] = useState(deckData);
+  const [deck, setDeck] = useState([...deckData]);
   const [vocabData, setVocabData] = useState([]);
 
   /* Fetching vocabs & deck function (USING localStorage)*/
