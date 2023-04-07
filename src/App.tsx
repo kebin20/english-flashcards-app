@@ -5,13 +5,15 @@ import WelcomePage from './pages/WelcomePage';
 import MenuPage from './pages/MenuPage';
 import EditDeckPage from './pages/EditDeckPage';
 import RevisePage from './pages/RevisePage';
-import AllCards from './pages/Sets/AllCards';
+import AllCardsPage from './pages/AllCardsPage';
 import SetOne from './pages/Sets/SetOne';
 
 import deckData from './flashcard-data';
+import { CardsContentType } from './interfaces';
 
 function App() {
   const [deck, setDeck] = useState([...deckData]);
+  const [allCards, setAllCards] = useState<CardsContentType[]>([]);
   const [vocabData, setVocabData] = useState([]);
 
   /* Fetching vocabs & deck function (USING localStorage)*/
@@ -31,6 +33,16 @@ function App() {
     localStorage.setItem('storedDeck', JSON.stringify(deck));
   }, [vocabData, deck]);
 
+  // Obtain all of the cards arrays, join them and flatten it
+  useEffect(() => {
+    const decksArr = [];
+    for (let i = 0; i < deckData.length; i++) {
+      decksArr.push(deckData[i].cards);
+    }
+    const flattenedDecksArr = decksArr.flat();
+    setAllCards(flattenedDecksArr);
+  }, []);
+
   function handleVocabData(newVocabData: React.SetStateAction<never[]>) {
     setVocabData(newVocabData);
   }
@@ -48,16 +60,16 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/menu" element={<MenuPage />} />
-          {/* <Route
+          <Route
             path="/all-cards"
             element={
-              <AllCards
+              <AllCardsPage
                 onPassVocabDataUp={handleVocabData}
-                deckData={deck}
+                allCards={allCards}
                 vocabData={vocabData}
               />
             }
-          /> */}
+          />
           <Route
             path="/set-one"
             element={
