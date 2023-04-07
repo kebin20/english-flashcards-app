@@ -68,7 +68,7 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
-function MainLink(props: MainLinkButtonProps) {
+function MainLinkButton(props: MainLinkButtonProps) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
       {props.children}
@@ -100,4 +100,4 @@ function ResetButton(props: ButtonProps) {
   );
 }
 
-export { MainLink, LearntButton, ReviseButton, ResetButton };
+export { MainLinkButton, LearntButton, ReviseButton, ResetButton };

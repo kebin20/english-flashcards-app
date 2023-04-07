@@ -82,6 +82,8 @@ function FlashcardScreen({
       } else if (event.code === 'ArrowRight') {
         // Handle right arrow key press
         goForward();
+      } else if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+        flipCard();
       }
     }
     document.addEventListener('keydown', handleKeyDown);
