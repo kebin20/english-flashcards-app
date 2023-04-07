@@ -34,6 +34,10 @@ function App() {
     setVocabData(newVocabData);
   }
 
+  function handleRevisedVocabData(newRevisedVocabData: React.SetStateAction<never[]>) {
+    setVocabData(newRevisedVocabData);
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -54,7 +58,7 @@ function App() {
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
-            element={<RevisePage vocabData={vocabData} />}
+            element={<RevisePage vocabData={vocabData} onPassRevisedVocabData={handleRevisedVocabData}/>}
           />
         </Routes>
       </BrowserRouter>

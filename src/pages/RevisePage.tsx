@@ -33,12 +33,16 @@ const FinishTitle = styled.h1`
   text-align: center;
 `;
 
-function RevisePage({ vocabData }: { vocabData: CardsContentType[] }) {
+function RevisePage({
+  vocabData,
+  onPassRevisedVocabData,
+}: {
+  vocabData: CardsContentType[];
+  onPassRevisedVocabData: any;
+}) {
   const [cardDeck, setCardDeck] = useState(vocabData);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-
-  console.log(cardDeck);
 
   //Vocab navigation
   function goForward() {
@@ -83,6 +87,8 @@ function RevisePage({ vocabData }: { vocabData: CardsContentType[] }) {
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
   }
+
+  useEffect(() => onPassRevisedVocabData(cardDeck), [cardDeck]);
 
   function reset() {
     setCardDeck(vocabData);
