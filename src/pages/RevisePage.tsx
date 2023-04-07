@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from '../UI/Container';
 import Flashcard from '../components/Flashcard';
-import { LearntButton, ResetButton } from '../UI/Buttons/Buttons';
+import { LearntButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
 import { CardsContentType } from '../interfaces';
@@ -90,11 +90,6 @@ function RevisePage({
 
   useEffect(() => onPassRevisedVocabData(cardDeck), [cardDeck]);
 
-  function reset() {
-    setCardDeck(vocabData);
-    setCardIndex(0);
-    setIsFlipped(false);
-  }
 
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);
@@ -127,9 +122,6 @@ function RevisePage({
           <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！
           </LearntButton>
-          <ResetButton onClick={reset} to={''}>
-            リセット
-          </ResetButton>
         </ButtonContainer>
       </Container>
     </>

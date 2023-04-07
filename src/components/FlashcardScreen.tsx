@@ -40,7 +40,7 @@ function FlashcardScreen({
   vocabData,
 }: {
   deckData: FlashcardProps;
-  onPassVocabDataUp: (vocabData: CardsContentType[]) => void;
+  onPassVocabDataUp: any;
   vocabData: CardsContentType[];
 }) {
   const { setNumber, cards } = deckData;
