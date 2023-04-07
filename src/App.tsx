@@ -10,10 +10,10 @@ import SetOne from './pages/Sets/SetOne';
 import deckData from './flashcard-data';
 
 function App() {
-  const [vocabData, setVocabData] = useState([]);
   const [deck, setDeck] = useState(deckData);
+  const [vocabData, setVocabData] = useState([]);
 
-  /* Fetching vocabs function (USING localStorage)*/
+  /* Fetching vocabs & deck function (USING localStorage)*/
   useEffect(() => {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
     const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
@@ -34,7 +34,9 @@ function App() {
     setVocabData(newVocabData);
   }
 
-  function handleRevisedVocabData(newRevisedVocabData: React.SetStateAction<never[]>) {
+  function handleRevisedVocabData(
+    newRevisedVocabData: React.SetStateAction<never[]>
+  ) {
     setVocabData(newRevisedVocabData);
   }
 
@@ -58,7 +60,12 @@ function App() {
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
-            element={<RevisePage vocabData={vocabData} onPassRevisedVocabData={handleRevisedVocabData}/>}
+            element={
+              <RevisePage
+                vocabData={vocabData}
+                onPassRevisedVocabData={handleRevisedVocabData}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

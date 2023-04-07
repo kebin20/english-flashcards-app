@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Container from "../UI/Container";
-import Flashcard from "./Flashcard";
-import { AltDeckButton } from "../UI/Buttons/DeckButton";
-import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
-import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
+import React, { useState, useEffect } from 'react';
+import Container from '../UI/Container';
+import Flashcard from './Flashcard';
+import { AltDeckButton } from '../UI/Buttons/DeckButton';
+import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
+import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { FlashcardProps, CardsContentType } from "../interfaces";
+import { FlashcardProps, CardsContentType } from '../interfaces';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -41,6 +41,7 @@ function FlashcardScreen({
 }: {
   deckData: FlashcardProps;
   onPassVocabDataUp: any;
+  onPassDeckStateUp: any;
   vocabData: any[];
 }) {
   const { setNumber, cards } = deckData;
@@ -67,22 +68,23 @@ function FlashcardScreen({
   //Vocab navigation with arrow keys
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
-      if (event.code === "ArrowLeft") {
+      if (event.code === 'ArrowLeft') {
         // Handle left arrow key press
         goBack();
-      } else if (event.code === "ArrowRight") {
+      } else if (event.code === 'ArrowRight') {
         // Handle right arrow key press
         goForward();
       }
     }
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [cardDeck, goForward, goBack]);
 
   // Main button functions
+
   function vocabLearnt() {
     setCardDeck((prevCardDeck) =>
       //underscore is used since we don't need the current element
@@ -108,7 +110,9 @@ function FlashcardScreen({
     setVocabToLearn(vocabToLearnArr);
   }
 
-  useEffect(() => onPassVocabDataUp(vocabToLearn), [vocabToLearn]);
+  useEffect(() => {
+    onPassVocabDataUp(vocabToLearn);
+  }, [vocabToLearn]);
 
   function reset() {
     setCardDeck(cards);
@@ -138,7 +142,7 @@ function FlashcardScreen({
                 isFlipped={isFlipped}
                 setNumber={0}
                 cards={[]}
-                id={""}
+                id={''}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>
@@ -151,13 +155,13 @@ function FlashcardScreen({
           <FinishTitle>勉強できる単語がない。</FinishTitle>
         )}
         <ButtonContainer>
-          <ReviseButton onClick={reviseVocab} to={""}>
+          <ReviseButton onClick={reviseVocab} to={''}>
             まだ。。
           </ReviseButton>
-          <LearntButton onClick={vocabLearnt} to={""}>
+          <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！
           </LearntButton>
-          <ResetButton onClick={reset} to={""}>
+          <ResetButton onClick={reset} to={''}>
             リセット
           </ResetButton>
         </ButtonContainer>

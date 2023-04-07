@@ -1,6 +1,6 @@
-import React from "react";
-import FlashcardScreen from "../../components/FlashcardScreen";
-import { FlashcardDeckData } from "../../interfaces";
+import React from 'react';
+import FlashcardScreen from '../../components/FlashcardScreen';
+import { FlashcardDeckData } from '../../interfaces';
 
 function SetOne({
   deckData,
