@@ -25,7 +25,7 @@ function Menu() {
     <>
       <Container>
         <MenuBox>
-          <MainLinkButton deckData={deckData} className="grid-prop" to={''}>
+          <MainLinkButton className="grid-prop" to="/all-cards" deckData={[]}>
             全部復習
           </MainLinkButton>
           <DeckButton to="/set-one">セット {deckData[0].setNumber}</DeckButton>

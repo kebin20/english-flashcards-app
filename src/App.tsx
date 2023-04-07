@@ -5,6 +5,7 @@ import WelcomePage from './pages/WelcomePage';
 import MenuPage from './pages/MenuPage';
 import EditDeckPage from './pages/EditDeckPage';
 import RevisePage from './pages/RevisePage';
+import AllCards from './pages/Sets/AllCards';
 import SetOne from './pages/Sets/SetOne';
 
 import deckData from './flashcard-data';
@@ -47,6 +48,16 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/menu" element={<MenuPage />} />
+          {/* <Route
+            path="/all-cards"
+            element={
+              <AllCards
+                onPassVocabDataUp={handleVocabData}
+                deckData={deck}
+                vocabData={vocabData}
+              />
+            }
+          /> */}
           <Route
             path="/set-one"
             element={

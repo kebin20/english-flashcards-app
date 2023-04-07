@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Container from '../UI/Container';
 
-import { MainLink } from '../UI/Buttons/Buttons';
+import { MainLinkButton } from '../UI/Buttons/Buttons';
 
 import welcomeImage from '../assets/welcome-image.png';
 import React from 'react';
@@ -35,9 +35,9 @@ function WelcomePage() {
           <p>3年生～6年生の単語を復習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
-        <MainLink to="/menu" deckData={[]}>
+        <MainLinkButton to="/menu" deckData={[]}>
           スタート!
-        </MainLink>
+        </MainLinkButton>
       </Container>
     </>
   );
