@@ -38,7 +38,7 @@ function FlashcardScreen({
   onPassVocabDataUp,
   vocabData,
 }: {
-  allCards: FlashcardProps;
+  allCards: CardsContentType[];
   onPassVocabDataUp: any;
   vocabData: CardsContentType[];
 }) {
@@ -51,7 +51,7 @@ function FlashcardScreen({
   console.log(cardDeck);
 
   useEffect(() => {
-    const storedCardDeck = JSON.parse(localStorage.getItem('cardDeck') || '[]');
+    const storedCardDeck = JSON.parse(localStorage.getItem('allCardsDeck') || '[]');
     if (storedCardDeck.length > 0) {
       setCardDeck(storedCardDeck);
     }
@@ -102,7 +102,7 @@ function FlashcardScreen({
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
     localStorage.setItem(
-      'cardDeck',
+      'allCardsDeck',
       JSON.stringify(
         cardDeck.filter((_: any, index: number) => index !== cardIndex)
       )
@@ -128,8 +128,8 @@ function FlashcardScreen({
   }, [vocabToLearn]);
 
   function reset() {
-    localStorage.removeItem('cardDeck');
-    setCardDeck(cards);
+    localStorage.removeItem('allCardsDeck');
+    setCardDeck(allCards);
     setCardIndex(0);
     setIsFlipped(false);
     setVocabToLearn([]);
