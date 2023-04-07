@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainLink } from '../UI/Buttons/Buttons';
+import { MainLinkButton } from '../UI/Buttons/Buttons';
 
 function EditDeckPage() {
   return (
