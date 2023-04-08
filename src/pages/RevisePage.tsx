@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Container from '../UI/Container';
-import Flashcard from '../components/Flashcard';
-import { LearntButton } from '../UI/Buttons/Buttons';
-import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
+import React, { useState, useEffect } from "react";
+import Container from "../UI/Container";
+import Flashcard from "../components/Flashcard";
+import { LearntButton } from "../UI/Buttons/Buttons";
+import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { CardsContentType } from '../interfaces';
+import { CardsContentType } from "../interfaces";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -38,7 +38,9 @@ function RevisePage({
   onPassRevisedVocabData,
 }: {
   vocabData: CardsContentType[];
-  onPassRevisedVocabData: any;
+  onPassRevisedVocabData: (
+    newVocabData: React.SetStateAction<CardsContentType[]>
+  ) => void;
 }) {
   const [cardDeck, setCardDeck] = useState(vocabData);
   const [cardIndex, setCardIndex] = useState(0);
@@ -60,18 +62,18 @@ function RevisePage({
   //Vocab navigation with arrow keys
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
-      if (event.code === 'ArrowLeft') {
+      if (event.code === "ArrowLeft") {
         // Handle left arrow key press
         goBack();
-      } else if (event.code === 'ArrowRight') {
+      } else if (event.code === "ArrowRight") {
         // Handle right arrow key press
         goForward();
       }
     }
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [cardDeck, goForward, goBack]);
 
@@ -90,7 +92,6 @@ function RevisePage({
 
   useEffect(() => onPassRevisedVocabData(cardDeck), [cardDeck]);
 
-
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);
   }
@@ -106,9 +107,6 @@ function RevisePage({
                 currentCard={cardDeck[cardIndex]}
                 onFlip={flipCard}
                 isFlipped={isFlipped}
-                setNumber={0}
-                cards={[]}
-                id={''}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>
@@ -119,7 +117,7 @@ function RevisePage({
         )}
         {cardDeck.length === 0 && <FinishTitle>全部覚えた！</FinishTitle>}
         <ButtonContainer>
-          <LearntButton onClick={vocabLearnt} to={''}>
+          <LearntButton onClick={vocabLearnt} to={""}>
             覚えた！
           </LearntButton>
         </ButtonContainer>

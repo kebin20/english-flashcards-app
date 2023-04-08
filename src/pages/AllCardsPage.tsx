@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Container from '../UI/Container';
-import Flashcard from '../components/Flashcard';
-import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
-import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
+import React, { useState, useEffect } from "react";
+import Container from "../UI/Container";
+import Flashcard from "../components/Flashcard";
+import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
+import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { CardsContentType } from '../interfaces';
+import { CardsContentType } from "../interfaces";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -39,7 +39,9 @@ function FlashcardScreen({
   vocabData,
 }: {
   allCards: CardsContentType[];
-  onPassVocabDataUp: any;
+  onPassVocabDataUp: (
+    newVocabData: React.SetStateAction<CardsContentType[]>
+  ) => void;
   vocabData: CardsContentType[];
 }) {
   const [cardDeck, setCardDeck] = useState(allCards);
@@ -51,14 +53,16 @@ function FlashcardScreen({
   console.log(cardDeck);
 
   useEffect(() => {
-    const storedCardDeck = JSON.parse(localStorage.getItem('allCardsDeck') || '[]');
+    const storedCardDeck = JSON.parse(
+      localStorage.getItem("allCardsDeck") || "[]"
+    );
     if (storedCardDeck.length > 0) {
       setCardDeck(storedCardDeck);
     }
   }, []);
 
   //Vocab navigation
-  
+
   function goForward() {
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
@@ -74,20 +78,20 @@ function FlashcardScreen({
   //Vocab navigation with arrow keys
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
-      if (event.code === 'ArrowLeft') {
+      if (event.code === "ArrowLeft") {
         // Handle left arrow key press
         goBack();
-      } else if (event.code === 'ArrowRight') {
+      } else if (event.code === "ArrowRight") {
         // Handle right arrow key press
         goForward();
-      } else if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+      } else if (event.code === "ArrowUp" || event.code === "ArrowDown") {
         flipCard();
       }
     }
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [cardDeck, goForward, goBack]);
 
@@ -103,7 +107,7 @@ function FlashcardScreen({
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
     );
     localStorage.setItem(
-      'allCardsDeck',
+      "allCardsDeck",
       JSON.stringify(
         cardDeck.filter((_: any, index: number) => index !== cardIndex)
       )
@@ -129,7 +133,7 @@ function FlashcardScreen({
   }, [vocabToLearn]);
 
   function reset() {
-    localStorage.removeItem('allCardsDeck');
+    localStorage.removeItem("allCardsDeck");
     setCardDeck(allCards);
     setCardIndex(0);
     setIsFlipped(false);
@@ -151,9 +155,6 @@ function FlashcardScreen({
                 currentCard={cardDeck[cardIndex]}
                 onFlip={flipCard}
                 isFlipped={isFlipped}
-                setNumber={0}
-                cards={[]}
-                id={''}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>
@@ -166,13 +167,13 @@ function FlashcardScreen({
           <FinishTitle>勉強できる単語がない。</FinishTitle>
         )}
         <ButtonContainer>
-          <ReviseButton onClick={reviseVocab} to={''}>
+          <ReviseButton onClick={reviseVocab} to={""}>
             まだ。。
           </ReviseButton>
-          <LearntButton onClick={vocabLearnt} to={''}>
+          <LearntButton onClick={vocabLearnt} to={""}>
             覚えた！
           </LearntButton>
-          <ResetButton onClick={reset} to={''}>
+          <ResetButton onClick={reset} to={""}>
             リセット
           </ResetButton>
         </ButtonContainer>

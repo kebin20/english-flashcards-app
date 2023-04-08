@@ -5,7 +5,7 @@ import { AltDeckButton } from "../UI/Buttons/DeckButton";
 import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { FlashcardProps, CardsContentType } from "../interfaces";
+import { FlashcardProps, CardsContentType, FlashcardDeckData } from "../interfaces";
 
 import styled from "styled-components";
 
@@ -39,8 +39,10 @@ function FlashcardScreen({
   onPassVocabDataUp,
   vocabData,
 }: {
-  deckData: FlashcardProps;
-  onPassVocabDataUp: any;
+  deckData: FlashcardDeckData;
+  onPassVocabDataUp: (
+    newVocabData: React.SetStateAction<CardsContentType[]>
+  ) => void;
   vocabData: CardsContentType[];
 }) {
   const { setNumber, cards } = deckData;
@@ -157,9 +159,6 @@ function FlashcardScreen({
                 currentCard={cardDeck[cardIndex]}
                 onFlip={flipCard}
                 isFlipped={isFlipped}
-                setNumber={0}
-                cards={[]}
-                id={""}
               />
               <ArrowForward onClick={goForward} />
             </FlashcardContainer>

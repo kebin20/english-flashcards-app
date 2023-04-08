@@ -8,7 +8,9 @@ function SetOne({
   vocabData,
 }: {
   deckData: FlashcardDeckData;
-  onPassVocabDataUp: (newVocabData: React.SetStateAction<never[]>) => void;
+  onPassVocabDataUp: (
+    newVocabData: React.SetStateAction<CardsContentType[]>
+  ) => void;
   vocabData: CardsContentType[];
 }) {
   return (

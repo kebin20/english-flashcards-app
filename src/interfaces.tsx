@@ -37,10 +37,10 @@ export interface FlashcardDeckData {
   id: string;
   setNumber: number;
   cards: CardsContentType[];
-  currentCard: CardsContentType;
 }
 
-export interface FlashcardProps extends FlashcardDeckData {
+export interface FlashcardProps {
   isFlipped?: boolean;
   onFlip?: () => void;
+  currentCard: CardsContentType;
 }

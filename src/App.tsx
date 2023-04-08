@@ -14,7 +14,7 @@ import { CardsContentType } from './interfaces';
 function App() {
   const [deck, setDeck] = useState([...deckData]);
   const [allCards, setAllCards] = useState<CardsContentType[]>([]);
-  const [vocabData, setVocabData] = useState([]);
+  const [vocabData, setVocabData] = useState<CardsContentType[]>([]);
 
   /* Fetching vocabs & deck function (USING localStorage)*/
   useEffect(() => {
@@ -43,12 +43,12 @@ function App() {
     setAllCards(flattenedDecksArr);
   }, []);
 
-  function handleVocabData(newVocabData: React.SetStateAction<never[]>) {
+  function handleVocabData(newVocabData: React.SetStateAction<CardsContentType[]>) {
     setVocabData(newVocabData);
   }
 
   function handleRevisedVocabData(
-    newRevisedVocabData: React.SetStateAction<never[]>
+    newRevisedVocabData: React.SetStateAction<CardsContentType[]>
   ) {
     setVocabData(newRevisedVocabData);
   }
