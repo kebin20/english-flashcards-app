@@ -1,6 +1,6 @@
-import React from 'react';
-import FlashcardScreen from '../../components/FlashcardScreen';
-import { FlashcardDeckData } from '../../interfaces';
+import React from "react";
+import FlashcardScreen from "../../components/FlashcardScreen";
+import { FlashcardDeckData, CardsContentType } from "../../interfaces";
 
 function SetOne({
   deckData,
@@ -9,7 +9,7 @@ function SetOne({
 }: {
   deckData: FlashcardDeckData;
   onPassVocabDataUp: (newVocabData: React.SetStateAction<never[]>) => void;
-  vocabData: any[];
+  vocabData: CardsContentType[];
 }) {
   return (
     <FlashcardScreen

@@ -58,6 +58,7 @@ function FlashcardScreen({
   }, []);
 
   //Vocab navigation
+  
   function goForward() {
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
@@ -110,7 +111,7 @@ function FlashcardScreen({
   }
 
   function reviseVocab() {
-    const newDeck: any[] = cardDeck.filter(
+    const newDeck: CardsContentType[] = cardDeck.filter(
       (_: any, index: number) => index !== cardIndex
     );
     const removedVocabArrItem = cardDeck[cardIndex];
