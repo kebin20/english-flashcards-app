@@ -1,4 +1,4 @@
-![homepage](./screenshots/homepage-desktop.PNG)
+![english-flashcard-app](./screenshots/homepage-desktop.PNG)
 
 # English Flashcards App
 
