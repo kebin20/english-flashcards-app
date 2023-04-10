@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
@@ -37,32 +37,7 @@ function App() {
 
   const [error, setError] = useState(null);
 
-  // Upload flashcard data to firebase
-  const uploadInitialData = async (deckData: any) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json',
-        {
-          method: 'POST',
-          body: JSON.stringify({ deckData }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-    } catch (error: any) {
-      setError(error.message || 'Something went wrong!');
-    }
-    setIsLoading(false);
-  };
-
   useEffect(() => {
-    uploadInitialData(deckData);
     if (deck.length === 0) {
       fetchFlashcardHandler();
     }
@@ -81,6 +56,7 @@ function App() {
       }
 
       const data = await response.json();
+      console.log(data);
 
       const loadedFlashcardDeck: any = [];
 
@@ -97,8 +73,6 @@ function App() {
     }
     setIsLoading(false);
   }, []);
-
-  console.log(deck);
 
   /* Fetching vocab function (USING localStorage)*/
   useEffect(() => {

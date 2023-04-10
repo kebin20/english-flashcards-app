@@ -53,8 +53,6 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardsContentType[]>(vocabData);
 
-  console.log(cardDeck);
-
   useEffect(() => {
     const storedCardDeck = JSON.parse(localStorage.getItem("cardDeck") || "[]");
     if (storedCardDeck.length > 0) {
