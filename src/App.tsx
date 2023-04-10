@@ -11,21 +11,6 @@ import SetOne from './pages/Sets/SetOne';
 import deckData from './flashcard-data';
 import { CardsContentType } from './interfaces';
 
-/* Firebase */
-import { initializeApp } from 'firebase/app';
-// import { getDatabase } from 'firebase/database';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyBMxDJO1NpVUKOLzpE39A5hMgurQIyYlpw',
-  authDomain: 'react-todo-ca214.firebaseapp.com',
-  databaseURL: 'https://react-todo-ca214-default-rtdb.firebaseio.com/',
-  projectId: 'react-todo-ca214',
-  storageBucket: 'react-todo-ca214.appspot.com',
-  messagingSenderId: '668137483676',
-  appId: '1:668137483676:web:cad59596fec4ae1a552c59',
-};
-
-const app = initializeApp(firebaseConfig);
 // const database = getDatabase(app);
 
 function App() {
