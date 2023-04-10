@@ -153,6 +153,82 @@ const decks = [
       },
     ],
   },
+  {
+    id: nanoid(),
+    setNumber: 3,
+    cards: [
+      {
+        id: nanoid(),
+        cardNumber: 21,
+        furigana: 'ゥ',
+        english: 'd',
+        japanese: '',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 22,
+        furigana: 'イク　レッド',
+        english: "ike red.",
+        japanese: 'りません。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 23,
+        furigana: 'ポートゥ　ドゥ　ユー　ライク',
+        english: 't do you like?',
+        japanese: 'ーツが好きですか。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 24,
+        furigana: 'ス',
+        english: 'Inis.',
+        japanese: 'きです。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 25,
+        furigana: 'ィス',
+        english: "his?",
+        japanese: '',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 26,
+        furigana: 'ナ',
+        english: "anana.",
+        japanese: '。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 27,
+        furigana: '',
+        english: 'you?',
+        japanese: '。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 28,
+        furigana: 'マンキー',
+        english: 'onkey.',
+        japanese: '',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 29,
+        furigana: 'ウ',
+        english: ' cow?',
+        japanese: ' ',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 30,
+        furigana: '',
+        english: '.',
+        japanese: '',
+      },
+    ],
+  },
 ];
 
 export default decks;
