@@ -4,7 +4,6 @@ import Container from '../UI/Container';
 
 import styled from 'styled-components';
 
-import deckData from '../flashcard-data';
 import React from 'react';
 
 const MenuBox = styled.div`
@@ -20,7 +19,7 @@ const MenuBox = styled.div`
   text-align: center;
 `;
 
-function Menu() {
+function Menu({deck}) {
   return (
     <>
       <Container>
@@ -28,7 +27,7 @@ function Menu() {
           <MainLinkButton className="grid-prop" to="/all-cards" deckData={[]}>
             全部復習
           </MainLinkButton>
-          <DeckButton to="/set-one">セット {deckData[0].setNumber}</DeckButton>
+          <DeckButton to="/set-one">セット {deck[0].setNumber}</DeckButton>
           <DeckButton to={''}>セット 2</DeckButton>
           <DeckButton to={''}>セット 3</DeckButton>
           <DeckButton to={''}>セット 4</DeckButton>

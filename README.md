@@ -19,7 +19,7 @@ Users should be able to:
 - Access flashcard sets and start revising 
 - Store cards needing to be learnt and revise them in a separate page
 - Remove cards that have been learnt from current deck
-- Being able to edit the master deck, editing as the user wishes
+- Being able to edit the master deck, editing as the user wishes (WIP)
 
 ### Links
 
@@ -35,6 +35,7 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - CSS Modules
+- [Firebase](https://firebase.google.com/) - Backend as a Service
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript - Strongly typed programming language on top of JS
 - [React](https://reactjs.org/) - JS library
 - [React Router](https://reactrouter.com/en/main) - React routing library
