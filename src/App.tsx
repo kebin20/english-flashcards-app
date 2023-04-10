@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
@@ -11,27 +11,111 @@ import SetOne from './pages/Sets/SetOne';
 import deckData from './flashcard-data';
 import { CardsContentType } from './interfaces';
 
+/* Firebase */
+import { initializeApp } from 'firebase/app';
+// import { getDatabase } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBMxDJO1NpVUKOLzpE39A5hMgurQIyYlpw',
+  authDomain: 'react-todo-ca214.firebaseapp.com',
+  databaseURL: 'https://react-todo-ca214-default-rtdb.firebaseio.com/',
+  projectId: 'react-todo-ca214',
+  storageBucket: 'react-todo-ca214.appspot.com',
+  messagingSenderId: '668137483676',
+  appId: '1:668137483676:web:cad59596fec4ae1a552c59',
+};
+
+const app = initializeApp(firebaseConfig);
+// const database = getDatabase(app);
+
 function App() {
-  const [deck, setDeck] = useState([...deckData]);
+  const [deck, setDeck] = useState([]);
   const [allCards, setAllCards] = useState<CardsContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardsContentType[]>([]);
 
-  /* Fetching vocabs & deck function (USING localStorage)*/
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [error, setError] = useState(null);
+
+  // Upload flashcard data to firebase
+  const uploadInitialData = async (deckData: any) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json',
+        {
+          method: 'POST',
+          body: JSON.stringify({ deckData }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+    } catch (error: any) {
+      setError(error.message || 'Something went wrong!');
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    uploadInitialData(deckData);
+    if (deck.length === 0) {
+      fetchFlashcardHandler();
+    }
+  }, [deck.length]);
+
+  /* Fetching flashcard from Firebase*/
+  const fetchFlashcardHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json'
+      );
+      if (!response.ok) {
+        throw new Error('An error has occurred');
+      }
+
+      const data = await response.json();
+
+      const loadedFlashcardDeck: any = [];
+
+      for (const setKey in data) {
+        loadedFlashcardDeck.push({
+          id: setKey,
+          setNumber: data[setKey].setNumber,
+          cards: data[setKey].cards,
+        });
+      }
+      setDeck(loadedFlashcardDeck);
+    } catch (error: any) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
+
+  console.log(deck);
+
+  /* Fetching vocab function (USING localStorage)*/
   useEffect(() => {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
-    const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
+    // const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
     if (storedVocabs) {
       setVocabData(storedVocabs);
     }
-    if (storedDeck) {
-      setDeck(storedDeck);
-    }
+    // if (storedDeck) {
+    //   setDeck(storedDeck);
+    // }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-    localStorage.setItem('storedDeck', JSON.stringify(deck));
-  }, [vocabData, deck]);
+    // localStorage.setItem('storedDeck', JSON.stringify(deck));
+  }, [vocabData]);
 
   // Obtain all of the cards arrays, join them and flatten it
   useEffect(() => {
@@ -43,7 +127,9 @@ function App() {
     setAllCards(flattenedDecksArr);
   }, []);
 
-  function handleVocabData(newVocabData: React.SetStateAction<CardsContentType[]>) {
+  function handleVocabData(
+    newVocabData: React.SetStateAction<CardsContentType[]>
+  ) {
     setVocabData(newVocabData);
   }
 
