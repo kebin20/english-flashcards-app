@@ -77,6 +77,82 @@ const decks = [
       },
     ],
   },
+  {
+    id: nanoid(),
+    setNumber: 2,
+    cards: [
+      {
+        id: nanoid(),
+        cardNumber: 11,
+        furigana: 'アイ　ライク　レッドゥ',
+        english: 'I like red',
+        japanese: '私は赤が好きです。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 12,
+        furigana: 'アイ　ドントゥ　ライク　レッド',
+        english: "I don't like red.",
+        japanese: '私は赤が好きではありません。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 13,
+        furigana: '（フ）ワットゥ　スポートゥ　ドゥ　ユー　ライク',
+        english: 'What sport do you like?',
+        japanese: 'あなたはどんなスポーツが好きですか。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 14,
+        furigana: 'アイ　ライク　テニス',
+        english: 'I like tennis.',
+        japanese: '  私はテニスが好きです。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 15,
+        furigana: '（フ）ワッツ　ズィス',
+        english: "What's this?",
+        japanese: 'これは何ですか。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 16,
+        furigana: 'イッツ　ア　バナナ',
+        english: "It's a banana.",
+        japanese: 'それはバナナです。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 17,
+        furigana: 'フー　アー　ユー',
+        english: 'Who are you?',
+        japanese: 'あなたは誰ですか。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 18,
+        furigana: 'アイ　アム　ア　マンキー',
+        english: 'I am a monkey.',
+        japanese: '私はサルです。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 19,
+        furigana: 'アー　ユー　ア　カウ',
+        english: 'Are you a cow?',
+        japanese: ' あなたは牛ですか。',
+      },
+      {
+        id: nanoid(),
+        cardNumber: 20,
+        furigana: 'イエス　アイ　アム',
+        english: 'Yes, I am.',
+        japanese: 'はい、そうです。',
+      },
+    ],
+  },
 ];
 
 export default decks;
