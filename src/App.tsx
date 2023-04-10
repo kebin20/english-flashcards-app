@@ -95,7 +95,7 @@ function App() {
     setAllCards(flattenedDecksArr);
   }, []);
 
-// Revised vocab data flow
+  // Revised vocab data flow
   function handleVocabData(
     newVocabData: React.SetStateAction<CardsContentType[]>
   ) {
@@ -108,13 +108,35 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
+  // /* Error Handling */
+
+  let content = <p>Data not found</p>;
+
+  if (deck.length > 0) {
+    content = (
+      <SetOne
+        onPassVocabDataUp={handleVocabData}
+        deckData={deck[0]}
+        vocabData={vocabData}
+      />
+    );
+  }
+
+  if (error) {
+    content = <p>{error}</p>;
+  }
+
+  if (isLoading) {
+    content = <p>Loading...</p>;
+  }
+
   return (
     <>
       <BrowserRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/menu" element={<MenuPage deck={deck}/>} />
+          <Route path="/menu" element={<MenuPage deck={deck} />} />
           <Route
             path="/all-cards"
             element={
@@ -125,16 +147,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/set-one"
-            element={
-              <SetOne
-                onPassVocabDataUp={handleVocabData}
-                deckData={deck[0]}
-                vocabData={vocabData}
-              />
-            }
-          />
+          <Route path="/set-one" element={content} />
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
