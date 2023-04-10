@@ -35,10 +35,10 @@ const FinishTitle = styled.h1`
 
 function RevisePage({
   vocabData,
-  onPassRevisedVocabData,
+  onPassRevisedVocabDataUp,
 }: {
   vocabData: CardsContentType[];
-  onPassRevisedVocabData: (
+  onPassRevisedVocabDataUp: (
     newVocabData: React.SetStateAction<CardsContentType[]>
   ) => void;
 }) {
@@ -90,7 +90,7 @@ function RevisePage({
     );
   }
 
-  useEffect(() => onPassRevisedVocabData(cardDeck), [cardDeck]);
+  useEffect(() => onPassRevisedVocabDataUp(cardDeck), [cardDeck]);
 
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);

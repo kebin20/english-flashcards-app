@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
@@ -9,9 +9,24 @@ import AllCardsPage from './pages/AllCardsPage';
 import SetOne from './pages/Sets/SetOne';
 
 import deckData from './flashcard-data';
-import { CardsContentType } from './interfaces';
+import { CardsContentType, DecksType } from './interfaces';
 
-// const database = getDatabase(app);
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCf3250l4lmfX3pzb7VY6Jx1NKeu7DgEYg',
+  authDomain: 'english-flashcards-app-962bb.firebaseapp.com',
+  databaseURL:
+    'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'english-flashcards-app-962bb',
+  storageBucket: 'english-flashcards-app-962bb.appspot.com',
+  messagingSenderId: '68752169253',
+  appId: '1:68752169253:web:0fe8e45741e1e121b362cc',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 function App() {
   const [deck, setDeck] = useState([]);
@@ -22,11 +37,13 @@ function App() {
 
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (deck.length === 0) {
-      fetchFlashcardHandler();
-    }
-  }, [deck.length]);
+  /* Upload initial data to Firebase */
+  function writeFlashcardData(decks: DecksType) {
+    const db = getDatabase();
+    set(ref(db, 'flashcards'), {
+      decks,
+    });
+  }
 
   /* Fetching flashcard from Firebase*/
   const fetchFlashcardHandler = useCallback(async () => {
@@ -41,39 +58,31 @@ function App() {
       }
 
       const data = await response.json();
-      console.log(data);
 
-      const loadedFlashcardDeck: any = [];
-
-      for (const setKey in data) {
-        loadedFlashcardDeck.push({
-          id: setKey,
-          setNumber: data[setKey].setNumber,
-          cards: data[setKey].cards,
-        });
-      }
-      setDeck(loadedFlashcardDeck);
+      setDeck(data.decks);
     } catch (error: any) {
       setError(error.message);
     }
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (deck.length === 0) {
+      writeFlashcardData(deckData);
+      fetchFlashcardHandler();
+    }
+  }, [deck.length]);
+
   /* Fetching vocab function (USING localStorage)*/
   useEffect(() => {
     const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
-    // const storedDeck = JSON.parse(localStorage.getItem('storedDeck')!);
     if (storedVocabs) {
       setVocabData(storedVocabs);
     }
-    // if (storedDeck) {
-    //   setDeck(storedDeck);
-    // }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-    // localStorage.setItem('storedDeck', JSON.stringify(deck));
   }, [vocabData]);
 
   // Obtain all of the cards arrays, join them and flatten it
@@ -86,6 +95,7 @@ function App() {
     setAllCards(flattenedDecksArr);
   }, []);
 
+// Revised vocab data flow
   function handleVocabData(
     newVocabData: React.SetStateAction<CardsContentType[]>
   ) {
@@ -131,7 +141,7 @@ function App() {
             element={
               <RevisePage
                 vocabData={vocabData}
-                onPassRevisedVocabData={handleRevisedVocabData}
+                onPassRevisedVocabDataUp={handleRevisedVocabData}
               />
             }
           />
