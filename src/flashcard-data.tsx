@@ -16,8 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const database = firebase.database().ref();
-
 const decks = [
   {
     id: nanoid(),
