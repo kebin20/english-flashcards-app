@@ -68,6 +68,10 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
+const StyledAddButton = styled(Button)`
+background-color: black;
+`;
+
 function MainLinkButton(props: MainLinkButtonProps) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
@@ -100,4 +104,12 @@ function ResetButton(props: ButtonProps) {
   );
 }
 
-export { MainLinkButton, LearntButton, ReviseButton, ResetButton };
+function AddButton(props: ButtonProps) {
+  return (
+    <StyledAddButton type={props.type || 'button'} onClick={props.onClick}>
+      {props.children}
+    </StyledAddButton>
+  );
+}
+
+export { MainLinkButton, LearntButton, ReviseButton, ResetButton, AddButton };

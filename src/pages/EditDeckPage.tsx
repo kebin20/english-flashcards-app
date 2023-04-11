@@ -1,10 +1,14 @@
 import React from 'react';
-import { MainLinkButton } from '../UI/Buttons/Buttons';
+import TextInput from '../UI/TextInput';
 
 function EditDeckPage() {
   return (
     <>
-      <p>placeholder</p>
+      <h1>Edit Deck</h1>
+      <label htmlFor="first-name">Password*:</label>
+      <TextInput />
+      <h2>日本語</h2>
+      <TextInput />
     </>
   );
 }
