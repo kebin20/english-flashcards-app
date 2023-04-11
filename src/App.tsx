@@ -37,6 +37,8 @@ function App() {
 
   const [error, setError] = useState(null);
 
+  console.log(deck);
+
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: DecksType) {
     const db = getDatabase();
@@ -79,7 +81,7 @@ function App() {
     if (storedVocabs) {
       setVocabData(storedVocabs);
     }
-  }, [vocabData]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
