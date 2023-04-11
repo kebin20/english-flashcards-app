@@ -79,7 +79,7 @@ function App() {
     if (storedVocabs) {
       setVocabData(storedVocabs);
     }
-  }, []);
+  }, [vocabData]);
 
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
