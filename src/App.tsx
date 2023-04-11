@@ -6,7 +6,7 @@ import MenuPage from './pages/MenuPage';
 import EditDeckPage from './pages/EditDeckPage';
 import RevisePage from './pages/RevisePage';
 import AllCardsPage from './pages/AllCardsPage';
-import SetOne from './pages/Sets/SetOne';
+import FlashcardScreen from "./components/FlashcardScreen"
 
 import deckData from './flashcard-data';
 import { CardsContentType, DecksType } from './interfaces';
@@ -123,7 +123,7 @@ function App() {
       <Route
         path={`/set-${index}`}
         element={
-          <SetOne
+          <FlashcardScreen
             key={id}
             onPassVocabDataUp={handleVocabData}
             deckData={deck[index]}
