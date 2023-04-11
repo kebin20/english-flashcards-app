@@ -29,7 +29,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  const [deck, setDeck] = useState([]);
+  const [deck, setDeck] = useState<any[]>([]);
   const [allCards, setAllCards] = useState<CardsContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardsContentType[]>([]);
 
@@ -107,17 +107,16 @@ function App() {
 
   // /* Error Handling */
 
-  let content: any = <p>Data not found</p>;
-
-  if (deck.length > 0) {
-    content = (
-      <SetOne
-        onPassVocabDataUp={handleVocabData}
-        deckData={deck[0]}
-        vocabData={vocabData}
-      />
-    );
-  }
+  let content: any = (
+    <Route
+      path="#"
+      element={
+        <>
+          <h2>Data not found</h2>
+        </>
+      }
+    />
+  );
 
   if (deck.length > 0) {
     content = deck.map((id: any, index: number) => (
@@ -125,7 +124,7 @@ function App() {
         path={`/set-${index}`}
         element={
           <SetOne
-            id={id}
+            key={id}
             onPassVocabDataUp={handleVocabData}
             deckData={deck[index]}
             vocabData={vocabData}
@@ -136,11 +135,20 @@ function App() {
   }
 
   if (error) {
-    content = <p>{error}</p>;
+    content = <Route path="#" element={<>{error}</>} />;
   }
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = (
+      <Route
+        path="#"
+        element={
+          <>
+            <h2>Loading...</h2>
+          </>
+        }
+      />
+    );
   }
 
   return (
@@ -160,7 +168,7 @@ function App() {
               />
             }
           />
-          <Route path="/set-one" element={content} />
+          {content}
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
