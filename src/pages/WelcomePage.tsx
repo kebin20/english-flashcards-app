@@ -19,7 +19,7 @@ const WelcomeBox = styled.div`
 `;
 
 const WelcomeImage = styled.img`
-  max-width: 60%;
+  max-width: 40%;
 `;
 
 const WelcomeTitle = styled.h1`
