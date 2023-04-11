@@ -37,8 +37,6 @@ function App() {
 
   const [error, setError] = useState(null);
 
-  console.log(deck);
-
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: DecksType) {
     const db = getDatabase();
@@ -90,12 +88,12 @@ function App() {
   // Obtain all of the cards arrays, join them and flatten it
   useEffect(() => {
     const decksArr = [];
-    for (let i = 0; i < deckData.length; i++) {
-      decksArr.push(deckData[i].cards);
+    for (let i = 0; i < deck.length; i++) {
+      decksArr.push(deck[i].cards);
     }
     const flattenedDecksArr = decksArr.flat();
     setAllCards(flattenedDecksArr);
-  }, []);
+  }, [deck]);
 
   // Revised vocab data flow
   function handleVocabData(
