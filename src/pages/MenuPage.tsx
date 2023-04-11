@@ -19,7 +19,7 @@ const MenuBox = styled.div`
   text-align: center;
 `;
 
-function Menu() {
+function Menu({ deck }) {
   return (
     <>
       <Container>
@@ -27,12 +27,15 @@ function Menu() {
           <MainLinkButton className="grid-prop" to="/all-cards" deckData={[]}>
             全部復習
           </MainLinkButton>
-          <DeckButton to="/set-one">セット 1</DeckButton>
+          {deck.map((index: number) => (
+            <DeckButton to={`/set-${index}`}>セット {index}</DeckButton>
+          ))}
+          {/* <DeckButton to="/set-one">セット 1</DeckButton>
           <DeckButton to={''}>セット 2</DeckButton>
           <DeckButton to={''}>セット 3</DeckButton>
           <DeckButton to={''}>セット 4</DeckButton>
           <DeckButton to={''}>セット 5</DeckButton>
-          <DeckButton to={''}>セット 6</DeckButton>
+          <DeckButton to={''}>セット 6</DeckButton> */}
         </MenuBox>
       </Container>
     </>

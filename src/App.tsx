@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
 import MenuPage from './pages/MenuPage';
@@ -107,7 +107,7 @@ function App() {
 
   // /* Error Handling */
 
-  let content = <p>Data not found</p>;
+  let content: any = <p>Data not found</p>;
 
   if (deck.length > 0) {
     content = (
@@ -119,16 +119,21 @@ function App() {
     );
   }
 
-  // if (deck.length > 0) {
-  //   content = deck.map((id, index) => (
-  //     <SetOne
-  //       id={id}
-  //       onPassVocabDataUp={handleVocabData}
-  //       deckData={deck[index]}
-  //       vocabData={vocabData}
-  //     />
-  //   ));
-  // }
+  if (deck.length > 0) {
+    content = deck.map((id: any, index: number) => (
+      <Route
+        path={`/set-${index}`}
+        element={
+          <SetOne
+            id={id}
+            onPassVocabDataUp={handleVocabData}
+            deckData={deck[index]}
+            vocabData={vocabData}
+          />
+        }
+      />
+    ));
+  }
 
   if (error) {
     content = <p>{error}</p>;
@@ -140,11 +145,11 @@ function App() {
 
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu" element={<MenuPage deck={deck} />} />
           <Route
             path="/all-cards"
             element={
@@ -156,7 +161,6 @@ function App() {
             }
           />
           <Route path="/set-one" element={content} />
-          {/* <Route path=`/set-{index}` element={content} /> */}
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
@@ -168,7 +172,7 @@ function App() {
             }
           />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 }
