@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
 import MenuPage from './pages/MenuPage';
@@ -134,7 +134,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
@@ -161,7 +161,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
