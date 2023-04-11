@@ -58,8 +58,15 @@ function App() {
       }
 
       const data = await response.json();
-
       setDeck(data.decks);
+
+      // Obtain all of the cards arrays, join them and flatten it
+      const decksArr = [];
+      for (let i = 0; i < data.decks.length; i++) {
+        decksArr.push(data.decks[i].cards);
+      }
+      const flattenedDecksArr = decksArr.flat();
+      setAllCards(flattenedDecksArr);
     } catch (error: any) {
       setError(error.message);
     }
@@ -84,16 +91,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
   }, [vocabData]);
-
-  // Obtain all of the cards arrays, join them and flatten it
-  useEffect(() => {
-    const decksArr = [];
-    for (let i = 0; i < deck.length; i++) {
-      decksArr.push(deck[i].cards);
-    }
-    const flattenedDecksArr = decksArr.flat();
-    setAllCards(flattenedDecksArr);
-  }, [deck]);
 
   // Revised vocab data flow
   function handleVocabData(
