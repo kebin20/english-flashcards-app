@@ -138,7 +138,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
-          <Route path="/menu" element={<MenuPage deck={deck} />} />
+          <Route path="/menu" element={<MenuPage />} />
           <Route
             path="/all-cards"
             element={
