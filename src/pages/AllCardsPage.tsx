@@ -51,6 +51,11 @@ function FlashcardScreen({
     useState<CardsContentType[]>(vocabData);
 
   useEffect(() => {
+    const storedAllCards = JSON.parse(localStorage.getItem('allCards') || '[]');
+    setCardDeck(storedAllCards.length > 0 ? storedAllCards : allCards);
+  }, [allCards]);
+
+  useEffect(() => {
     const storedCardDeck = JSON.parse(
       localStorage.getItem('allCardsDeck') || '[]'
     );
@@ -58,8 +63,6 @@ function FlashcardScreen({
       setCardDeck(storedCardDeck);
     }
   }, []);
-
-  console.log(cardDeck);
 
   //Vocab navigation
 

@@ -119,6 +119,17 @@ function App() {
     );
   }
 
+  // if (deck.length > 0) {
+  //   content = deck.map((id, index) => (
+  //     <SetOne
+  //       id={id}
+  //       onPassVocabDataUp={handleVocabData}
+  //       deckData={deck[index]}
+  //       vocabData={vocabData}
+  //     />
+  //   ));
+  // }
+
   if (error) {
     content = <p>{error}</p>;
   }
@@ -145,6 +156,7 @@ function App() {
             }
           />
           <Route path="/set-one" element={content} />
+          {/* <Route path=`/set-{index}` element={content} /> */}
           <Route path="/edit-deck" element={<EditDeckPage />} />
           <Route
             path="/revise"
