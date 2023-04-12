@@ -6,7 +6,7 @@ import MenuPage from './pages/MenuPage';
 import EditDeckPage from './pages/EditDeckPage';
 import RevisePage from './pages/RevisePage';
 import AllCardsPage from './pages/AllCardsPage';
-import FlashcardScreen from "./components/FlashcardScreen"
+import FlashcardScreen from './components/FlashcardScreen';
 
 import deckData from './flashcard-data';
 import { CardsContentType, DecksType } from './interfaces';
@@ -169,7 +169,7 @@ function App() {
             }
           />
           {content}
-          <Route path="/edit-deck" element={<EditDeckPage />} />
+          <Route path="/edit-deck" element={<EditDeckPage deckData={deck} />} />
           <Route
             path="/revise"
             element={
