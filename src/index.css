@@ -104,6 +104,7 @@ select {
 }
 
 input {
+  width: 80%;
   border-radius: var(--round);
   border-color: transparent;
   box-shadow: var(--md-shadow);

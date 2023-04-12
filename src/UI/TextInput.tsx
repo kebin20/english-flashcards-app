@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const TextInputContainer = styled.div`
 display: flex;
 flex-direction: row-reverse;
+justify-content: flex-end;
 gap: 2em;
 `;
 
