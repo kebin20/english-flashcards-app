@@ -100,6 +100,10 @@ button,
 textarea,
 select {
   font: inherit;
+  border-radius: var(--round);
+  border-color: transparent;
+  box-shadow: var(--md-shadow);
+  outline: transparent;
 }
 
 li,

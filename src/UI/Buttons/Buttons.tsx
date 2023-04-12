@@ -69,7 +69,16 @@ const StyledResetButton = styled(Button)`
 `;
 
 const StyledAddButton = styled(Button)`
-background-color: black;
+background-color:var(--clr-white);
+width: 2em;
+height: 2em;
+padding: 0;
+border-radius: 50%;
+
+&:hover,
+&:active {
+  background-color: var(--clr-success);
+}
 `;
 
 function MainLinkButton(props: MainLinkButtonProps) {

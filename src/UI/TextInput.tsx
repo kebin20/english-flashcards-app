@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { AddButton } from './Buttons/Buttons';
 
+import styled from 'styled-components';
+
+const TextInputContainer = styled.div`
+display: flex;
+flex-direction: row-reverse;
+gap: 2em;
+`;
+
 function TextInput(props: any) {
   const [enteredValue, setEnteredValue] = useState('');
 
@@ -18,7 +26,7 @@ function TextInput(props: any) {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div>
+      <TextInputContainer>
         <AddButton type="submit" to={''}>
           +
         </AddButton>
@@ -27,7 +35,7 @@ function TextInput(props: any) {
           type="text"
           onChange={todoInputChangeHandler}
         />
-      </div>
+      </TextInputContainer>
     </form>
   );
 }
