@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
+import { DecksType } from './interfaces';
 
-const decks = [
+const decks: DecksType = [
   {
     id: nanoid(),
     setNumber: 1,

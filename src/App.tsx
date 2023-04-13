@@ -29,7 +29,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  const [deck, setDeck] = useState<any[]>([]);
+  const [deck, setDeck] = useState<DecksType>([]);
   const [allCards, setAllCards] = useState<CardsContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardsContentType[]>([]);
 

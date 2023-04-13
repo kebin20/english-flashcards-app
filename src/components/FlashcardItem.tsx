@@ -6,15 +6,15 @@ background-color: lightpink;
 display: flex;
 `;
 
-function FlashcardItem() {
+function FlashcardItem({cardNumber,furigana,english,japanese }) {
   return (
     <>
       <StyledFlashcardContainer>
-        <span>1.</span>
-        <p>Japanese</p>
-        <p>Furigana</p>
-        <p>English</p>
-        <button>Trash button</button>
+        <span>{cardNumber}</span>
+        <p>{japanese}</p>
+        <p>{furigana}</p>
+        <p>{english}</p>
+        <button>T</button>
       </StyledFlashcardContainer>
     </>
   );

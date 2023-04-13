@@ -4,6 +4,7 @@ import FlashcardItem from '../components/FlashcardItem';
 import { AddButton } from '.././UI/Buttons/Buttons';
 
 import styled from 'styled-components';
+import { FlashcardDeckData, MainLinkButtonProps } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -25,20 +26,22 @@ padding: 2em;
 text-align: center;
 `;
 
-function EditDeckPage(props: any) {
+function EditDeckPage({ deckData }: MainLinkButtonProps) {
   return (
     <>
       <EditDeckContainer>
         <h1>デック編集</h1>
         <label htmlFor="japanese">単語編集：</label>
         <VocabContainer>
-          <ul>
-            <h2>Set 1</h2>
-            <AddButton type="submit" to={''}>
-          +
-        </AddButton>
-            <FlashcardItem />
-          </ul>
+          {deckData.map((deck: FlashcardDeckData) => (
+            <ul>
+              <h2>Set {deck.setNumber}</h2>
+              <AddButton type="submit" to={''}>
+                +
+              </AddButton>
+              <FlashcardItem />
+            </ul>
+          ))}
         </VocabContainer>
       </EditDeckContainer>
     </>
