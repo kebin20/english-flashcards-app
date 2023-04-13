@@ -89,7 +89,7 @@ function FlashcardScreen({
         goForward();
       } else if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
         flipCard();
-      } else if (event.code == 'Space') {
+      } else if (event.code === 'Space') {
         // Handle space key press
         flipCard();
       }
@@ -99,7 +99,7 @@ function FlashcardScreen({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [cardDeck, goForward, goBack]);
+  }, [cardDeck, goForward, goBack, flipCard]);
 
   // Main button functions
 

@@ -68,6 +68,11 @@ function RevisePage({
       } else if (event.code === "ArrowRight") {
         // Handle right arrow key press
         goForward();
+      } else if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+        flipCard();
+      } else if (event.code === 'Space') {
+        // Handle space key press
+        flipCard();
       }
     }
     document.addEventListener("keydown", handleKeyDown);
@@ -75,7 +80,7 @@ function RevisePage({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [cardDeck, goForward, goBack]);
+  }, [cardDeck, goForward, goBack, flipCard]);
 
   // Main button functions
 
