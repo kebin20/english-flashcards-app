@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ButtonProps, MainLinkButtonProps } from '../../interfaces';
+import { ButtonProps, DeckDataProps } from '../../interfaces';
 
 const Button = styled.button`
   display: inline-block;
@@ -68,20 +68,7 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
-const StyledAddButton = styled(Button)`
-background-color:var(--clr-white);
-width: 2em;
-height: 2em;
-padding: 0;
-border-radius: 50%;
-
-&:hover,
-&:active {
-  background-color: var(--clr-success);
-}
-`;
-
-function MainLinkButton(props: MainLinkButtonProps) {
+function MainLinkButton(props: DeckDataProps) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
       {props.children}
@@ -113,12 +100,4 @@ function ResetButton(props: ButtonProps) {
   );
 }
 
-function AddButton(props: ButtonProps) {
-  return (
-    <StyledAddButton type={props.type || 'button'} onClick={props.onClick}>
-      {props.children}
-    </StyledAddButton>
-  );
-}
-
-export { MainLinkButton, LearntButton, ReviseButton, ResetButton, AddButton };
+export { MainLinkButton, LearntButton, ReviseButton, ResetButton };
