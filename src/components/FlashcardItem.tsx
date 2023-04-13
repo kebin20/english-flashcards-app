@@ -10,6 +10,7 @@ justify-content: space-between;
 
 & p, span, button {
   border: 1px solid black;
+  background-color: lightgreen;
 }
 `;
 
