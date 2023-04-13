@@ -27,7 +27,7 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface MainLinkButtonProps extends ButtonProps {
+export interface DeckDataProps extends ButtonProps {
   deckData: {
     id: string;
     setNumber: number;
@@ -39,7 +39,7 @@ export interface ContainerProps {
   children?: ReactNode;
 }
 
-export interface FlashcardDeckData {
+export interface FlashcardSetData {
   id: string;
   setNumber: number;
   cards: CardsContentType[];

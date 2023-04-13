@@ -1,21 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CardsContentType } from '../interfaces';
 
 const StyledFlashcardContainer = styled.div`
 background-color: lightpink;
 display: flex;
 `;
 
-function FlashcardItem({cardNumber,furigana,english,japanese }) {
+function FlashcardItem(props: any) {
   return (
     <>
+    {props.deckCards.map((card: CardsContentType) => (
       <StyledFlashcardContainer>
-        <span>{cardNumber}</span>
-        <p>{japanese}</p>
-        <p>{furigana}</p>
-        <p>{english}</p>
-        <button>T</button>
-      </StyledFlashcardContainer>
+      <span>{card.cardNumber}</span>
+      <p>{card.japanese}</p>
+      <p>{card.furigana}</p>
+      <p>{card.english}</p>
+      <button>T</button>
+    </StyledFlashcardContainer>
+    ))}
     </>
   );
 }
