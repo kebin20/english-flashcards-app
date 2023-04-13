@@ -1,7 +1,6 @@
 import React from 'react';
 
 import FlashcardItem from '../components/FlashcardItem';
-import { AddButton } from '.././UI/Buttons/Buttons';
 
 import styled from 'styled-components';
 import { DeckDataProps } from '../interfaces';
@@ -13,7 +12,7 @@ flex-direction: column;
 justify-content: center;
 margin-inline: 2em;
 padding-top: 6em;
-padding-bottom: 6em;
+padding-bottom: 6em;s
 `;
 
 const VocabContainer = styled.div`
@@ -28,6 +27,8 @@ text-align: center;
 
 & ul {
   display: grid;
+  gap: 1.5em;
+  padding-left: 0;
 }
 `;
 
@@ -36,14 +37,10 @@ function EditDeckPage({ deckData }: DeckDataProps) {
     <>
       <EditDeckContainer>
         <h1>デック編集</h1>
-        <label htmlFor="japanese">単語編集：</label>
         <VocabContainer>
           {deckData.map((deck: any, id: number) => (
             <ul>
               <h2>Set {deck.setNumber}</h2>
-              {/* <AddButton type="submit" to={''}>
-                +
-              </AddButton> */}
               <FlashcardItem key={id} deckCards={deck.cards} />
             </ul>
           ))}

@@ -17,6 +17,7 @@
   --clr-alert-hover: #c53c7c;
   --clr-success: #33d8b8;
   --clr-success-hover: #5de0c6;
+  --clr-light: #e9ecef;
   --clr-dark: #002d56;
   --clr-dark-hover: #9aaebbf1;
   --clr-white: #f8f9fa;
@@ -101,6 +102,10 @@ textarea,
 select {
   font: inherit;
   outline: transparent;
+}
+
+button {
+  cursor: pointer;
 }
 
 input {

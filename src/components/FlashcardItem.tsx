@@ -3,14 +3,21 @@ import styled from 'styled-components';
 import { CardsContentType } from '../interfaces';
 
 const StyledFlashcardContainer = styled.div`
-background-color: lightpink;
+background-color: var(--clr-light);
+border-radius: var(--round);
+box-shadow: var(--lg-shadow);
 display: flex;
-justify-content: space-between;
+justify-content: flex-start;
+gap: 3em;
+padding: 1.5em;
 
+& p {
+  border-bottom: 0.5px solid lightgrey;
+}
 
-& p, span, button {
-  border: 1px solid black;
-  background-color: lightgreen;
+& button {
+  background: transparent;
+  border: transparent;
 }
 `;
 
@@ -19,7 +26,7 @@ function FlashcardItem(props: any) {
     <>
       {props.deckCards.map((card: CardsContentType) => (
         <StyledFlashcardContainer>
-          <span>{card.cardNumber}</span>
+          <span>{card.cardNumber}.</span>
           <p>{card.japanese}</p>
           <p>{card.furigana}</p>
           <p>{card.english}</p>
