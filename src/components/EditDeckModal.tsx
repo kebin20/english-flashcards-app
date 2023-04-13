@@ -2,7 +2,6 @@ import React from 'react';
 import TextInput from '../UI/TextInput';
 import styled from 'styled-components';
 
-
 const InputContainer = styled.div`
 display:flex;
 gap: 0.5em;

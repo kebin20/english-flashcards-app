@@ -11,8 +11,9 @@ display:flex;
 gap: 1em;
 flex-direction: column;
 justify-content: center;
-height: 90vh;
 margin-inline: 2em;
+padding-top: 6em;
+padding-bottom: 6em;
 `;
 
 const VocabContainer = styled.div`
@@ -24,6 +25,10 @@ flex-direction: column;
 align-items: center;
 padding: 2em;
 text-align: center;
+
+& ul {
+  display: grid;
+}
 `;
 
 function EditDeckPage({ deckData }: DeckDataProps) {
@@ -36,10 +41,10 @@ function EditDeckPage({ deckData }: DeckDataProps) {
           {deckData.map((deck: any, id: number) => (
             <ul>
               <h2>Set {deck.setNumber}</h2>
-              <AddButton type="submit" to={''}>
+              {/* <AddButton type="submit" to={''}>
                 +
-              </AddButton>
-              <FlashcardItem key={id} deckCards={deck.cards}/>
+              </AddButton> */}
+              <FlashcardItem key={id} deckCards={deck.cards} />
             </ul>
           ))}
         </VocabContainer>
