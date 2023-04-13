@@ -169,7 +169,7 @@ function App() {
             }
           />
           {content}
-          <Route path="/edit-deck" element={<EditDeckPage deckData={deck} />} />
+          <Route path="/edit-deck" element={<EditDeckPage deckData={deck} to={''} />} />
           <Route
             path="/revise"
             element={

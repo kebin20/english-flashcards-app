@@ -5,7 +5,7 @@ import { AltDeckButton } from "../UI/Buttons/DeckButton";
 import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { CardsContentType, FlashcardDeckData } from "../interfaces";
+import { CardsContentType, FlashcardSetData } from "../interfaces";
 
 import styled from "styled-components";
 
@@ -39,7 +39,7 @@ function FlashcardScreen({
   onPassVocabDataUp,
   vocabData,
 }: {
-  deckData: FlashcardDeckData;
+  deckData: FlashcardSetData;
   onPassVocabDataUp: (
     newVocabData: React.SetStateAction<CardsContentType[]>
   ) => void;

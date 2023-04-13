@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from "react";
 
-function Editable({ text, type, placeholder, children, ...props }) {
+function Editable({
+  text,
+  type,
+  placeholder,
+  children,
+  ...props
+}: {
+  text: string;
+  type: any;
+  placeholder: string;
+  children?: ReactNode;
+  props?: any;
+}) {
   const [isEditing, setIsEditing] = useState(false);
 
   // Event handler while pressing any key while editing
-  function handleKeyDown(event, type) {
+  function handleKeyDown(event: any, type: any) {
     // Handle when key is pressed
   }
 
@@ -13,13 +25,13 @@ function Editable({ text, type, placeholder, children, ...props }) {
       {isEditing ? (
         <div
           onBlur={() => setIsEditing(false)}
-          onKeyDown={(e) => handleKeyDown(e, type)}
+          onKeyDown={(event) => handleKeyDown(event, type)}
         >
           {children}
         </div>
       ) : (
         <div onClick={() => setIsEditing(true)}>
-          <span>{text || placeholder || 'Editable content'}</span>
+          <span>{text || placeholder || "Editable content"}</span>
         </div>
       )}
     </section>

@@ -12,7 +12,7 @@ flex-direction: column;
 justify-content: center;
 margin-inline: 2em;
 padding-top: 6em;
-padding-bottom: 6em;s
+padding-bottom: 6em;
 `;
 
 const VocabContainer = styled.div`
