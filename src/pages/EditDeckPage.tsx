@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FlashcardItem from '../components/FlashcardItem';
+import EditFlashcard from '../components/EditFlashcard';
 
 import styled from 'styled-components';
 import { DeckDataProps } from '../interfaces';
@@ -41,7 +41,7 @@ function EditDeckPage({ deckData }: DeckDataProps) {
           {deckData.map((deck: any, id: number) => (
             <ul>
               <h2>Set {deck.setNumber}</h2>
-              <FlashcardItem key={id} deckCards={deck.cards} />
+              <EditFlashcard key={id} deckCards={deck.cards} />
             </ul>
           ))}
         </VocabContainer>
