@@ -16,10 +16,10 @@
 ### Main Function
 
 Users should be able to:
-- Access flashcard sets and start revising 
+- Access flashcard sets and start revising vocabulary that has been learnt in the past year. 
 - Store cards needing to be learnt and revise them in a separate page
-- Remove cards that have been learnt from current deck
-- Being able to edit the master deck, editing as the user wishes (WIP)
+- Remove cards that have been learnt from current deck.
+- Being able to edit the master deck and editing the card contents (WIP)
 
 ### Links
 
@@ -37,8 +37,14 @@ Users should be able to:
 - CSS Modules
 - [Firebase](https://firebase.google.com/) - Backend as a Service
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript - Strongly typed programming language on top of JS
-- [React](https://reactjs.org/) - JS library
+- [React](https://reactjs.org/) - JS framework
 - [React Router](https://reactrouter.com/en/main) - React routing library
 - [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
+## What I learnt
+
+
+
 ### Continued development
+
+- Enable the function of being able to edit the deck and update its data in firebase (WIP)
