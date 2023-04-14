@@ -9,6 +9,7 @@ justify-content: center;
 flex-direction: column;
 height: 100vh;
 gap: 1.3em;
+padding-top: 6em;
 z-index: -1;
 `;
 
