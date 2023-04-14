@@ -74,7 +74,7 @@ const decks: FlashcardSetData[] = [
         cardNumber: 10,
         furigana: 'ノー　アイ　ドントゥ',
         english: "No, I don't.",
-        japanese: 'いいえ、好きで はありません。',
+        japanese: 'いいえ、好きではありません。',
       },
     ],
   },
