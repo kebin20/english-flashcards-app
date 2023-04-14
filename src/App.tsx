@@ -9,7 +9,12 @@ import AllCardsPage from './pages/AllCardsPage';
 import FlashcardScreen from './components/FlashcardScreen';
 
 import deckData from './flashcard-data';
-import { CardsContentType, DecksType } from './interfaces';
+import {
+  CardsContentType,
+  CardTextType,
+  DecksType,
+  FlashcardSetData,
+} from './interfaces';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
@@ -169,7 +174,15 @@ function App() {
             }
           />
           {content}
-          <Route path="/edit-deck" element={<EditDeckPage deckData={deck} to={''} />} />
+          <Route
+            path="/edit-deck"
+            element={
+              <EditDeckPage
+                deckData={deck}
+                to={''}
+              />
+            }
+          />
           <Route
             path="/revise"
             element={

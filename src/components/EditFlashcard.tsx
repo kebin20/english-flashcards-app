@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { CardsContentType } from '../interfaces';
-import Editable from './Editable';
 
-const StyledFlashcardContainer = styled.div`
+const StyledEditCardContainer = styled.div`
 background-color: var(--clr-light);
 border-radius: var(--round);
 box-shadow: var(--lg-shadow);
 display: flex;
+flex-direction: column;
 justify-content: flex-start;
 gap: 3em;
 padding: 1.5em;
@@ -23,29 +22,39 @@ padding: 1.5em;
 `;
 
 function FlashcardItem(props: any) {
-  // State for the inputs
-  const [cardText, setCardText] = useState(
-    props.deckCards.map((card: CardsContentType) => ({
-      fuText: card.furigana,
-      enText: card.english,
-      jpText: card.japanese,
-    }))
-  );
-
-  const handleInputChange = (index: number, field: string, value: string) => {
-    const newCardText = [...cardText];
-    newCardText[index][field] = value;
-    setCardText(newCardText);
-  };
+  console.log(props);
 
   return (
     <>
-      {props.deckCards.map((card: CardsContentType, index: number) => (
+      <StyledEditCardContainer>WIP</StyledEditCardContainer>
+    </>
+  );
+}
+
+export default FlashcardItem;
+
+// State for the inputs
+// const [cardText, setCardText] = useState(
+//   props.deckCards.map((card: CardsContentType) => ({
+//     fuText: card.furigana,
+//     enText: card.english,
+//     jpText: card.japanese,
+//   }))
+// );
+
+// const handleInputChange = (index: number, field: string, value: string) => {
+//   const newCardText = [...cardText];
+//   newCardText[index][field] = value;
+//   setCardText(newCardText);
+// };
+
+{
+  /* {props.deckCards.map((card: CardsContentType, index: number) => (
         <StyledFlashcardContainer key={card.id}>
           <span>{card.cardNumber}.</span>
           <Editable
             text={card.japanese}
-            placeholder=""
+            placeholder={card.japanese}
             type="input"
           >
             <input
@@ -90,59 +99,5 @@ function FlashcardItem(props: any) {
           </Editable>
           <button>T</button>
         </StyledFlashcardContainer>
-      ))}
-    </>
-  );
-
-  // return (
-  //   <>
-  //     {props.deckCards.map((card: CardsContentType) => (
-  //       <StyledFlashcardContainer>
-  //         <span>{card.cardNumber}.</span>
-  //         <Editable
-  //           text={card.japanese}
-  //           placeholder="{card.japanese}"
-  //           type="input"
-  //         >
-  //           <input
-  //             type="text"
-  //             name="japanese input"
-  //             placeholder=""
-  //             value={card.japanese}
-  //             onChange={(e) => setJpText(e.target.value)}
-  //           />
-  //         </Editable>
-  //         <Editable
-  //           text={card.furigana}
-  //           placeholder={card.furigana}
-  //           type="input"
-  //         >
-  //           <input
-  //             type="text"
-  //             name="furigana input"
-  //             placeholder={card.furigana}
-  //             value={card.furigana}
-  //             onChange={(e) => setFuText(e.target.value)}
-  //           />
-  //         </Editable>
-  //         <Editable
-  //           text={card.english}
-  //           placeholder={card.japanese}
-  //           type="input"
-  //         >
-  //           <input
-  //             type="text"
-  //             name="task"
-  //             placeholder={card.english}
-  //             value={card.english}
-  //             onChange={(e) => setEnText(e.target.value)}
-  //           />
-  //         </Editable>
-  //         <button>T</button>
-  //       </StyledFlashcardContainer>
-  //     ))}
-  //   </>
-  // );
+      ))} */
 }
-
-export default FlashcardItem;

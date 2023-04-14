@@ -3,7 +3,6 @@ import React from 'react';
 import EditFlashcard from '../components/EditFlashcard';
 
 import styled from 'styled-components';
-import { DeckDataProps } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -32,7 +31,7 @@ text-align: center;
 }
 `;
 
-function EditDeckPage({ deckData }: DeckDataProps) {
+function EditDeckPage({ deckData }: any) {
   return (
     <>
       <EditDeckContainer>

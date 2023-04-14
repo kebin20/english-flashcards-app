@@ -1,7 +1,12 @@
 import React, { ReactNode } from 'react';
 import { To } from 'react-router-dom';
 
-export type CardsContentType = {
+export interface ContainerProps {
+  children?: ReactNode;
+}
+
+// Deck of Flashcards
+export type CardContentType = {
   id: string;
   cardNumber: number;
   furigana: string;
@@ -9,12 +14,26 @@ export type CardsContentType = {
   japanese: string;
 };
 
-export type DecksType = {
+export type DeckType = {
   id: string;
   setNumber: number;
-  cards: CardsContentType[];
+  cards: CardContentType[];
 }[];
 
+export interface FlashcardSetData {
+  id: string;
+  setNumber: number;
+  cards: CardContentType[];
+}
+
+export interface FlashcardProps {
+  isFlipped?: boolean;
+  onFlip?: () => void;
+  currentCard: CardContentType;
+}
+
+
+// Buttons
 export interface ArrowButtonProps {
   onClick: React.MouseEventHandler<SVGSVGElement>;
 }
@@ -31,22 +50,6 @@ export interface DeckDataProps extends ButtonProps {
   deckData: {
     id: string;
     setNumber: number;
-    cards: CardsContentType[];
+    cards: CardContentType[];
   }[];
-}
-
-export interface ContainerProps {
-  children?: ReactNode;
-}
-
-export interface FlashcardSetData {
-  id: string;
-  setNumber: number;
-  cards: CardsContentType[];
-}
-
-export interface FlashcardProps {
-  isFlipped?: boolean;
-  onFlip?: () => void;
-  currentCard: CardsContentType;
 }
