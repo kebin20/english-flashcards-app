@@ -13,16 +13,26 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 2em;
 
+
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     gap: 0.9em;
   }
 `;
 
-const FlashcardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+const FlashcardWrapper = styled.div`
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, 1fr);
+
+grid-template-areas: "
+arrowback flashcard arrowforward
+number number number
+button button button
+"
+`;
+
+const CardsLeft = styled.p`
 `;
 
 const FinishTitle = styled.h1`
@@ -152,9 +162,10 @@ function FlashcardScreen({
         <AltDeckButton to="/menu" className={undefined}>
           セット {setNumber}
         </AltDeckButton>
-        {cardDeck.length !== 0 && (
-          <>
-            <FlashcardContainer>
+        <FlashcardWrapper>
+          {cardDeck.length !== 0 && (
+            <>
+              {/* <FlashcardContainer> */}
               <ArrowBack onClick={goBack} />
               <Flashcard
                 currentCard={cardDeck[cardIndex]}
@@ -162,26 +173,27 @@ function FlashcardScreen({
                 isFlipped={isFlipped}
               />
               <ArrowForward onClick={goForward} />
-            </FlashcardContainer>
-            <p>
-              {cardIndex + 1}/{cardDeck.length}
-            </p>
-          </>
-        )}
-        {cardDeck.length === 0 && (
-          <FinishTitle>勉強できる単語がない。</FinishTitle>
-        )}
-        <ButtonContainer>
-          <ReviseButton onClick={reviseVocab} to={''}>
-            まだ。
-          </ReviseButton>
-          <LearntButton onClick={vocabLearnt} to={''}>
-            覚えた！
-          </LearntButton>
-          <ResetButton onClick={reset} to={''}>
-            リセット
-          </ResetButton>
-        </ButtonContainer>
+              {/* </FlashcardContainer> */}
+              <CardsLeft>
+                {cardIndex + 1}/{cardDeck.length}
+              </CardsLeft>
+            </>
+          )}
+          {cardDeck.length === 0 && (
+            <FinishTitle>勉強できる単語がない。</FinishTitle>
+          )}
+          <ButtonContainer>
+            <ReviseButton onClick={reviseVocab} to={''}>
+              まだ。
+            </ReviseButton>
+            <LearntButton onClick={vocabLearnt} to={''}>
+              覚えた！
+            </LearntButton>
+            <ResetButton onClick={reset} to={''}>
+              リセット
+            </ResetButton>
+          </ButtonContainer>
+        </FlashcardWrapper>
       </Container>
     </>
   );

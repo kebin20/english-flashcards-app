@@ -4,11 +4,16 @@ import { ArrowButtonProps } from '../../interfaces';
 
 const StyledArrowBack = styled.svg`
 transform: rotate(-0.5turn);
+
+`;
+
+const StyledArrowForward = styled.svg`
+
 `;
 
 function ArrowForward({ onClick }: ArrowButtonProps) {
   return (
-    <svg
+    <StyledArrowForward
       onClick={onClick}
       style={{ cursor: 'pointer' }}
       role="button"
@@ -18,7 +23,7 @@ function ArrowForward({ onClick }: ArrowButtonProps) {
       width="48"
     >
       <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
-    </svg>
+    </StyledArrowForward>
   );
 }
 
