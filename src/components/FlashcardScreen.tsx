@@ -22,8 +22,11 @@ const ButtonContainer = styled.div`
 
 const FlashcardWrapper = styled.div`
 display: grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: 0.5fr 2fr 0.5fr;
 grid-template-rows: 1fr;
+
+align-items: center;
+justify-items: center;
 `;
 
 const CardsLeft = styled.p`
