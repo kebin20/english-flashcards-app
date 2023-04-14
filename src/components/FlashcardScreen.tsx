@@ -24,9 +24,9 @@ const FlashcardWrapper = styled.div`
 display: grid;
 grid-template-columns: 0.5fr 2fr 0.5fr;
 grid-template-rows: 1fr;
-
 align-items: center;
 justify-items: center;
+width: 45%;
 `;
 
 const CardsLeft = styled.p`
