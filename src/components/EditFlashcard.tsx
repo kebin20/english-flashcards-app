@@ -22,7 +22,7 @@ padding: 1.5em;
 }
 `;
 
-function FlashcardItem(props: CardContentType[]) {
+function FlashcardItem(props: any) {
   console.log(props);
 
   return (
