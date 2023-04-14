@@ -6,7 +6,7 @@ const StyledCardButton = styled.button`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 1.5em 5em 1.5em 2em;
+  padding: 1.5em 2em 1.5em 5em;
   border-radius: var(--rounder);
   border: transparent;
   background-color: var(--clr-white);
@@ -21,7 +21,7 @@ const StyledCardButton = styled.button`
 
 const CardNumber = styled.span`
   position: absolute;
-  left: 90%;
+  right: 90%;
 `;
 
 const InnerContainer = styled.div`
@@ -31,20 +31,6 @@ const InnerContainer = styled.div`
 
   @media only screen and (max-width: 600px) {
     gap: 3em;
-  }
-`;
-
-const Circle = styled.span`
-  background-image: var(--clr-blue);
-  display: grid;
-  place-items: center;
-  width: 2em;
-  height: 2em;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  text-decoration: none;
-
-  @media only screen and (max-width: 600px) {
   }
 `;
 
@@ -60,7 +46,6 @@ function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
     <StyledCardButton onClick={onFlip}>
       <CardNumber>{cardNumber}</CardNumber>
       <InnerContainer>
-        <Circle />
         {!isFlipped && <h1>{japanese}</h1>}
         {isFlipped && (
           <EnglishSide>
