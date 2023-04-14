@@ -31,8 +31,8 @@ function WelcomePage() {
     <>
       <Container>
         <WelcomeBox>
-          <WelcomeTitle>単語練習</WelcomeTitle>
-          <p>3年生～6年生の単語を復習しよう！</p>
+          <WelcomeTitle>作文練習</WelcomeTitle>
+          <p>3年生～6年生で習った文を練習しよう！</p>
           <WelcomeImage src={welcomeImage} alt="英語を話している" />
         </WelcomeBox>
         <MainLinkButton to="/menu" deckData={[]}>

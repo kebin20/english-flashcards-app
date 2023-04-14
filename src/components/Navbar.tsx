@@ -106,12 +106,12 @@ function Navbar() {
         <NavMobileMenu>
           <li>
             <Link onClick={() => setToggle(false)} to="/menu">
-              デック
+              全部のセット
             </Link>
           </li>
           <li>
             <Link onClick={() => setToggle(false)} to="/revise">
-              復習
+              覚えていない文
             </Link>
           </li>
           <li>
@@ -124,12 +124,12 @@ function Navbar() {
       <NavMenu>
         <li>
           <Link onClick={() => setToggle(false)} to="/menu">
-            デック
+            全部のセット
           </Link>
         </li>
         <li>
           <Link onClick={() => setToggle(false)} to="/revise">
-            復習
+          覚えていない文
           </Link>
         </li>
         <li>

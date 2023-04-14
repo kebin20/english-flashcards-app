@@ -148,7 +148,7 @@ function FlashcardScreen({
   return (
     <>
       <Container>
-        <p>セットボタンを押す時にメニューに戻る</p>
+        <p>セットボタンを押すとメニューに戻る</p>
         <AltDeckButton to="/menu" className={undefined}>
           セット {setNumber}
         </AltDeckButton>
@@ -173,7 +173,7 @@ function FlashcardScreen({
         )}
         <ButtonContainer>
           <ReviseButton onClick={reviseVocab} to={''}>
-            まだ。。
+            まだ。
           </ReviseButton>
           <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！

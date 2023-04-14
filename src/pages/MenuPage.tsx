@@ -20,13 +20,13 @@ const MenuBox = styled.div`
   text-align: center;
 `;
 
-function Menu({deck}: any) {
+function Menu({ deck }: any) {
   return (
     <>
       <Container>
         <MenuBox>
           <MainLinkButton className="grid-prop" to="/all-cards" deckData={[]}>
-            全部復習
+            全部の復習
           </MainLinkButton>
           {deck.map((_: any, index: number) => (
             <DeckButton to={`/set-${index}`}>セット {index + 1}</DeckButton>
