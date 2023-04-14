@@ -174,7 +174,7 @@ function FlashcardScreen({
         )}
         <ButtonContainer>
           <ReviseButton onClick={reviseVocab} to={''}>
-            まだ。。
+            まだ。
           </ReviseButton>
           <LearntButton onClick={vocabLearnt} to={''}>
             覚えた！
