@@ -23,13 +23,7 @@ const ButtonContainer = styled.div`
 const FlashcardWrapper = styled.div`
 display: grid;
 grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(3, 1fr);
-
-grid-template-areas: "
-arrowback flashcard arrowforward
-number number number
-button button button
-"
+grid-template-rows: 1fr;
 `;
 
 const CardsLeft = styled.p`
@@ -162,10 +156,9 @@ function FlashcardScreen({
         <AltDeckButton to="/menu" className={undefined}>
           セット {setNumber}
         </AltDeckButton>
-        <FlashcardWrapper>
-          {cardDeck.length !== 0 && (
-            <>
-              {/* <FlashcardContainer> */}
+        {cardDeck.length !== 0 && (
+          <>
+            <FlashcardWrapper>
               <ArrowBack onClick={goBack} />
               <Flashcard
                 currentCard={cardDeck[cardIndex]}
@@ -173,27 +166,26 @@ function FlashcardScreen({
                 isFlipped={isFlipped}
               />
               <ArrowForward onClick={goForward} />
-              {/* </FlashcardContainer> */}
-              <CardsLeft>
-                {cardIndex + 1}/{cardDeck.length}
-              </CardsLeft>
-            </>
-          )}
-          {cardDeck.length === 0 && (
-            <FinishTitle>勉強できる単語がない。</FinishTitle>
-          )}
-          <ButtonContainer>
-            <ReviseButton onClick={reviseVocab} to={''}>
-              まだ。
-            </ReviseButton>
-            <LearntButton onClick={vocabLearnt} to={''}>
-              覚えた！
-            </LearntButton>
-            <ResetButton onClick={reset} to={''}>
-              リセット
-            </ResetButton>
-          </ButtonContainer>
-        </FlashcardWrapper>
+            </FlashcardWrapper>
+            <CardsLeft>
+              {cardIndex + 1}/{cardDeck.length}
+            </CardsLeft>
+          </>
+        )}
+        {cardDeck.length === 0 && (
+          <FinishTitle>勉強できる単語がない。</FinishTitle>
+        )}
+        <ButtonContainer>
+          <ReviseButton onClick={reviseVocab} to={''}>
+            まだ。
+          </ReviseButton>
+          <LearntButton onClick={vocabLearnt} to={''}>
+            覚えた！
+          </LearntButton>
+          <ResetButton onClick={reset} to={''}>
+            リセット
+          </ResetButton>
+        </ButtonContainer>
       </Container>
     </>
   );
