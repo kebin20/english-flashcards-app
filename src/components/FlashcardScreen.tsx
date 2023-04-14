@@ -26,7 +26,7 @@ grid-template-columns: 0.5fr 2fr 0.5fr;
 grid-template-rows: 1fr;
 align-items: center;
 justify-items: center;
-width: 45%;
+width: 45em;
 `;
 
 const CardsLeft = styled.p`
