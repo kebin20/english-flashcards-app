@@ -4,7 +4,7 @@ import Flashcard from "../components/Flashcard";
 import { LearntButton } from "../UI/Buttons/Buttons";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 
-import { CardsContentType } from "../interfaces";
+import { CardContentType } from "../interfaces";
 
 import styled from "styled-components";
 
@@ -37,9 +37,9 @@ function RevisePage({
   vocabData,
   onPassRevisedVocabDataUp,
 }: {
-  vocabData: CardsContentType[];
+  vocabData: CardContentType[];
   onPassRevisedVocabDataUp: (
-    newVocabData: React.SetStateAction<CardsContentType[]>
+    newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
 }) {
   const [cardDeck, setCardDeck] = useState(vocabData);

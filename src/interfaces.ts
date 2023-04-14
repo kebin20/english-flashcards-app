@@ -14,12 +14,6 @@ export type CardContentType = {
   japanese: string;
 };
 
-export type DeckType = {
-  id: string;
-  setNumber: number;
-  cards: CardContentType[];
-}[];
-
 export interface FlashcardSetData {
   id: string;
   setNumber: number;
@@ -33,7 +27,7 @@ export interface FlashcardProps {
 }
 
 
-// Buttons
+// Buttons & Link
 export interface ArrowButtonProps {
   onClick: React.MouseEventHandler<SVGSVGElement>;
 }

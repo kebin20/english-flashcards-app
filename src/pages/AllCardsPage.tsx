@@ -4,7 +4,7 @@ import Flashcard from '../components/Flashcard';
 import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { CardsContentType } from '../interfaces';
+import { CardContentType } from '../interfaces';
 
 import styled from 'styled-components';
 
@@ -38,17 +38,17 @@ function FlashcardScreen({
   onPassVocabDataUp,
   vocabData,
 }: {
-  allCards: CardsContentType[];
+  allCards: CardContentType[];
   onPassVocabDataUp: (
-    newVocabData: React.SetStateAction<CardsContentType[]>
+    newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
-  vocabData: CardsContentType[];
+  vocabData: CardContentType[];
 }) {
   const [cardDeck, setCardDeck] = useState(allCards);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [vocabToLearn, setVocabToLearn] =
-    useState<CardsContentType[]>(vocabData);
+    useState<CardContentType[]>(vocabData);
 
   useEffect(() => {
     const storedAllCards = JSON.parse(localStorage.getItem('allCards') || '[]');
@@ -121,7 +121,7 @@ function FlashcardScreen({
   }
 
   function reviseVocab() {
-    const newDeck: CardsContentType[] = cardDeck.filter(
+    const newDeck: CardContentType[] = cardDeck.filter(
       (_: any, index: number) => index !== cardIndex
     );
     const removedVocabArrItem = cardDeck[cardIndex];

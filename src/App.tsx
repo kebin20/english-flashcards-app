@@ -9,12 +9,7 @@ import AllCardsPage from './pages/AllCardsPage';
 import FlashcardScreen from './components/FlashcardScreen';
 
 import deckData from './flashcard-data';
-import {
-  CardsContentType,
-  CardTextType,
-  DecksType,
-  FlashcardSetData,
-} from './interfaces';
+import { CardContentType, FlashcardSetData } from './interfaces';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
@@ -34,16 +29,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  const [deck, setDeck] = useState<DecksType>([]);
-  const [allCards, setAllCards] = useState<CardsContentType[]>([]);
-  const [vocabData, setVocabData] = useState<CardsContentType[]>([]);
+  const [deck, setDeck] = useState<FlashcardSetData[]>([]);
+  const [allCards, setAllCards] = useState<CardContentType[]>([]);
+  const [vocabData, setVocabData] = useState<CardContentType[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(null);
 
   /* Upload initial data to Firebase */
-  function writeFlashcardData(decks: DecksType) {
+  function writeFlashcardData(decks: FlashcardSetData[]) {
     const db = getDatabase();
     set(ref(db, 'flashcards'), {
       decks,
@@ -72,7 +67,7 @@ function App() {
       }
       const flattenedDecksArr = decksArr.flat();
       setAllCards(flattenedDecksArr);
-    } catch (error: any) {
+    } catch (error: an) {
       setError(error.message);
     }
     setIsLoading(false);
@@ -99,13 +94,13 @@ function App() {
 
   // Revised vocab data flow
   function handleVocabData(
-    newVocabData: React.SetStateAction<CardsContentType[]>
+    newVocabData: React.SetStateAction<CardContentType[]>
   ) {
     setVocabData(newVocabData);
   }
 
   function handleRevisedVocabData(
-    newRevisedVocabData: React.SetStateAction<CardsContentType[]>
+    newRevisedVocabData: React.SetStateAction<CardContentType[]>
   ) {
     setVocabData(newRevisedVocabData);
   }
@@ -176,12 +171,7 @@ function App() {
           {content}
           <Route
             path="/edit-deck"
-            element={
-              <EditDeckPage
-                deckData={deck}
-                to={''}
-              />
-            }
+            element={<EditDeckPage deckData={deck} to={''} />}
           />
           <Route
             path="/revise"

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
-import { DecksType } from './interfaces';
+import { FlashcardSetData } from './interfaces';
 
-const decks: DecksType = [
+const decks: FlashcardSetData[] = [
   {
     id: nanoid(),
     setNumber: 1,
