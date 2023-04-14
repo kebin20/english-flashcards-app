@@ -3,6 +3,7 @@ import React from 'react';
 import EditFlashcard from '../components/EditFlashcard';
 
 import styled from 'styled-components';
+import { DeckDataProps } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -31,13 +32,13 @@ text-align: center;
 }
 `;
 
-function EditDeckPage({ deckData }: any) {
+function EditDeckPage({ deckData }: DeckDataProps) {
   return (
     <>
       <EditDeckContainer>
         <h1>デック編集</h1>
         <VocabContainer>
-          {deckData.map((deck: any, id: number) => (
+          {deckData.map((deck, id) => (
             <ul>
               <h2>Set {deck.setNumber}</h2>
               <EditFlashcard key={id} deckCards={deck.cards} />

@@ -5,6 +5,7 @@ import Container from '../UI/Container';
 import styled from 'styled-components';
 
 import React from 'react';
+import { FlashcardSetData } from '../interfaces';
 
 const MenuBox = styled.div`
   display: grid;
@@ -19,7 +20,7 @@ const MenuBox = styled.div`
   text-align: center;
 `;
 
-function Menu(props: any) {
+function Menu({deck}: any) {
   return (
     <>
       <Container>
@@ -27,7 +28,7 @@ function Menu(props: any) {
           <MainLinkButton className="grid-prop" to="/all-cards" deckData={[]}>
             全部復習
           </MainLinkButton>
-          {props.deck.map((_: any, index: number) => (
+          {deck.map((_: any, index: number) => (
             <DeckButton to={`/set-${index}`}>セット {index + 1}</DeckButton>
           ))}
         </MenuBox>

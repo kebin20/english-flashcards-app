@@ -67,7 +67,7 @@ function App() {
       }
       const flattenedDecksArr = decksArr.flat();
       setAllCards(flattenedDecksArr);
-    } catch (error: an) {
+    } catch (error: any) {
       setError(error.message);
     }
     setIsLoading(false);
@@ -119,12 +119,12 @@ function App() {
   );
 
   if (deck.length > 0) {
-    content = deck.map((id: any, index: number) => (
+    content = deck.map((card, index) => (
       <Route
         path={`/set-${index}`}
         element={
           <FlashcardScreen
-            key={id}
+            key={card.id}
             onPassVocabDataUp={handleVocabData}
             deckData={deck[index]}
             vocabData={vocabData}

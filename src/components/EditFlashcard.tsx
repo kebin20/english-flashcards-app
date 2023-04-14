@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CardContentType } from '../interfaces';
 
 const StyledEditCardContainer = styled.div`
 background-color: var(--clr-light);
@@ -21,7 +22,7 @@ padding: 1.5em;
 }
 `;
 
-function FlashcardItem(props: any) {
+function FlashcardItem(props: CardContentType[]) {
   console.log(props);
 
   return (
