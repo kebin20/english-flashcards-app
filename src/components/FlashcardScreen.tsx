@@ -27,9 +27,10 @@ grid-template-rows: 1fr;
 align-items: center;
 justify-items: center;
 width: 45em;
-`;
 
-const CardsLeft = styled.p`
+@media only screen and (max-width: 600px) {
+width: 22.5em;
+}
 `;
 
 const FinishTitle = styled.h1`
@@ -170,9 +171,9 @@ function FlashcardScreen({
               />
               <ArrowForward onClick={goForward} />
             </FlashcardWrapper>
-            <CardsLeft>
+            <p>
               {cardIndex + 1}/{cardDeck.length}
-            </CardsLeft>
+            </p>
           </>
         )}
         {cardDeck.length === 0 && (

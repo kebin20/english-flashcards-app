@@ -4,11 +4,9 @@ import { ArrowButtonProps } from '../../interfaces';
 
 const StyledArrowBack = styled.svg`
 transform: rotate(-0.5turn);
-
 `;
 
 const StyledArrowForward = styled.svg`
-
 `;
 
 function ArrowForward({ onClick }: ArrowButtonProps) {
