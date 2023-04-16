@@ -4,9 +4,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 16px;
+  width: 22px;
   height: 3px;
-  border-radius: 1.5px;
+  border-radius: 2px;
   background: var(--clr-dark);
   transform: rotate(0);
   transition: all 0.5s;

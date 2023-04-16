@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import classes from "./Navbar.module.css";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import logo from "../assets/flash-card.png";
+import React, { useState } from 'react';
+import classes from './Navbar.module.css';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import logo from '../assets/flash-card.png';
 
 const StyledNavBar = styled.nav`
   position: fixed;
@@ -37,11 +37,19 @@ const HamburgerButton = styled.button`
 
 const Logo = styled.img`
   width: 3em;
+
+  @media only screen and (max-width: 600px) {
+   width: 2.5em;
+  }
 `;
 
 const NavTitle = styled.h1`
   margin-right: auto;
   font-family: var(--ff-jp-title);
+
+  @media only screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const NavMenu = styled.ul`
@@ -60,7 +68,7 @@ const NavMobileMenu = styled(NavMenu)`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  inset: 70% 0 0 0;
+  inset: 60% 0 0 0;
   padding: 1.25em 1.5em;
   font-family: var(--ff-jp-text);
   font-weight: 900;
@@ -129,7 +137,7 @@ function Navbar() {
         </li>
         <li>
           <Link onClick={() => setToggle(false)} to="/revise">
-          覚えていない文
+            覚えていない文
           </Link>
         </li>
         <li>
