@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { FlashcardProps } from "../interfaces";
+import React from 'react';
+import styled from 'styled-components';
+import { FlashcardProps } from '../interfaces';
 
 const StyledCardButton = styled.button`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 1.5em 2em 1.5em 5em;
+  padding: 1.5em 1.5em 1.5em 4em;
   border-radius: var(--rounder);
   border: transparent;
   background-color: var(--clr-white);

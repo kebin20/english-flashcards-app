@@ -26,7 +26,11 @@ grid-template-columns: 0.5fr 2fr 0.5fr;
 grid-template-rows: 1fr;
 align-items: center;
 justify-items: center;
-width: 45em;
+width: 55em;
+
+@media only screen and (max-width: 900px) {
+  width: 40.5em;
+  }
 
 @media only screen and (max-width: 600px) {
 width: 22.5em;
