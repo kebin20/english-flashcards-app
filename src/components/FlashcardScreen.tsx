@@ -26,7 +26,7 @@ grid-template-columns: 0.5fr 2fr 0.5fr;
 grid-template-rows: 1fr;
 align-items: center;
 justify-items: center;
-width: 55em;
+width: 57em;
 
 @media only screen and (max-width: 900px) {
   width: 40.5em;

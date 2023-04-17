@@ -21,7 +21,7 @@ const StyledCardButton = styled.button`
 
 const CardNumber = styled.span`
   position: absolute;
-  right: 90%;
+  right: 89%;
 `;
 
 const InnerContainer = styled.div`
