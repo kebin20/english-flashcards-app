@@ -104,9 +104,10 @@ function FlashcardScreen({
   // Main button functions
 
   function vocabLearnt() {
+    //The current position of the card at this time
+    const cardToRemove = cardDeck[cardIndex];
     setCardDeck((prevCardDeck) =>
-      //underscore is used since we don't need the current element
-      prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
+      prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
     // Update cardIndex if it is pointing to an index that is out of range after removing cards
     setCardIndex((prevIndex) =>
@@ -121,11 +122,12 @@ function FlashcardScreen({
   }
 
   function reviseVocab() {
+    //The current position of the card at this time
+    const cardToRemove = cardDeck[cardIndex];
     const newDeck: CardContentType[] = cardDeck.filter(
-      (_: any, index: number) => index !== cardIndex
+      (card) => card.id !== cardToRemove.id
     );
-    const removedVocabArrItem = cardDeck[cardIndex];
-    const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
+    const vocabToLearnArr = [...vocabToLearn, cardToRemove];
 
     setCardIndex((prevIndex) =>
       prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
@@ -189,3 +191,30 @@ function FlashcardScreen({
 }
 
 export default FlashcardScreen;
+
+    // setCardDeck((prevCardDeck) =>
+    //   //underscore is used since we don't need the current element
+    //   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
+    // );
+    // // Update cardIndex if it is pointing to an index that is out of range after removing cards
+    // setCardIndex((prevIndex) =>
+    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    // );
+    // localStorage.setItem(
+    //   'allCardsDeck',
+    //   JSON.stringify(
+    //     cardDeck.filter((_: any, index: number) => index !== cardIndex)
+    //   )
+    // );
+
+        // const newDeck: CardContentType[] = cardDeck.filter(
+    //   (_: any, index: number) => index !== cardIndex
+    // );
+    // const removedVocabArrItem = cardDeck[cardIndex];
+    // const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
+
+    // setCardIndex((prevIndex) =>
+    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    // );
+    // setCardDeck(newDeck);
+    // setVocabToLearn(vocabToLearnArr);
