@@ -121,6 +121,7 @@ function App() {
   if (deck.length > 0) {
     content = deck.map((card, index) => (
       <Route
+        key={card.id}
         path={`/set-${index}`}
         element={
           <FlashcardScreen
