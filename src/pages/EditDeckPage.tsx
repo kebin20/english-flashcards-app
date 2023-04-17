@@ -42,6 +42,8 @@ function EditDeckPage({ deckData }: DeckDataProps) {
     setIsLoggedIn(loginState);
   }
 
+  console.log(isLoggedIn);
+
   return (
     <>
       <EditDeckContainer>

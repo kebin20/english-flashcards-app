@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '../UI/Buttons/Buttons';
+import { PrimaryButton } from '../UI/Buttons/Buttons';
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
 display: flex;
 flex-direction: column;
+align-items: center;
 padding: 2em;
+margin: auto;
+margin-top: 5em;
 gap: 1em;
 `;
 
 function LoginModal(props: any) {
+  const [errorMessage, setErrorMessage] = useState('');
+
   function handleSubmit(event: any) {
     event.preventDefault();
     const password = event.target.password.value;
@@ -21,7 +26,9 @@ function LoginModal(props: any) {
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="pass">Password:</label>
         <input type="password" id="pass" name="password" required />
-        <Button type="submit">Login</Button>
+        <PrimaryButton type="submit" deckData={[]} to={''}>
+          Login
+        </PrimaryButton>
       </StyledForm>
     </>
   );
