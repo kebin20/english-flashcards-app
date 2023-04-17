@@ -20,7 +20,7 @@ const MenuBox = styled.div`
   text-align: center;
 `;
 
-function Menu({ deck }: { deck: FlashcardSetData[] }) {
+function MenuPage({ deck }: { deck: FlashcardSetData[] }) {
   return (
     <>
       <Container>
@@ -29,7 +29,7 @@ function Menu({ deck }: { deck: FlashcardSetData[] }) {
             全部のセット
           </MainLinkButton>
           {deck.map((item: FlashcardSetData, index: number) => (
-            <DeckButton to={`/set-${index}`}>
+            <DeckButton key={item.id} to={`/set-${index}`}>
               セット {item.setNumber}
             </DeckButton>
           ))}
@@ -39,4 +39,4 @@ function Menu({ deck }: { deck: FlashcardSetData[] }) {
   );
 }
 
-export default Menu;
+export default MenuPage;
