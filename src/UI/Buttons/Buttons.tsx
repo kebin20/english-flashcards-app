@@ -69,7 +69,8 @@ const StyledResetButton = styled(Button)`
 `;
 
 const StyledPrimaryButton = styled(Button)`
-background-color: var(--clr-white)
+background-color: var(--clr-white);
+padding: 0.8em 1.5em;
 `;
 
 function PrimaryButton(props: DeckDataProps) {
