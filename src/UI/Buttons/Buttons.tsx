@@ -75,7 +75,7 @@ padding: 0.8em 1.5em;
 
 function PrimaryButton(props: DeckDataProps) {
   return (
-    <StyledPrimaryButton className={props.className} to={props.to}>
+    <StyledPrimaryButton className={props.className}>
       {props.children}
     </StyledPrimaryButton>
   );
