@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, ReactNode } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import WelcomePage from './pages/WelcomePage';
@@ -107,7 +107,7 @@ function App() {
 
   // /* Error Handling */
 
-  let content: any = (
+  let content: ReactNode = (
     <Route
       path="#"
       element={

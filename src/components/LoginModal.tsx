@@ -16,19 +16,19 @@ const StyledErrorMessage = styled.p`
 color: red;
 `;
 
-function LoginModal(props: any) {
+function LoginModal({ onSetLogin }: { onSetLogin: (arg0: boolean) => void }) {
   const [errorMessage, setErrorMessage] = useState('');
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const password = event.target.password.value;
+    const password = event.currentTarget.password.value;
     if (password === 'flashcard') {
-      props.onSetLogin(true);
+      onSetLogin(true);
     } else {
       setErrorMessage('間違っています');
     }
 
-    password === 'flashcard' ? props.onSetLogin(true) : props.onSetLogin(false);
+    password === 'flashcard' ? onSetLogin(true) : onSetLogin(false);
   }
 
   return (
