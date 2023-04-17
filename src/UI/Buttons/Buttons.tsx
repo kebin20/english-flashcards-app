@@ -68,6 +68,14 @@ const StyledResetButton = styled(Button)`
   }
 `;
 
+function PrimaryButton(props: DeckDataProps) {
+  return (
+    <Button className={props.className} to={props.to}>
+      {props.children}
+    </Button>
+  );
+}
+
 function MainLinkButton(props: DeckDataProps) {
   return (
     <StyledLinkButton className={props.className} to={props.to}>
@@ -100,4 +108,4 @@ function ResetButton(props: ButtonProps) {
   );
 }
 
-export { MainLinkButton, LearntButton, ReviseButton, ResetButton };
+export { Button, MainLinkButton, LearntButton, ReviseButton, ResetButton };

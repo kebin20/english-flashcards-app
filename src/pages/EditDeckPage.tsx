@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import EditFlashcard from '../components/EditFlashcard';
+import LoginModal from '../components/LoginModal';
 
 import styled from 'styled-components';
 import { DeckDataProps } from '../interfaces';
@@ -33,18 +34,31 @@ text-align: center;
 `;
 
 function EditDeckPage({ deckData }: DeckDataProps) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  function handleLogin(
+    loginState: boolean | ((prevState: boolean) => boolean)
+  ) {
+    setIsLoggedIn(loginState);
+  }
+
   return (
     <>
       <EditDeckContainer>
-        <h1>デック編集</h1>
-        <VocabContainer>
-          {deckData.map((deck, id) => (
-            <ul>
-              <h2>Set {deck.setNumber}</h2>
-              <EditFlashcard key={id} cards={deck.cards} />
-            </ul>
-          ))}
-        </VocabContainer>
+        {!isLoggedIn && <LoginModal onSetLogin={handleLogin} />}
+        {isLoggedIn && (
+          <>
+            <h1>デック編集</h1>
+            <VocabContainer>
+              {deckData.map((deck, id) => (
+                <ul>
+                  <h2>Set {deck.setNumber}</h2>
+                  <EditFlashcard key={id} cards={deck.cards} />
+                </ul>
+              ))}
+            </VocabContainer>
+          </>
+        )}
       </EditDeckContainer>
     </>
   );

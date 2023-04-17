@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CardContentType } from '../interfaces';
 
 const StyledEditCardContainer = styled.div`
 background-color: var(--clr-light);
