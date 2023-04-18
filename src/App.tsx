@@ -92,7 +92,7 @@ function App() {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
   }, [vocabData]);
 
-  // Revised vocab data flow
+  // RevisedVocab data flow
   function handleVocabData(
     newVocabData: React.SetStateAction<CardContentType[]>
   ) {
@@ -134,6 +134,33 @@ function App() {
       />
     ));
   }
+
+  // if (deck.length > 0) {
+  //   content = (
+  //     <>
+  //       <Route
+  //         path={`/set-0`}
+  //         element={
+  //           <FlashcardScreen
+  //             onPassVocabDataUp={handleVocabData}
+  //             deckData={deck[0]}
+  //             vocabData={vocabData}
+  //           />
+  //         }
+  //       />
+  //       <Route
+  //         path={`/set-1`}
+  //         element={
+  //           <FlashcardScreen
+  //             onPassVocabDataUp={handleVocabData}
+  //             deckData={deck[1]}
+  //             vocabData={vocabData}
+  //           />
+  //         }
+  //       />
+  //     </>
+  //   );
+  // }
 
   if (error) {
     content = <Route path="#" element={<>{error}</>} />;
