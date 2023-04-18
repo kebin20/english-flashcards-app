@@ -48,6 +48,16 @@ function RevisePage({
 
   console.log(cardDeck);
 
+  // Get the current state of the flashcards and display it on screen
+  useEffect(() => {
+    const storedRevisedCardsDeck = JSON.parse(
+      localStorage.getItem('revisedCardsDeck') || '[]'
+    );
+    if (storedRevisedCardsDeck.length > 0) {
+      setCardDeck(storedRevisedCardsDeck);
+    }
+  }, [vocabData]);
+
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>
@@ -88,17 +98,13 @@ function RevisePage({
 
   function vocabLearnt() {
     const cardToRemove = cardDeck[cardIndex];
-    setCardDeck(
-      (prevDeck) => prevDeck.filter((card) => card.id !== cardToRemove.id)
-
-      // setCardDeck((prevCardDeck) =>
-      //   //underscore is used since we don't need the current element
-      //   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
-      // );
-      // // Update cardIndex if it is pointing to an index that is out of range after removing cards
-      // setCardIndex((prevIndex) =>
-      //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-      // );
+    setCardDeck((prevDeck) =>
+      prevDeck.filter((card) => card.id !== cardToRemove.id)
+    );
+    // To store current state of deck
+    localStorage.setItem(
+      'revisedCardsDeck',
+      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
     );
   }
 

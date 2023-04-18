@@ -50,7 +50,7 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  // Obtain the current state of the flashcards
+  // Get the current state of the flashcards and display it on screen
   useEffect(() => {
     const storedCardDeck = JSON.parse(
       localStorage.getItem('allCardsDeck') || '[]'
@@ -105,6 +105,7 @@ function FlashcardScreen({
     setCardDeck((prevCardDeck) =>
       prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
+    // To store current state of deck
     localStorage.setItem(
       'allCardsDeck',
       JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
