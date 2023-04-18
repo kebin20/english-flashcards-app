@@ -65,13 +65,6 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  useEffect(() => {
-    const storedCardDeck = JSON.parse(localStorage.getItem('cardDeck') || '[]');
-    if (storedCardDeck.length > 0) {
-      setCardDeck(storedCardDeck);
-    }
-  }, []);
-
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>
@@ -115,25 +108,20 @@ function FlashcardScreen({
     setCardDeck((prevCardDeck) =>
       prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
-    localStorage.setItem(
-      'cardDeck',
-      JSON
-        .stringify(
-          cardDeck.filter((card) => card.id !== cardToRemove.id)
-        )
-    );
   }
 
   function reviseVocab() {
+    const cardToRemove = cardDeck[cardIndex];
     const newDeck: CardContentType[] = cardDeck.filter(
-      (_: any, index: number) => index !== cardIndex
+      (card) => card.id !== cardToRemove.id
     );
-    const removedVocabArrItem = cardDeck[cardIndex];
-    const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
 
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    );
+    //To make sure same cards are not being added
+    const vocabToLearnArr = vocabToLearn.find(
+      (card) => card.id === cardToRemove.id
+    )
+      ? [...vocabToLearn]
+      : [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
   }
