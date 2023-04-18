@@ -50,11 +50,7 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  useEffect(() => {
-    const storedAllCards = JSON.parse(localStorage.getItem('allCards') || '[]');
-    setCardDeck(storedAllCards.length > 0 ? storedAllCards : allCards);
-  }, [allCards]);
-
+  // Obtain the current state of the flashcards
   useEffect(() => {
     const storedCardDeck = JSON.parse(
       localStorage.getItem('allCardsDeck') || '[]'
@@ -110,28 +106,28 @@ function FlashcardScreen({
       prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
     // Update cardIndex if it is pointing to an index that is out of range after removing cards
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    );
+    // setCardIndex((prevIndex) =>
+    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    // );
     localStorage.setItem(
       'allCardsDeck',
       JSON.stringify(
-        cardDeck.filter((_: any, index: number) => index !== cardIndex)
+        // cardDeck.filter((_: any, index: number) => index !== cardIndex)
+        cardDeck.filter((card) => card.id !== cardToRemove.id)
       )
     );
   }
 
   function reviseVocab() {
-    //The current position of the card at this time
     const cardToRemove = cardDeck[cardIndex];
     const newDeck: CardContentType[] = cardDeck.filter(
       (card) => card.id !== cardToRemove.id
     );
     const vocabToLearnArr = [...vocabToLearn, cardToRemove];
 
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    );
+    // setCardIndex((prevIndex) =>
+    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    // );
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
   }
@@ -192,29 +188,22 @@ function FlashcardScreen({
 
 export default FlashcardScreen;
 
-    // setCardDeck((prevCardDeck) =>
-    //   //underscore is used since we don't need the current element
-    //   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
-    // );
-    // // Update cardIndex if it is pointing to an index that is out of range after removing cards
-    // setCardIndex((prevIndex) =>
-    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    // );
-    // localStorage.setItem(
-    //   'allCardsDeck',
-    //   JSON.stringify(
-    //     cardDeck.filter((_: any, index: number) => index !== cardIndex)
-    //   )
-    // );
+// useEffect(() => {
+//   const storedAllCards = JSON.parse(localStorage.getItem('allCards') || '[]');
+//   setCardDeck(storedAllCards.length > 0 ? storedAllCards : allCards);
+// }, [allCards]);
 
-        // const newDeck: CardContentType[] = cardDeck.filter(
-    //   (_: any, index: number) => index !== cardIndex
-    // );
-    // const removedVocabArrItem = cardDeck[cardIndex];
-    // const vocabToLearnArr = [...vocabToLearn, removedVocabArrItem];
-
-    // setCardIndex((prevIndex) =>
-    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    // );
-    // setCardDeck(newDeck);
-    // setVocabToLearn(vocabToLearnArr);
+// setCardDeck((prevCardDeck) =>
+//   //underscore is used since we don't need the current element
+//   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
+// );
+// // Update cardIndex if it is pointing to an index that is out of range after removing cards
+// setCardIndex((prevIndex) =>
+//   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+// );
+// localStorage.setItem(
+//   'allCardsDeck',
+//   JSON.stringify(
+//     cardDeck.filter((_: any, index: number) => index !== cardIndex)
+//   )
+// );

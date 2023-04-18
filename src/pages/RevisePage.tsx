@@ -87,13 +87,18 @@ function RevisePage({
   // Main button functions
 
   function vocabLearnt() {
-    setCardDeck((prevCardDeck) =>
-      //underscore is used since we don't need the current element
-      prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
-    );
-    // Update cardIndex if it is pointing to an index that is out of range after removing cards
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+    const cardToRemove = cardDeck[cardIndex];
+    setCardDeck(
+      (prevDeck) => prevDeck.filter((card) => card.id !== cardToRemove.id)
+
+      // setCardDeck((prevCardDeck) =>
+      //   //underscore is used since we don't need the current element
+      //   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
+      // );
+      // // Update cardIndex if it is pointing to an index that is out of range after removing cards
+      // setCardIndex((prevIndex) =>
+      //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
+      // );
     );
   }
 
