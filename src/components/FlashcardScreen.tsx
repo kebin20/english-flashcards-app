@@ -125,8 +125,11 @@ function FlashcardScreen({
     );
     localStorage.setItem(
       'cardDeck',
-      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
-      // cardDeck.filter((_: any, index: number) => index !== cardIndex)
+      JSON
+        .stringify(
+          cardDeck.filter((card) => card.id !== cardToRemove.id)
+        )
+        // cardDeck.filter((_: any, index: number) => index !== cardIndex)
     );
   }
 

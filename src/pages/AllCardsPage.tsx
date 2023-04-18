@@ -58,7 +58,7 @@ function FlashcardScreen({
     if (storedCardDeck.length > 0) {
       setCardDeck(storedCardDeck);
     }
-  }, []);
+  }, [allCards]);
 
   //Vocab navigation
 
@@ -105,16 +105,9 @@ function FlashcardScreen({
     setCardDeck((prevCardDeck) =>
       prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
-    // Update cardIndex if it is pointing to an index that is out of range after removing cards
-    // setCardIndex((prevIndex) =>
-    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    // );
     localStorage.setItem(
       'allCardsDeck',
-      JSON.stringify(
-        // cardDeck.filter((_: any, index: number) => index !== cardIndex)
-        cardDeck.filter((card) => card.id !== cardToRemove.id)
-      )
+      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
     );
   }
 
@@ -123,11 +116,18 @@ function FlashcardScreen({
     const newDeck: CardContentType[] = cardDeck.filter(
       (card) => card.id !== cardToRemove.id
     );
-    const vocabToLearnArr = [...vocabToLearn, cardToRemove];
+    // To store current state of deck
+    localStorage.setItem(
+      'allCardsDeck',
+      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
+    );
 
-    // setCardIndex((prevIndex) =>
-    //   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-    // );
+    //To make sure same cards are not being added
+    const vocabToLearnArr = vocabToLearn.find(
+      (card) => card.id === cardToRemove.id
+    )
+      ? [...vocabToLearn]
+      : [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
   }
@@ -187,23 +187,3 @@ function FlashcardScreen({
 }
 
 export default FlashcardScreen;
-
-// useEffect(() => {
-//   const storedAllCards = JSON.parse(localStorage.getItem('allCards') || '[]');
-//   setCardDeck(storedAllCards.length > 0 ? storedAllCards : allCards);
-// }, [allCards]);
-
-// setCardDeck((prevCardDeck) =>
-//   //underscore is used since we don't need the current element
-//   prevCardDeck.filter((_: any, index: number) => index !== cardIndex)
-// );
-// // Update cardIndex if it is pointing to an index that is out of range after removing cards
-// setCardIndex((prevIndex) =>
-//   prevIndex >= cardDeck.length - 1 ? 0 : prevIndex
-// );
-// localStorage.setItem(
-//   'allCardsDeck',
-//   JSON.stringify(
-//     cardDeck.filter((_: any, index: number) => index !== cardIndex)
-//   )
-// );
