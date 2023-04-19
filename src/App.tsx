@@ -92,7 +92,7 @@ function App() {
     localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
   }, [vocabData]);
 
-  // RevisedVocab data flow
+  // RevisedVocab data flow and passing state up
   function handleVocabData(
     newVocabData: React.SetStateAction<CardContentType[]>
   ) {
@@ -103,6 +103,21 @@ function App() {
     newRevisedVocabData: React.SetStateAction<CardContentType[]>
   ) {
     setVocabData(newRevisedVocabData);
+  }
+
+  function handleModifiedDeckData(
+    modifiedDeckData: CardContentType[],
+    index: number
+  ) {
+    setDeck((prevDeck) =>
+      prevDeck.map((item, i) => {
+        if (i !== index) return item;
+        return {
+          ...item,
+          cards: modifiedDeckData,
+        };
+      })
+    );
   }
 
   // /* Error Handling */
@@ -127,6 +142,7 @@ function App() {
           <FlashcardScreen
             key={card.id}
             onPassVocabDataUp={handleVocabData}
+            onPassModifiedDeckDataUp={handleModifiedDeckData}
             deckData={deck[index]}
             vocabData={vocabData}
           />

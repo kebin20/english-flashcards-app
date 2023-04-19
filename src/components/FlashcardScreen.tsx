@@ -13,7 +13,6 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 2em;
 
-
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     gap: 0.9em;
@@ -49,9 +48,13 @@ const FinishTitle = styled.h1`
 function FlashcardScreen({
   deckData,
   onPassVocabDataUp,
+  onPassModifiedDeckDataUp,
   vocabData,
 }: {
   deckData: FlashcardSetData;
+  onPassModifiedDeckDataUp: (
+    newModifiedDeckData: React.SetStateAction<CardContentType[]>
+  ) => void;
   onPassVocabDataUp: (
     newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
@@ -64,6 +67,8 @@ function FlashcardScreen({
   const [isFlipped, setIsFlipped] = useState(false);
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
+
+  console.log(cardDeck);
 
   //Vocab navigation
   function goForward() {
@@ -128,6 +133,7 @@ function FlashcardScreen({
 
   useEffect(() => {
     onPassVocabDataUp(vocabToLearn);
+    onPassModifiedDeckDataUp(cardDeck);
   }, [vocabToLearn]);
 
   function reset() {
