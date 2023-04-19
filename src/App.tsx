@@ -105,21 +105,6 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
-  function handleModifiedDeckData(
-    modifiedDeckData: CardContentType[],
-    index: number
-  ) {
-    setDeck((prevDeck) =>
-      prevDeck.map((item, i) => {
-        if (i !== index) return item;
-        return {
-          ...item,
-          cards: modifiedDeckData,
-        };
-      })
-    );
-  }
-
   // /* Error Handling */
 
   let content: ReactNode = (
@@ -142,7 +127,6 @@ function App() {
           <FlashcardScreen
             key={card.id}
             onPassVocabDataUp={handleVocabData}
-            onPassModifiedDeckDataUp={handleModifiedDeckData}
             deckData={deck[index]}
             vocabData={vocabData}
           />
@@ -150,33 +134,6 @@ function App() {
       />
     ));
   }
-
-  // if (deck.length > 0) {
-  //   content = (
-  //     <>
-  //       <Route
-  //         path={`/set-0`}
-  //         element={
-  //           <FlashcardScreen
-  //             onPassVocabDataUp={handleVocabData}
-  //             deckData={deck[0]}
-  //             vocabData={vocabData}
-  //           />
-  //         }
-  //       />
-  //       <Route
-  //         path={`/set-1`}
-  //         element={
-  //           <FlashcardScreen
-  //             onPassVocabDataUp={handleVocabData}
-  //             deckData={deck[1]}
-  //             vocabData={vocabData}
-  //           />
-  //         }
-  //       />
-  //     </>
-  //   );
-  // }
 
   if (error) {
     content = <Route path="#" element={<>{error}</>} />;

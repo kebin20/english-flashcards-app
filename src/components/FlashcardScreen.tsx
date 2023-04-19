@@ -48,13 +48,9 @@ const FinishTitle = styled.h1`
 function FlashcardScreen({
   deckData,
   onPassVocabDataUp,
-  onPassModifiedDeckDataUp,
   vocabData,
 }: {
   deckData: FlashcardSetData;
-  onPassModifiedDeckDataUp: (
-    newModifiedDeckData: React.SetStateAction<CardContentType[]>
-  ) => void;
   onPassVocabDataUp: (
     newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
@@ -69,6 +65,21 @@ function FlashcardScreen({
     useState<CardContentType[]>(vocabData);
 
   console.log(cardDeck);
+
+  // function handleModifiedDeckData(
+  //   modifiedDeckData: CardContentType[],
+  //   index: number
+  // ) {
+  //   setDeck((prevDeck) =>
+  //     prevDeck.map((item, i) => {
+  //       if (i !== index) return item;
+  //       return {
+  //         ...item,
+  //         cards: modifiedDeckData,
+  //       };
+  //     })
+  //   );
+  // }
 
   //Vocab navigation
   function goForward() {
@@ -133,7 +144,6 @@ function FlashcardScreen({
 
   useEffect(() => {
     onPassVocabDataUp(vocabToLearn);
-    onPassModifiedDeckDataUp(cardDeck);
   }, [vocabToLearn]);
 
   function reset() {
