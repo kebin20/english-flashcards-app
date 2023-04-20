@@ -64,23 +64,6 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  console.log(cardDeck);
-
-  // function handleModifiedDeckData(
-  //   modifiedDeckData: CardContentType[],
-  //   index: number
-  // ) {
-  //   setDeck((prevDeck) =>
-  //     prevDeck.map((item, i) => {
-  //       if (i !== index) return item;
-  //       return {
-  //         ...item,
-  //         cards: modifiedDeckData,
-  //       };
-  //     })
-  //   );
-  // }
-
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>
