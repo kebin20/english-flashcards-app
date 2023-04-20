@@ -64,12 +64,12 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  // useEffect(() => {
-  //   const savedDeck = localStorage.getItem(`cardDeckSet${setNumber}`);
-  //   if (savedDeck) {
-  //     setCardDeck(JSON.parse(savedDeck));
-  //   }
-  // }, [setNumber]);
+  useEffect(() => {
+    const savedDeck = localStorage.getItem(`cardDeckSet${setNumber}`);
+    if (savedDeck) {
+      setCardDeck(JSON.parse(savedDeck));
+    }
+  }, [setNumber, cardDeck]);
 
   //Vocab navigation
   function goForward() {
