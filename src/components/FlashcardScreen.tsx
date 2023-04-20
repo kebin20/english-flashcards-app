@@ -64,16 +64,6 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  // // Get the current state of the flashcards and display it on screen
-  useEffect(() => {
-    const storedCardDeck = JSON.parse(
-      localStorage.getItem('reviseVocabsDeck') || '[]'
-    );
-    if (storedCardDeck.length > 0) {
-      setCardDeck(storedCardDeck);
-    }
-  }, [cardDeck]);
-
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>
@@ -133,12 +123,6 @@ function FlashcardScreen({
       : [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
-
-    // To store current state of deck
-    localStorage.setItem(
-      'reviseVocabsDeck',
-      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
-    );
   }
 
   useEffect(() => {
