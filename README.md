@@ -44,6 +44,8 @@ Users should be able to:
 
 ## What I learnt & Challenges I faced
 
+(WILL MOVE THIS TO A BLOG POST)
+
 Creating this app enabled me to fully utilise all the concepts I have learnt throughout my coding journey. It was a great practice in using styled components and React Router as I wanted to be more familiar with these 2 tools for React. 
 
 I faced numerous challenges throughout the creation of this app and one of the biggest challenge was deciding on how to store the flashcard data and how to keep the state of the flashcards. The use case for this app was main for students being able to revise the vocabs learnt from the textbooks used since they were 3rd graders. 
@@ -102,6 +104,47 @@ It was quite a challenge implementing the firebase feature as I was still not ve
   ```
 
 There was a lot of moving parts involved when passing props up and down the components when the user decided they have learnt the vocabs, removing it from their list and so on which also involved in setting and deleting the user's cards from localStorage. I think useContext would be very useful here but seeing that the prop drilling wasn't too deep, I decided to just pass the props around to keep it simple and understandable. 
+
+21/04/23 Update on each flashcard component not saving it's state
+
+I was struggling with this problem for nearly a week, trying to figure out why the state of the flashcards do not remain after page refresh or exiting the page. 
+
+My first crack at the solution was to use localStorage to store the state of the array within each FlashcardScreen component so that rather than the component reusing the original data that was being passed down, it will use the data that was stored in localStorage. 
+
+Hence my solution was:
+
+```jsx
+  // useEffect(() => {
+  //   localStorage.setItem(`cardDeckSet`, JSON.stringify(cardDeck));
+  // }, []);
+```
+
+However, I came across a bug where once you enter into another flashcard Set (for example, I will enter into Set 1, exit and enter Set 2), it will then show the SAME updated flashcard set from Set 1! 
+
+I didn't realise that since there were multiple instances of the same component, if I store the current state data in just one item in localStorage, that means ALL of the other flashcard components will get the same state. 
+
+After a long time trying to think of a way to tackle this, I decided to make multiple cardDeckSet items in local storage like so:
+
+```jsx
+  // useEffect(() => {
+  //   localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(cardDeck));
+  // }, []);
+```
+
+The next problem I encountered was that there was a discrepancy in setting the updated state in localStorage. 
+
+
+```jsx 
+  function vocabLearnt() {
+    const cardToRemove = cardDeck[cardIndex];
+    const newCardDeck = cardDeck.filter((card) => card.id !== cardToRemove.id)
+    // setCardDeck((prevCardDeck) =>
+    //   prevCardDeck.filter((card) => card.id !== cardToRemove.id)
+    // );
+    setCardDeck(newCardDeck)
+    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
+  }
+```
 
 ### Continued development & future implementations
 

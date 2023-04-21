@@ -64,13 +64,6 @@ function FlashcardScreen({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  useEffect(() => {
-    const savedDeck = localStorage.getItem(`cardDeckSet${setNumber}`);
-    if (savedDeck) {
-      setCardDeck(JSON.parse(savedDeck));
-    }
-  }, [setNumber, cardDeck]);
-
   //Vocab navigation
   function goForward() {
     setCardIndex((prevIndex) =>
@@ -111,13 +104,12 @@ function FlashcardScreen({
 
   function vocabLearnt() {
     const cardToRemove = cardDeck[cardIndex];
-    setCardDeck((prevCardDeck) =>
-      prevCardDeck.filter((card) => card.id !== cardToRemove.id)
-    );
-    // localStorage.setItem(
-    //   `cardDeckSet${setNumber}`,
-    //   JSON.stringify(cardDeck)
+    const newCardDeck = cardDeck.filter((card) => card.id !== cardToRemove.id)
+    // setCardDeck((prevCardDeck) =>
+    //   prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     // );
+    setCardDeck(newCardDeck)
+    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
   }
 
   function reviseVocab() {
@@ -134,18 +126,22 @@ function FlashcardScreen({
       : [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
-    // localStorage.setItem(
-    //   `cardDeckSet${setNumber}`,
-    //   JSON.stringify(cardDeck)
-    // );
+    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(cardDeck));
   }
+
+  useEffect(() => {
+    const savedDeck = localStorage.getItem(`cardDeckSet${setNumber}`);
+    if (savedDeck) {
+      setCardDeck(JSON.parse(savedDeck));
+    }
+  }, [setNumber]);
 
   useEffect(() => {
     onPassVocabDataUp(vocabToLearn);
   }, [vocabToLearn]);
 
   function reset() {
-    localStorage.removeItem(`cardDeckSet${setNumber - 1}`);
+    localStorage.removeItem(`cardDeckSet${setNumber}`);
     setCardDeck(cards);
     setCardIndex(0);
     setIsFlipped(false);
@@ -175,7 +171,7 @@ function FlashcardScreen({
               <ArrowForward onClick={goForward} />
             </FlashcardWrapper>
             <p>
-              {cardIndex + 1}/{cardDeck.length}
+              {cardIndex}/{cardDeck.length}
             </p>
           </>
         )}
