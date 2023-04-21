@@ -24,3 +24,4 @@ export const FlashcardContext = React.createContext<FlashcardContextObj>({
   flipCard: () => {},
 });
 
+function FlashcardContextProvider()
