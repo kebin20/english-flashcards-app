@@ -105,16 +105,13 @@ function FlashcardScreen({
   function vocabLearnt() {
     const cardToRemove = cardDeck[cardIndex];
     const newCardDeck = cardDeck.filter((card) => card.id !== cardToRemove.id)
-    // setCardDeck((prevCardDeck) =>
-    //   prevCardDeck.filter((card) => card.id !== cardToRemove.id)
-    // );
     setCardDeck(newCardDeck)
     localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
   }
 
   function reviseVocab() {
     const cardToRemove = cardDeck[cardIndex];
-    const newDeck: CardContentType[] = cardDeck.filter(
+    const newCardDeck: CardContentType[] = cardDeck.filter(
       (card) => card.id !== cardToRemove.id
     );
 
@@ -124,9 +121,9 @@ function FlashcardScreen({
     )
       ? [...vocabToLearn]
       : [...vocabToLearn, cardToRemove];
-    setCardDeck(newDeck);
+    setCardDeck(newCardDeck);
     setVocabToLearn(vocabToLearnArr);
-    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(cardDeck));
+    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
   }
 
   useEffect(() => {
