@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from '../UI/Container';
 import Flashcard from '../components/Flashcard';
 import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
+import { AltDeckButton } from '../UI/Buttons/DeckButton';
 import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
 import { CardContentType } from '../interfaces';
@@ -152,6 +153,10 @@ function FlashcardScreen({
   return (
     <>
       <Container>
+        <p>セットボタンを押すとメニューに戻る</p>
+        <AltDeckButton to="/menu" className={undefined}>
+          全部
+        </AltDeckButton>
         {cardDeck.length !== 0 && (
           <>
             <FlashcardContainer>
