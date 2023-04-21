@@ -11,6 +11,10 @@ height: 100vh;
 gap: 1.3em;
 padding-top: 6em;
 z-index: -1;
+
+@media only screen and (max-width: 600px) {
+  padding-top: 16em;
+}
 `;
 
 function Container(props: ContainerProps) {
