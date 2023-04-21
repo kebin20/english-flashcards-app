@@ -104,9 +104,12 @@ function FlashcardScreen({
 
   function vocabLearnt() {
     const cardToRemove = cardDeck[cardIndex];
-    const newCardDeck = cardDeck.filter((card) => card.id !== cardToRemove.id)
-    setCardDeck(newCardDeck)
-    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
+    const newCardDeck = cardDeck.filter((card) => card.id !== cardToRemove.id);
+    setCardDeck(newCardDeck);
+    localStorage.setItem(
+      `cardDeckSet${setNumber}`,
+      JSON.stringify(newCardDeck)
+    );
   }
 
   function reviseVocab() {
@@ -123,7 +126,10 @@ function FlashcardScreen({
       : [...vocabToLearn, cardToRemove];
     setCardDeck(newCardDeck);
     setVocabToLearn(vocabToLearnArr);
-    localStorage.setItem(`cardDeckSet${setNumber}`, JSON.stringify(newCardDeck));
+    localStorage.setItem(
+      `cardDeckSet${setNumber}`,
+      JSON.stringify(newCardDeck)
+    );
   }
 
   useEffect(() => {
@@ -168,7 +174,7 @@ function FlashcardScreen({
               <ArrowForward onClick={goForward} />
             </FlashcardWrapper>
             <p>
-              {cardIndex}/{cardDeck.length}
+              {cardIndex + 1}/{cardDeck.length}
             </p>
           </>
         )}
