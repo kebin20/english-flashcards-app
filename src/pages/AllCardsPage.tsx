@@ -38,15 +38,32 @@ function AllCardsPage({
   onPassVocabDataUp: (vocabToLearn: CardContentType[]) => void;
   storageItem: string;
 }) {
-  const flashcardCtx = useContext(FlashcardContext);
+  const {
+    incomingDeck,
+    vocabToLearn,
+    length,
+    cardDeck,
+    cardIndex,
+    isFlipped,
+    goForward,
+    goBack,
+    getCurrentState,
+    vocabLearnt,
+    reviseVocab,
+    reset,
+    flipCard,
+  } = useContext(FlashcardContext);
+
+  console.log("CardDeck", cardDeck);
+  console.log("incomingDeck", incomingDeck);
 
   useEffect(() => {
-    flashcardCtx.getCurrentState(storageItem);
-  }, [flashcardCtx.incomingDeck]);
+    getCurrentState(storageItem);
+  }, [incomingDeck]);
 
   useEffect(() => {
-    onPassVocabDataUp(flashcardCtx.vocabToLearn);
-  }, [flashcardCtx.vocabToLearn]);
+    onPassVocabDataUp(vocabToLearn);
+  }, [vocabToLearn]);
 
   return (
     <>
@@ -55,39 +72,33 @@ function AllCardsPage({
         <AltDeckButton to="/menu" className={undefined}>
           全部
         </AltDeckButton>
-        {flashcardCtx.length !== 0 && (
+        {length !== 0 && (
           <>
             <FlashcardContainer>
-              <ArrowBack onClick={flashcardCtx.goBack} />
+              <ArrowBack onClick={goBack} />
               <Flashcard
-                currentCard={flashcardCtx.cardDeck[flashcardCtx.cardIndex]}
-                onFlip={flashcardCtx.flipCard}
-                isFlipped={flashcardCtx.isFlipped}
+                currentCard={cardDeck[cardIndex]}
+                onFlip={flipCard}
+                isFlipped={isFlipped}
               />
-              <ArrowForward onClick={flashcardCtx.goForward} />
+              <ArrowForward onClick={goForward} />
             </FlashcardContainer>
             <p>
-              {flashcardCtx.cardIndex + 1}/{flashcardCtx.cardDeck.length}
+              {cardIndex + 1}/{cardDeck.length}
             </p>
           </>
         )}
-        {flashcardCtx.cardDeck.length === 0 && (
+        {cardDeck.length === 0 && (
           <FinishTitle>勉強できる単語がない。</FinishTitle>
         )}
         <ButtonContainer>
-          <ReviseButton
-            onClick={() => flashcardCtx.reviseVocab(storageItem)}
-            to={""}
-          >
+          <ReviseButton onClick={() => reviseVocab(storageItem)} to={""}>
             まだ。
           </ReviseButton>
-          <LearntButton
-            onClick={() => flashcardCtx.vocabLearnt(storageItem)}
-            to={""}
-          >
+          <LearntButton onClick={() => vocabLearnt(storageItem)} to={""}>
             覚えた！
           </LearntButton>
-          <ResetButton onClick={() => flashcardCtx.reset(storageItem)} to={""}>
+          <ResetButton onClick={() => reset(storageItem)} to={""}>
             リセット
           </ResetButton>
         </ButtonContainer>
