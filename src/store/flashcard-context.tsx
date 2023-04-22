@@ -1,73 +1,69 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
-import { CardContentType } from "../interfaces";
+import { CardContentType, FlashcardSetData } from "../interfaces";
 
 type FlashcardContextObj = {
-  flashcards: CardContentType[];
+  incomingDeck: CardContentType[];
+  vocabToLearn: CardContentType[];
+  cardIndex: number;
+  length: number;
+  cardDeck: CardContentType[];
   isFlipped: boolean;
   goForward: () => void;
   goBack: () => void;
+  getCurrentState: (storageItem: string) => void;
   handleKeyDown: (event: { code: string }) => void;
-  vocabLearnt: () => void;
-  reviseVocab: () => void;
-  reset: () => void;
+  vocabLearnt: (storageItem: string) => void;
+  reviseVocab: (storageItem: string) => void;
+  reset: (storageItem: string) => void;
   flipCard: () => void;
 };
 
 export const FlashcardContext = React.createContext<FlashcardContextObj>({
-  flashcards: [],
+  incomingDeck: [],
+  vocabToLearn: [],
+  length: 0,
+  cardDeck: [],
+  cardIndex: 0,
   isFlipped: false,
   goForward: () => {},
   goBack: () => {},
+  getCurrentState: (storageItem: string) => {},
   handleKeyDown: (event: { code: string }) => {},
-  vocabLearnt: () => {},
-  reviseVocab: () => {},
-  reset: () => {},
+  vocabLearnt: (storageItem: string) => {},
+  reviseVocab: (storageItem: string) => {},
+  reset: (storageItem: string) => {},
   flipCard: () => {},
 });
 
 function FlashcardContextProvider({
+  incomingDeck,
+  vocabData,
   children,
-  vocab,
-  cards,
-  onPassVocabDataUp,
-  storageItem,
 }: {
-  cards: CardContentType[];
-  onPassVocabDataUp: (
-    newVocabData: React.SetStateAction<CardContentType[]>
-  ) => void;
-  vocab: CardContentType[];
+  vocabData: CardContentType[];
+  incomingDeck: CardContentType[];
   children: ReactNode;
-  storageItem: string;
 }) {
-  const [cardDeck, setCardDeck] = useState(cards);
+  const [cardDeck, setCardDeck] = useState(incomingDeck);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [vocabToLearn, setVocabToLearn] = useState(vocab);
+  const [vocabToLearn, setVocabToLearn] =
+    useState<CardContentType[]>(vocabData);
+
+  // Update cardDeck whenever deck prop changes
+  useEffect(() => {
+    setCardDeck(incomingDeck);
+  }, [incomingDeck]);
 
   // Get the current state of the flashcards and display it on screen
-  useEffect(() => {
+  function getCurrentState(storageItem: string) {
     const storedCardDeck = JSON.parse(
       localStorage.getItem(storageItem) || "[]"
     );
     if (storedCardDeck.length > 0) {
       setCardDeck(storedCardDeck);
     }
-  }, [cards]);
-
-  //Vocab navigation
-
-  function goForward() {
-    setCardIndex((prevIndex) =>
-      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
-    );
-  }
-
-  function goBack() {
-    setCardIndex((prevIndex) =>
-      prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
-    );
   }
 
   //Vocab navigation with arrow keys
@@ -92,32 +88,50 @@ function FlashcardContextProvider({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [cardDeck, goForward, goBack, flipCard]);
+  }, [incomingDeck, goForward, goBack, flipCard]);
+
+  //Vocab navigation
+
+  function goForward() {
+    setCardIndex((prevIndex) =>
+      prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
+    );
+  }
+
+  function goBack() {
+    setCardIndex((prevIndex) =>
+      prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
+    );
+  }
 
   // Main button functions
 
-  function vocabLearnt() {
+  function vocabLearnt(storageItem: string) {
     //The current position of the card at this time
     const cardToRemove = cardDeck[cardIndex];
-    setCardDeck((prevCardDeck) =>
+    setCardDeck((prevCardDeck: any[]) =>
       prevCardDeck.filter((card) => card.id !== cardToRemove.id)
     );
     // To store current state of deck
     localStorage.setItem(
       storageItem,
-      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
+      JSON.stringify(
+        cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
+      )
     );
   }
 
-  function reviseVocab() {
+  function reviseVocab(storageItem: string) {
     const cardToRemove = cardDeck[cardIndex];
-    const newDeck: CardContentType[] = cardDeck.filter(
-      (card) => card.id !== cardToRemove.id
+    const newDeck = cardDeck.filter(
+      (card: { id: string }) => card.id !== cardToRemove.id
     );
     // To store current state of deck
     localStorage.setItem(
       storageItem,
-      JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
+      JSON.stringify(
+        cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
+      )
     );
 
     //To make sure same cards are not being added
@@ -125,18 +139,16 @@ function FlashcardContextProvider({
       (card) => card.id === cardToRemove.id
     )
       ? [...vocabToLearn]
-      : [...vocabToLearn, cardToRemove];
+      : // This filters out any object that does not have the cardNumber property, which is unique to CardContentType objects.
+        // This ensures that the resulting array contains only CardContentType objects.
+        [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
   }
 
-  useEffect(() => {
-    onPassVocabDataUp(vocabToLearn);
-  }, [vocabToLearn]);
-
-  function reset() {
+  function reset(storageItem: string) {
     localStorage.removeItem(storageItem);
-    setCardDeck(cards);
+    setCardDeck(incomingDeck);
     setCardIndex(0);
     setIsFlipped(false);
     setVocabToLearn([]);
@@ -147,15 +159,20 @@ function FlashcardContextProvider({
   }
 
   const contextValue: FlashcardContextObj = {
-    flashcards: cardDeck,
+    incomingDeck: incomingDeck,
+    cardDeck: cardDeck,
+    cardIndex: cardIndex,
     isFlipped: isFlipped,
     goForward: goForward,
     goBack: goBack,
     handleKeyDown: handleKeyDown,
     vocabLearnt: vocabLearnt,
     reviseVocab: reviseVocab,
+    vocabToLearn: vocabToLearn,
+    getCurrentState: getCurrentState,
     reset: reset,
     flipCard: flipCard,
+    length: cardDeck.length,
   };
 
   return (
