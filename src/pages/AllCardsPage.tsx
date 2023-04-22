@@ -1,13 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import Container from "../UI/Container";
-import Flashcard from "../components/Flashcard";
+import FlashcardContainer from "../UI/FlashcardContainer";
 import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
-import { AltDeckButton } from "../UI/Buttons/DeckButton";
+import { AltDeckButton } from "../UI/Buttons/DeckSetButton";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
+import Flashcard from "../components/Flashcard";
 
 import { FlashcardContext } from "../store/flashcard-context";
 
 import styled from "styled-components";
+
 import { CardContentType } from "../interfaces";
 
 const ButtonContainer = styled.div`
@@ -18,12 +20,6 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     gap: 0.9em;
   }
-`;
-
-const FlashcardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
 `;
 
 const FinishTitle = styled.h1`

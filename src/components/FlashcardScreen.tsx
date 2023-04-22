@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Container from '../UI/Container';
-import Flashcard from './Flashcard';
-import { AltDeckButton } from '../UI/Buttons/DeckButton';
-import { ReviseButton, LearntButton, ResetButton } from '../UI/Buttons/Buttons';
-import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
+import React, { useState, useEffect } from "react";
+import Container from "../UI/Container";
+import FlashcardContainer from "../UI/FlashcardContainer";
+import { AltDeckButton } from "../UI/Buttons/DeckSetButton";
+import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
+import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
+import Flashcard from "./Flashcard";
 
-import { CardContentType, FlashcardSetData } from '../interfaces';
+import { CardContentType, FlashcardSetData } from "../interfaces";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -17,23 +18,6 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     gap: 0.9em;
   }
-`;
-
-const FlashcardWrapper = styled.div`
-display: grid;
-grid-template-columns: 0.5fr 2fr 0.5fr;
-grid-template-rows: 1fr;
-align-items: center;
-justify-items: center;
-width: 57em;
-
-@media only screen and (max-width: 900px) {
-  width: 40.5em;
-  }
-
-@media only screen and (max-width: 600px) {
-width: 22.5em;
-}
 `;
 
 const FinishTitle = styled.h1`
@@ -80,23 +64,23 @@ function FlashcardScreen({
   //Vocab navigation with arrow keys
   useEffect(() => {
     function handleKeyDown(event: { code: string }) {
-      if (event.code === 'ArrowLeft') {
+      if (event.code === "ArrowLeft") {
         // Handle left arrow key press
         goBack();
-      } else if (event.code === 'ArrowRight') {
+      } else if (event.code === "ArrowRight") {
         // Handle right arrow key press
         goForward();
-      } else if (event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+      } else if (event.code === "ArrowUp" || event.code === "ArrowDown") {
         flipCard();
-      } else if (event.code === 'Space') {
+      } else if (event.code === "Space") {
         // Handle space key press
         flipCard();
       }
     }
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [cardDeck, goForward, goBack, flipCard]);
 
@@ -164,7 +148,7 @@ function FlashcardScreen({
         </AltDeckButton>
         {cardDeck.length !== 0 && (
           <>
-            <FlashcardWrapper>
+            <FlashcardContainer>
               <ArrowBack onClick={goBack} />
               <Flashcard
                 currentCard={cardDeck[cardIndex]}
@@ -172,7 +156,7 @@ function FlashcardScreen({
                 isFlipped={isFlipped}
               />
               <ArrowForward onClick={goForward} />
-            </FlashcardWrapper>
+            </FlashcardContainer>
             <p>
               {cardIndex + 1}/{cardDeck.length}
             </p>
@@ -182,13 +166,13 @@ function FlashcardScreen({
           <FinishTitle>勉強できる単語がない。</FinishTitle>
         )}
         <ButtonContainer>
-          <ReviseButton onClick={reviseVocab} to={''}>
+          <ReviseButton onClick={reviseVocab} to={""}>
             まだ。
           </ReviseButton>
-          <LearntButton onClick={vocabLearnt} to={''}>
+          <LearntButton onClick={vocabLearnt} to={""}>
             覚えた！
           </LearntButton>
-          <ResetButton onClick={reset} to={''}>
+          <ResetButton onClick={reset} to={""}>
             リセット
           </ResetButton>
         </ButtonContainer>
