@@ -13,7 +13,7 @@ padding-top: 6em;
 z-index: -1;
 
 @media only screen and (max-width: 600px) {
-  padding-top: 16em;
+  padding-top: 1em;
 }
 `;
 

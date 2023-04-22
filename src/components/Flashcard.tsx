@@ -1,27 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FlashcardProps } from '../interfaces';
+import React from "react";
+import styled from "styled-components";
+import { FlashcardProps } from "../interfaces";
 
 const StyledCardButton = styled.button`
   display: flex;
-  position: relative;
-  flex-direction: column;
-  padding: 1.5em 1.5em 1.5em 4em;
+  flex-direction: row;
+  padding: 2em;
   border-radius: var(--rounder);
   border: transparent;
   background-color: var(--clr-white);
   box-shadow: var(--lg-shadow);
   margin-inline: 2em;
+  gap: 2em;
 
   @media only screen and (max-width: 600px) {
+    padding: 1em;
     font-size: var(--fs-200);
     margin-inline: 0em;
   }
-`;
-
-const CardNumber = styled.span`
-  position: absolute;
-  right: 89%;
 `;
 
 const InnerContainer = styled.div`
@@ -44,7 +40,7 @@ function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
 
   return (
     <StyledCardButton onClick={onFlip}>
-      <CardNumber>{cardNumber}</CardNumber>
+      <span>{cardNumber}</span>
       <InnerContainer>
         {!isFlipped && <h1>{japanese}</h1>}
         {isFlipped && (

@@ -1,11 +1,11 @@
-import { MainLinkButton } from '../UI/Buttons/Buttons';
-import { DeckButton } from '../UI/Buttons/DeckButton';
-import Container from '../UI/Container';
+import { MainLinkButton } from "../UI/Buttons/Buttons";
+import { DeckSetButton } from "../UI/Buttons/DeckSetButton";
+import Container from "../UI/Container";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import React from 'react';
-import { FlashcardSetData } from '../interfaces';
+import React from "react";
+import { FlashcardSetData } from "../interfaces";
 
 const MenuBox = styled.div`
   display: grid;
@@ -18,6 +18,14 @@ const MenuBox = styled.div`
   padding: 2em;
   margin-inline: 2em;
   text-align: center;
+
+  @media only screen and (max-width: 600px) {
+    margin-top: 12.5em;
+  }
+
+  @media only screen and (max-width: 380px) {
+    margin-top: 20.5em;
+  }
 `;
 
 function MenuPage({ deck }: { deck: FlashcardSetData[] }) {
@@ -29,9 +37,9 @@ function MenuPage({ deck }: { deck: FlashcardSetData[] }) {
             全部のセット
           </MainLinkButton>
           {deck.map((item: FlashcardSetData, index: number) => (
-            <DeckButton key={item.id} to={`/set-${index}`}>
+            <DeckSetButton key={item.id} to={`/set-${index}`}>
               セット {item.setNumber}
-            </DeckButton>
+            </DeckSetButton>
           ))}
         </MenuBox>
       </Container>
