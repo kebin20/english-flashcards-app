@@ -28,11 +28,11 @@ export const FlashcardContext = React.createContext<FlashcardContextObj>({
   isFlipped: false,
   goForward: () => {},
   goBack: () => {},
-  getCurrentState: (storageItem: string) => {},
-  handleKeyDown: (event: { code: string }) => {},
-  vocabLearnt: (storageItem: string) => {},
-  reviseVocab: (storageItem: string) => {},
-  reset: (storageItem: string) => {},
+  getCurrentState: () => {},
+  handleKeyDown: () => {},
+  vocabLearnt: () => {},
+  reviseVocab: () => {},
+  reset: () => {},
   flipCard: () => {},
 });
 
