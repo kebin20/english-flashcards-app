@@ -12,7 +12,6 @@ type FlashcardContextObj = {
   goForward: () => void;
   goBack: () => void;
   getCurrentState: (storageItem: string) => void;
-  handleKeyDown: (event: { code: string }) => void;
   vocabLearnt: (storageItem: string) => void;
   reviseVocab: (storageItem: string) => void;
   reset: (storageItem: string) => void;
@@ -29,7 +28,6 @@ export const FlashcardContext = React.createContext<FlashcardContextObj>({
   goForward: () => {},
   goBack: () => {},
   getCurrentState: () => {},
-  handleKeyDown: () => {},
   vocabLearnt: () => {},
   reviseVocab: () => {},
   reset: () => {},
@@ -51,10 +49,9 @@ function FlashcardContextProvider({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  // Update cardDeck whenever deck prop changes
   useEffect(() => {
     setCardDeck(incomingDeck);
-  }, [incomingDeck]);
+  }, []);
 
   // Get the current state of the flashcards and display it on screen
   function getCurrentState(storageItem: string) {
@@ -139,9 +136,7 @@ function FlashcardContextProvider({
       (card) => card.id === cardToRemove.id
     )
       ? [...vocabToLearn]
-      : // This filters out any object that does not have the cardNumber property, which is unique to CardContentType objects.
-        // This ensures that the resulting array contains only CardContentType objects.
-        [...vocabToLearn, cardToRemove];
+      : [...vocabToLearn, cardToRemove];
     setCardDeck(newDeck);
     setVocabToLearn(vocabToLearnArr);
   }
@@ -165,7 +160,6 @@ function FlashcardContextProvider({
     isFlipped: isFlipped,
     goForward: goForward,
     goBack: goBack,
-    handleKeyDown: handleKeyDown,
     vocabLearnt: vocabLearnt,
     reviseVocab: reviseVocab,
     vocabToLearn: vocabToLearn,
