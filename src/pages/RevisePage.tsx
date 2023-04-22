@@ -46,8 +46,6 @@ function RevisePage({
   const [cardIndex, setCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  console.log(cardDeck);
-
   // Get the current state of the flashcards and display it on screen
   useEffect(() => {
     const storedRevisedCardsDeck = JSON.parse(
@@ -108,7 +106,7 @@ function RevisePage({
     );
   }
 
-  useEffect(() => onPassRevisedVocabDataUp(cardDeck), [cardDeck]);
+  useEffect(() => onPassRevisedVocabDataUp(cardDeck), [vocabData]);
 
   function flipCard() {
     setIsFlipped((prevFlip) => !prevFlip);
