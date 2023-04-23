@@ -49,10 +49,6 @@ function FlashcardContextProvider({
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
 
-  useEffect(() => {
-    setCardDeck(incomingDeck);
-  }, []);
-
   // Get the current state of the flashcards and display it on screen
   function getCurrentState(storageItem: string) {
     const storedCardDeck = JSON.parse(

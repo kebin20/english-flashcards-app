@@ -54,12 +54,9 @@ function AllCardsPage({
     flipCard,
   } = useContext(FlashcardContext);
 
-  console.log("CardDeck", cardDeck);
-  console.log("incomingDeck", incomingDeck);
-
   useEffect(() => {
     getCurrentState(storageItem);
-  }, [incomingDeck]);
+  }, []);
 
   useEffect(() => {
     onPassVocabDataUp(vocabToLearn);
