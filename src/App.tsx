@@ -9,7 +9,7 @@ import AllCardsPage from "./pages/AllCardsPage";
 import FlashcardScreen from "./components/FlashcardScreen";
 
 import deckData from "./flashcard-data";
-import FlashcardContextProvider from "./store/flashcard-context";
+
 import { CardContentType, FlashcardSetData } from "./interfaces";
 
 import { initializeApp } from "firebase/app";
@@ -163,15 +163,11 @@ function App() {
           <Route
             path="/all-cards"
             element={
-              <FlashcardContextProvider
+              <AllCardsPage
                 incomingDeck={allCards}
-                vocabData={vocabData}
-              >
-                <AllCardsPage
-                  onPassVocabDataUp={handleVocabData}
-                  storageItem="allCards"
-                />
-              </FlashcardContextProvider>
+                onPassVocabDataUp={handleVocabData}
+                storageItem="allCards"
+              />
             }
           />
           {content}
@@ -182,12 +178,10 @@ function App() {
           <Route
             path="/revise"
             element={
-              <FlashcardContextProvider vocabData={[]} incomingDeck={[]}>
-                <RevisePage
-                  vocabData={vocabData}
-                  onPassRevisedVocabDataUp={handleRevisedVocabData}
-                />
-              </FlashcardContextProvider>
+              <RevisePage
+                incomingDeck={vocabData}
+                onPassRevisedVocabDataUp={handleRevisedVocabData}
+              />
             }
           />
         </Routes>

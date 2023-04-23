@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
+import useFlashcard from "../hooks/useFlashcard";
+
 import Container from "../UI/Container";
 import FlashcardContainer from "../UI/FlashcardContainer";
 import { ReviseButton, LearntButton, ResetButton } from "../UI/Buttons/Buttons";
 import { AltDeckButton } from "../UI/Buttons/DeckSetButton";
 import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
 import Flashcard from "../components/Flashcard";
-
-import { FlashcardContext } from "../store/flashcard-context";
 
 import styled from "styled-components";
 
@@ -32,9 +32,11 @@ const FinishTitle = styled.h1`
 `;
 
 function AllCardsPage({
+  incomingDeck,
   onPassVocabDataUp,
   storageItem,
 }: {
+  incomingDeck: CardContentType[],
   onPassVocabDataUp: (vocabToLearn: CardContentType[]) => void;
   storageItem: string;
 }) {
