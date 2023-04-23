@@ -39,7 +39,6 @@ function AllCardsPage({
   storageItem: string;
 }) {
   const {
-    incomingDeck,
     vocabToLearn,
     length,
     cardDeck,

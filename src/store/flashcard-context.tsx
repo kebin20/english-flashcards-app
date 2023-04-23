@@ -36,11 +36,13 @@ export const FlashcardContext = React.createContext<FlashcardContextObj>({
 
 function FlashcardContextProvider({
   incomingDeck,
+  // revisedVocabDeck,
   vocabData,
   children,
 }: {
   vocabData: CardContentType[];
   incomingDeck: CardContentType[];
+  // revisedVocabDeck: CardContentType[];
   children: ReactNode;
 }) {
   const [cardDeck, setCardDeck] = useState(incomingDeck);
@@ -48,6 +50,14 @@ function FlashcardContextProvider({
   const [isFlipped, setIsFlipped] = useState(false);
   const [vocabToLearn, setVocabToLearn] =
     useState<CardContentType[]>(vocabData);
+
+  // useEffect(() => {
+  //   if (incomingDeck) {
+  //     setCardDeck(incomingDeck);
+  //   } else if (revisedVocabDeck) {
+  //     setCardDeck(revisedVocabDeck);
+  //   }
+  // }, []);
 
   // Get the current state of the flashcards and display it on screen
   function getCurrentState(storageItem: string) {
