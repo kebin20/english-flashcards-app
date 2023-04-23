@@ -182,10 +182,12 @@ function App() {
           <Route
             path="/revise"
             element={
-              <RevisePage
-                vocabData={vocabData}
-                onPassRevisedVocabDataUp={handleRevisedVocabData}
-              />
+              <FlashcardContextProvider vocabData={[]} incomingDeck={[]}>
+                <RevisePage
+                  vocabData={vocabData}
+                  onPassRevisedVocabDataUp={handleRevisedVocabData}
+                />
+              </FlashcardContextProvider>
             }
           />
         </Routes>
