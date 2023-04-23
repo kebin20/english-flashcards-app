@@ -155,40 +155,41 @@ function App() {
 
   return (
     <>
-      <FlashcardContextProvider incomingDeck={allCards} vocabData={vocabData}>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/menu" element={<MenuPage deck={deck} />} />
-
-            <Route
-              path="/all-cards"
-              element={
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/menu" element={<MenuPage deck={deck} />} />
+          <Route
+            path="/all-cards"
+            element={
+              <FlashcardContextProvider
+                incomingDeck={allCards}
+                vocabData={vocabData}
+              >
                 <AllCardsPage
                   onPassVocabDataUp={handleVocabData}
                   storageItem="allCards"
                 />
-              }
-            />
-
-            {content}
-            <Route
-              path="/edit-deck"
-              element={<EditDeckPage deckData={deck} to={""} />}
-            />
-            <Route
-              path="/revise"
-              element={
-                <RevisePage
-                  vocabData={vocabData}
-                  onPassRevisedVocabDataUp={handleRevisedVocabData}
-                />
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </FlashcardContextProvider>
+              </FlashcardContextProvider>
+            }
+          />
+          {content}
+          <Route
+            path="/edit-deck"
+            element={<EditDeckPage deckData={deck} to={""} />}
+          />
+          <Route
+            path="/revise"
+            element={
+              <RevisePage
+                vocabData={vocabData}
+                onPassRevisedVocabDataUp={handleRevisedVocabData}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
