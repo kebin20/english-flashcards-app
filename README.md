@@ -1,6 +1,6 @@
 ![english-flashcard-app](./public/screenshot.png)
 
-# English Flashcards App (WIP)
+# English Flashcards App
 
 ## Table of contents
 
