@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import useFlashcard from "../hooks/useFlashcard";
+import React, { useState, useEffect, useContext } from 'react';
+import useFlashcard from '../hooks/useFlashcard';
 
-import Container from "../UI/Container";
-import Flashcard from "../components/Flashcard";
-import { LearntButton } from "../UI/Buttons/Buttons";
-import { ArrowForward, ArrowBack } from "../UI/Buttons/ArrowButtons";
+import Container from '../UI/Container';
+import Flashcard from '../components/Flashcard';
+import { LearntButton } from '../UI/Buttons/Buttons';
+import { ArrowForward, ArrowBack } from '../UI/Buttons/ArrowButtons';
 
-import { CardContentType } from "../interfaces";
+import { CardContentType } from '../interfaces';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -38,12 +38,34 @@ const FinishTitle = styled.h1`
 function RevisePage({
   onPassRevisedVocabDataUp,
   incomingDeck,
+  storageItem,
 }: {
   incomingDeck: CardContentType[];
   onPassRevisedVocabDataUp: (
     newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
+  storageItem: string;
 }) {
+  const {
+    vocabToLearn,
+    cardDeck,
+    cardIndex,
+    isFlipped,
+    goForward,
+    goBack,
+    getCurrentState,
+    vocabLearnt,
+    flipCard,
+  } = useFlashcard(incomingDeck, []);
+
+  useEffect(() => {
+    getCurrentState(storageItem);
+  }, []);
+
+  useEffect(() => {
+    onPassRevisedVocabDataUp(vocabToLearn);
+  }, [vocabToLearn]);
+
   // const [cardDeck, setCardDeck] = useState(vocabData);
   // const [cardIndex, setCardIndex] = useState(0);
 
@@ -109,7 +131,7 @@ function RevisePage({
         )}
         {cardDeck.length === 0 && <FinishTitle>全部覚えた！</FinishTitle>}
         <ButtonContainer>
-          <LearntButton onClick={vocabLearnt} to={""}>
+          <LearntButton onClick={() => vocabLearnt(storageItem)} to={''}>
             覚えた！
           </LearntButton>
         </ButtonContainer>

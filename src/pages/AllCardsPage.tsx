@@ -54,9 +54,7 @@ function AllCardsPage({
     reviseVocab,
     reset,
     flipCard,
-  } = useFlashcard(incomingDeck);
-
-console.log(incomingDeck)
+  } = useFlashcard(incomingDeck, vocabData);
 
   useEffect(() => {
     getCurrentState(storageItem);

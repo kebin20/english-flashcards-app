@@ -77,23 +77,21 @@ function App() {
   useEffect(() => {
     if (deck.length === 0) {
       writeFlashcardData(deckData);
-    }
-    if (deckData.length === 0) {
       fetchFlashcardHandler();
     }
   }, [deck.length]);
 
-  /* Fetching vocab function (USING localStorage)*/
-  useEffect(() => {
-    const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
-    if (storedVocabs) {
-      setVocabData(storedVocabs);
-    }
-  }, []);
+  // /* Fetching vocab function (USING localStorage)*/
+  // useEffect(() => {
+  //   const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
+  //   if (storedVocabs) {
+  //     setVocabData(storedVocabs);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-  }, [vocabData]);
+  // useEffect(() => {
+  //   localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
+  // }, [vocabData]);
 
   // RevisedVocab data flow and passing state up
   function handleVocabData(
@@ -182,6 +180,7 @@ function App() {
             path="/revise"
             element={
               <RevisePage
+                storageItem="revisedCardsDeck"
                 incomingDeck={vocabData}
                 onPassRevisedVocabDataUp={handleRevisedVocabData}
               />
