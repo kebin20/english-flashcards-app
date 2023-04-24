@@ -1,4 +1,4 @@
-![english-flashcard-app](./screenshots/homepage-desktop.PNG)
+![english-flashcard-app](./public/screenshot.png)
 
 # English Flashcards App (WIP)
 
@@ -44,7 +44,7 @@ Users should be able to:
 
 ## What I learnt & Challenges I faced
 
-(Moved this section to a blog post instead! Blog is WIP)
+- See my blog post on [DEV.to](https://dev.to/kebin20/my-learning-journey-through-my-english-flashcard-project-2odb)!
 
 ### Continued development & future implementations
 
