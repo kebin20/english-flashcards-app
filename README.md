@@ -25,7 +25,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github Repo](https://github.com/kebin20/english-flashcards-app)
-- Live Site URL: [Flashcard](https://english-flashcard.netlify.app/)
+- Live Site URL: [English Flashcard App](https://english-flashcard.netlify.app/)
 
 ## My process
 
