@@ -81,28 +81,12 @@ function App() {
     }
   }, [deck.length]);
 
-  // /* Fetching vocab function (USING localStorage)*/
-  // useEffect(() => {
-  //   const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
-  //   if (storedVocabs) {
-  //     setVocabData(storedVocabs);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
-  // }, [vocabData]);
-
   // RevisedVocab data flow and passing state up
-  function handleVocabData(
-    newVocabData: React.SetStateAction<CardContentType[]>
-  ) {
+  function handleVocabData(newVocabData: CardContentType[]) {
     setVocabData(newVocabData);
   }
 
-  function handleRevisedVocabData(
-    newRevisedVocabData: React.SetStateAction<CardContentType[]>
-  ) {
+  function handleRevisedVocabData(newRevisedVocabData: CardContentType[]) {
     setVocabData(newRevisedVocabData);
   }
 
