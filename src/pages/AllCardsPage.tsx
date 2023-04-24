@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import useFlashcard from "../hooks/useFlashcard";
 
 import Container from "../UI/Container";
@@ -32,17 +32,18 @@ const FinishTitle = styled.h1`
 `;
 
 function AllCardsPage({
+  vocabData,
   incomingDeck,
   onPassVocabDataUp,
   storageItem,
 }: {
-  incomingDeck: CardContentType[],
+  vocabData: CardContentType[];
+  incomingDeck: CardContentType[];
   onPassVocabDataUp: (vocabToLearn: CardContentType[]) => void;
   storageItem: string;
 }) {
   const {
     vocabToLearn,
-    length,
     cardDeck,
     cardIndex,
     isFlipped,
@@ -53,7 +54,9 @@ function AllCardsPage({
     reviseVocab,
     reset,
     flipCard,
-  } = useContext(FlashcardContext);
+  } = useFlashcard(incomingDeck);
+
+console.log(incomingDeck)
 
   useEffect(() => {
     getCurrentState(storageItem);
@@ -67,10 +70,10 @@ function AllCardsPage({
     <>
       <Container>
         <p>セットボタンを押すとメニューに戻る</p>
-        <AltDeckButton to="/menu" className={undefined}>
+        <AltDeckButton to="/menu">
           全部
         </AltDeckButton>
-        {length !== 0 && (
+        {cardDeck.length !== 0 && (
           <>
             <FlashcardContainer>
               <ArrowBack onClick={goBack} />

@@ -1,29 +1,29 @@
-import React, { useState, useEffect, useCallback, ReactNode } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import NavBar from "./components/Navbar";
-import WelcomePage from "./pages/WelcomePage";
-import MenuPage from "./pages/MenuPage";
-import EditDeckPage from "./pages/EditDeckPage";
-import RevisePage from "./pages/RevisePage";
-import AllCardsPage from "./pages/AllCardsPage";
-import FlashcardScreen from "./components/FlashcardScreen";
+import React, { useState, useEffect, useCallback, ReactNode } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import NavBar from './components/Navbar';
+import WelcomePage from './pages/WelcomePage';
+import MenuPage from './pages/MenuPage';
+import EditDeckPage from './pages/EditDeckPage';
+import RevisePage from './pages/RevisePage';
+import AllCardsPage from './pages/AllCardsPage';
+import FlashcardScreen from './components/FlashcardScreen';
 
-import deckData from "./flashcard-data";
+import deckData from './flashcard-data';
 
-import { CardContentType, FlashcardSetData } from "./interfaces";
+import { CardContentType, FlashcardSetData } from './interfaces';
 
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCf3250l4lmfX3pzb7VY6Jx1NKeu7DgEYg",
-  authDomain: "english-flashcards-app-962bb.firebaseapp.com",
+  apiKey: 'AIzaSyCf3250l4lmfX3pzb7VY6Jx1NKeu7DgEYg',
+  authDomain: 'english-flashcards-app-962bb.firebaseapp.com',
   databaseURL:
-    "https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "english-flashcards-app-962bb",
-  storageBucket: "english-flashcards-app-962bb.appspot.com",
-  messagingSenderId: "68752169253",
-  appId: "1:68752169253:web:0fe8e45741e1e121b362cc",
+    'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'english-flashcards-app-962bb',
+  storageBucket: 'english-flashcards-app-962bb.appspot.com',
+  messagingSenderId: '68752169253',
+  appId: '1:68752169253:web:0fe8e45741e1e121b362cc',
 };
 
 // Initialize Firebase
@@ -41,7 +41,7 @@ function App() {
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: FlashcardSetData[]) {
     const db = getDatabase();
-    set(ref(db, "flashcards"), {
+    set(ref(db, 'flashcards'), {
       decks,
     });
   }
@@ -52,10 +52,10 @@ function App() {
     setError(null);
     try {
       const response = await fetch(
-        "https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json"
+        'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json'
       );
       if (!response.ok) {
-        throw new Error("An error has occurred");
+        throw new Error('An error has occurred');
       }
 
       const data = await response.json();
@@ -77,20 +77,22 @@ function App() {
   useEffect(() => {
     if (deck.length === 0) {
       writeFlashcardData(deckData);
+    }
+    if (deckData.length === 0) {
       fetchFlashcardHandler();
     }
   }, [deck.length]);
 
   /* Fetching vocab function (USING localStorage)*/
   useEffect(() => {
-    const storedVocabs = JSON.parse(localStorage.getItem("storedVocabs")!);
+    const storedVocabs = JSON.parse(localStorage.getItem('storedVocabs')!);
     if (storedVocabs) {
       setVocabData(storedVocabs);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("storedVocabs", JSON.stringify(vocabData));
+    localStorage.setItem('storedVocabs', JSON.stringify(vocabData));
   }, [vocabData]);
 
   // RevisedVocab data flow and passing state up
@@ -164,6 +166,7 @@ function App() {
             path="/all-cards"
             element={
               <AllCardsPage
+                vocabData={vocabData}
                 incomingDeck={allCards}
                 onPassVocabDataUp={handleVocabData}
                 storageItem="allCards"
@@ -173,7 +176,7 @@ function App() {
           {content}
           <Route
             path="/edit-deck"
-            element={<EditDeckPage deckData={deck} to={""} />}
+            element={<EditDeckPage deckData={deck} to={''} />}
           />
           <Route
             path="/revise"
