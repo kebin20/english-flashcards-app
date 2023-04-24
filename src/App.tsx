@@ -107,6 +107,23 @@ function App() {
     />
   );
 
+  // if (deck.length > 0) {
+  //   content = deck.map((card, index) => (
+  //     <Route
+  //       key={card.id}
+  //       path={`/set-${index}`}
+  //       element={
+  //         <FlashcardScreen
+  //           key={card.id}
+  //           onPassVocabDataUp={handleVocabData}
+  //           deckData={deck[index]}
+  //           vocabData={vocabData}
+  //         />
+  //       }
+  //     />
+  //   ));
+  // }
+
   if (deck.length > 0) {
     content = deck.map((card, index) => (
       <Route
@@ -116,8 +133,9 @@ function App() {
           <FlashcardScreen
             key={card.id}
             onPassVocabDataUp={handleVocabData}
-            deckData={deck[index]}
+            incomingDeck={deck[index]}
             vocabData={vocabData}
+            storageItem={`cardDeckSet${card.setNumber}`}
           />
         }
       />
