@@ -82,11 +82,15 @@ function App() {
   }, [deck.length]);
 
   // RevisedVocab data flow and passing state up
-  function handleVocabData(newVocabData: CardContentType[]) {
+  function handleVocabData(
+    newVocabData: React.SetStateAction<CardContentType[]>
+  ) {
     setVocabData(newVocabData);
   }
 
-  function handleRevisedVocabData(newRevisedVocabData: CardContentType[]) {
+  function handleRevisedVocabData(
+    newRevisedVocabData: React.SetStateAction<CardContentType[]>
+  ) {
     setVocabData(newRevisedVocabData);
   }
 

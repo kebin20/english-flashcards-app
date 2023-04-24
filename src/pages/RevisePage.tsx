@@ -43,9 +43,7 @@ function RevisePage({
 }: {
   incomingDeck: CardContentType[];
   vocabData: CardContentType[];
-  onPassRevisedVocabDataUp: (
-    newVocabData: React.SetStateAction<CardContentType[]>
-  ) => void;
+  onPassRevisedVocabDataUp: (newVocabData: CardContentType[]) => void;
   storageItem: string;
 }) {
   const {
