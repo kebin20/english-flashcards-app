@@ -39,15 +39,16 @@ function RevisePage({
   onPassRevisedVocabDataUp,
   incomingDeck,
   storageItem,
+  vocabData,
 }: {
   incomingDeck: CardContentType[];
+  vocabData: CardContentType[];
   onPassRevisedVocabDataUp: (
     newVocabData: React.SetStateAction<CardContentType[]>
   ) => void;
   storageItem: string;
 }) {
   const {
-    vocabToLearn,
     cardDeck,
     cardIndex,
     isFlipped,
@@ -56,15 +57,15 @@ function RevisePage({
     getCurrentState,
     vocabLearnt,
     flipCard,
-  } = useFlashcard(incomingDeck, []);
+  } = useFlashcard(incomingDeck, vocabData);
 
   useEffect(() => {
     getCurrentState(storageItem);
   }, []);
 
   useEffect(() => {
-    onPassRevisedVocabDataUp(vocabToLearn);
-  }, [vocabToLearn]);
+    onPassRevisedVocabDataUp(cardDeck);
+  }, [vocabData]);
 
   // const [cardDeck, setCardDeck] = useState(vocabData);
   // const [cardIndex, setCardIndex] = useState(0);

@@ -180,6 +180,7 @@ function App() {
             path="/revise"
             element={
               <RevisePage
+                vocabData={vocabData}
                 storageItem="revisedCardsDeck"
                 incomingDeck={vocabData}
                 onPassRevisedVocabDataUp={handleRevisedVocabData}
