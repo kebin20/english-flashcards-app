@@ -62,21 +62,6 @@ function useFlashcard(
 
   // Main button functions
 
-  // function vocabLearnt(storageItem: string) {
-  //   //The current position of the card at this time
-  //   const cardToRemove = cardDeck[cardIndex];
-  //   setCardDeck((prevCardDeck: any[]) =>
-  //     prevCardDeck.filter((card) => card.id !== cardToRemove.id)
-  //   );
-  //   // To store current state of deck
-  //   localStorage.setItem(
-  //     storageItem,
-  //     JSON.stringify(
-  //       cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
-  //     )
-  //   );
-  // }
-
   function vocabLearnt(storageItem: string) {
     //The current position of the card at this time
     const cardToRemove = cardDeck[cardIndex];
