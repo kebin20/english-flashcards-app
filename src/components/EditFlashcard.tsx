@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
 
 const StyledEditCardContainer = styled.div`
 background-color: var(--clr-light);
@@ -26,7 +27,13 @@ function FlashcardItem(props: any) {
 
   return (
     <>
-      <StyledEditCardContainer>WIP</StyledEditCardContainer>
+      <StyledEditCardContainer>
+        // Click the text to edit
+        <Editable defaultValue="Take some chakra">
+          <EditablePreview />
+          <EditableInput />
+        </Editable>
+      </StyledEditCardContainer>
     </>
   );
 }
