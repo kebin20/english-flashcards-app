@@ -1,37 +1,42 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import { Editable, EditableInput, EditablePreview } from "@chakra-ui/editable";
 
 const StyledEditCardContainer = styled.div`
-background-color: var(--clr-light);
-border-radius: var(--round);
-box-shadow: var(--lg-shadow);
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-gap: 3em;
-padding: 1.5em;
+  background-color: var(--clr-light);
+  border-radius: var(--round);
+  box-shadow: var(--lg-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3em;
+  padding: 1.5em;
 
-& p {
-  border-bottom: 0.5px solid lightgrey;
-}
+  & p {
+    border-bottom: 0.5px solid lightgrey;
+  }
 
-& button {
-  background: transparent;
-  border: transparent;
-}
+  & button {
+    background: transparent;
+    border: transparent;
+  }
 `;
 
 function FlashcardItem(props: any) {
-  console.log(props);
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log(event.target.value);
+  }
 
   return (
     <>
       <StyledEditCardContainer>
-        // Click the text to edit
+        {/* // Click the text to edit */}
         <Editable defaultValue="Take some chakra">
           <EditablePreview />
-          <EditableInput />
+          <EditableInput
+            onChange={(event) => handleInputChange(event)}
+          />
         </Editable>
       </StyledEditCardContainer>
     </>
