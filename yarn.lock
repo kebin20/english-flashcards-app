@@ -217,6 +217,77 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@chakra-ui/editable@^2.0.21":
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/editable/-/editable-2.0.21.tgz#bc74510470d6d455844438e540851896d3879132"
+  integrity sha512-oYuXbHnggxSYJN7P9Pn0Scs9tPC91no4z1y58Oe+ILoJKZ+bFAEHtL7FEISDNJxw++MEukeFu7GU1hVqmdLsKQ==
+  dependencies:
+    "@chakra-ui/react-context" "2.0.8"
+    "@chakra-ui/react-types" "2.0.7"
+    "@chakra-ui/react-use-callback-ref" "2.0.7"
+    "@chakra-ui/react-use-controllable-state" "2.0.8"
+    "@chakra-ui/react-use-focus-on-pointer-down" "2.0.6"
+    "@chakra-ui/react-use-merge-refs" "2.0.7"
+    "@chakra-ui/react-use-safe-layout-effect" "2.0.5"
+    "@chakra-ui/react-use-update-effect" "2.0.7"
+    "@chakra-ui/shared-utils" "2.0.5"
+
+"@chakra-ui/react-context@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-context/-/react-context-2.0.8.tgz#5e0ed33ac3995875a21dea0e12b0ee5fc4c2e3cc"
+  integrity sha512-tRTKdn6lCTXM6WPjSokAAKCw2ioih7Eg8cNgaYRSwKBck8nkz9YqxgIIEj3dJD7MGtpl24S/SNI98iRWkRwR/A==
+
+"@chakra-ui/react-types@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-types/-/react-types-2.0.7.tgz#799c166a44882b23059c8f510eac9bd5d0869ac4"
+  integrity sha512-12zv2qIZ8EHwiytggtGvo4iLT0APris7T0qaAWqzpUGS0cdUtR8W+V1BJ5Ocq+7tA6dzQ/7+w5hmXih61TuhWQ==
+
+"@chakra-ui/react-use-callback-ref@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-callback-ref/-/react-use-callback-ref-2.0.7.tgz#9b844a81037d0ecaaa8031979fa050165635e211"
+  integrity sha512-YjT76nTpfHAK5NxplAlZsQwNju5KmQExnqsWNPFeOR6vvbC34+iPSTr+r91i1Hdy7gBSbevsOsd5Wm6RN3GuMw==
+
+"@chakra-ui/react-use-controllable-state@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-controllable-state/-/react-use-controllable-state-2.0.8.tgz#6b71187e03be632c244dde9f16ed685428087ec9"
+  integrity sha512-F7rdCbLEmRjwwODqWZ3y+mKgSSHPcLQxeUygwk1BkZPXbKkJJKymOIjIynil2cbH7ku3hcSIWRvuhpCcfQWJ7Q==
+  dependencies:
+    "@chakra-ui/react-use-callback-ref" "2.0.7"
+
+"@chakra-ui/react-use-event-listener@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-event-listener/-/react-use-event-listener-2.0.7.tgz#ed08164164e79183d876eeb71e12c6bfaca3ad17"
+  integrity sha512-4wvpx4yudIO3B31pOrXuTHDErawmwiXnvAN7gLEOVREi16+YGNcFnRJ5X5nRrmB7j2MDUtsEDpRBFfw5Z9xQ5g==
+  dependencies:
+    "@chakra-ui/react-use-callback-ref" "2.0.7"
+
+"@chakra-ui/react-use-focus-on-pointer-down@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-focus-on-pointer-down/-/react-use-focus-on-pointer-down-2.0.6.tgz#13330eb518c17e591c908cb8f4a30d43a978e3f2"
+  integrity sha512-OigXiLRVySn3tyVqJ/rn57WGuukW8TQe8fJYiLwXbcNyAMuYYounvRxvCy2b53sQ7QIZamza0N0jhirbH5FNoQ==
+  dependencies:
+    "@chakra-ui/react-use-event-listener" "2.0.7"
+
+"@chakra-ui/react-use-merge-refs@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-merge-refs/-/react-use-merge-refs-2.0.7.tgz#1a1fe800fb5501ec3da4088fbac78c03bbad13a7"
+  integrity sha512-zds4Uhsc+AMzdH8JDDkLVet9baUBgtOjPbhC5r3A0ZXjZvGhCztFAVE3aExYiVoMPoHLKbLcqvCWE6ioFKz1lw==
+
+"@chakra-ui/react-use-safe-layout-effect@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-safe-layout-effect/-/react-use-safe-layout-effect-2.0.5.tgz#6cf388c37fd2a42b5295a292e149b32f860a00a7"
+  integrity sha512-MwAQBz3VxoeFLaesaSEN87reVNVbjcQBDex2WGexAg6hUB6n4gc1OWYH/iXp4tzp4kuggBNhEHkk9BMYXWfhJQ==
+
+"@chakra-ui/react-use-update-effect@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-update-effect/-/react-use-update-effect-2.0.7.tgz#f94b7975ebb150c03d410e754b54f0e9dd263134"
+  integrity sha512-vBM2bmmM83ZdDtasWv3PXPznpTUd+FvqBC8J8rxoRmvdMEfrxTiQRBJhiGHLpS9BPLLPQlosN6KdFU97csB6zg==
+
+"@chakra-ui/shared-utils@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/shared-utils/-/shared-utils-2.0.5.tgz#cb2b49705e113853647f1822142619570feba081"
+  integrity sha512-4/Wur0FqDov7Y0nCXl7HbHzCg4aq86h+SXdoUeuCMD3dSj7dpsVnStLYhng1vxvlbUnLpdF4oz5Myt3i/a7N3Q==
+
 "@emotion/is-prop-valid@^1.1.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.2.0.tgz"
