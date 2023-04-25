@@ -62,19 +62,28 @@ function useFlashcard(
 
   // Main button functions
 
+  // function vocabLearnt(storageItem: string) {
+  //   //The current position of the card at this time
+  //   const cardToRemove = cardDeck[cardIndex];
+  //   setCardDeck((prevCardDeck: any[]) =>
+  //     prevCardDeck.filter((card) => card.id !== cardToRemove.id)
+  //   );
+  //   // To store current state of deck
+  //   localStorage.setItem(
+  //     storageItem,
+  //     JSON.stringify(
+  //       cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
+  //     )
+  //   );
+  // }
+
   function vocabLearnt(storageItem: string) {
     //The current position of the card at this time
     const cardToRemove = cardDeck[cardIndex];
-    setCardDeck((prevCardDeck: any[]) =>
-      prevCardDeck.filter((card) => card.id !== cardToRemove.id)
-    );
+    const newDeck = cardDeck.filter((card) => card.id !== cardToRemove.id);
+    setCardDeck(newDeck);
     // To store current state of deck
-    localStorage.setItem(
-      storageItem,
-      JSON.stringify(
-        cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
-      )
-    );
+    localStorage.setItem(storageItem, JSON.stringify(newDeck));
   }
 
   function reviseVocab(storageItem: string) {
@@ -83,12 +92,7 @@ function useFlashcard(
       (card: { id: string }) => card.id !== cardToRemove.id
     );
     // To store current state of deck
-    localStorage.setItem(
-      storageItem,
-      JSON.stringify(
-        cardDeck.filter((card: { id: string }) => card.id !== cardToRemove.id)
-      )
-    );
+    localStorage.setItem(storageItem, JSON.stringify(newDeck));
 
     //To make sure same cards are not being added
     const vocabToLearnArr = vocabToLearn.find(
