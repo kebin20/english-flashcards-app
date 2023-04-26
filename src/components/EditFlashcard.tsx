@@ -23,16 +23,18 @@ const StyledEditCardContainer = styled.div`
   }
 `;
 
-function FlashcardItem(props: any) {
-  // const [cardText, setCardText] = useState(
-  //   props.deckCards.map((card: CardContentType) => ({
-  //     fuText: card.furigana,
-  //     enText: card.english,
-  //     jpText: card.japanese,
-  //   }))
-  // );
+function EditFlashcard({ cards }: { cards: CardContentType[] }) {
+  const cardContent = cards.map((card) => ({
+    fuText: card.furigana,
+    enText: card.english,
+    jpText: card.japanese,
+  }));
 
-  const [value, setValue] = useState('');
+  console.log(cardContent)
+
+  const [cardText, setCardText] = useState();
+
+  // const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
   function handleOnEdit() {
@@ -41,7 +43,7 @@ function FlashcardItem(props: any) {
 
   function handleOnSubmit(nextValue: string) {
     setIsEditing(false);
-    setValue(nextValue);
+    // setValue(nextValue);
   }
 
   function handleOnCancel() {
@@ -51,25 +53,25 @@ function FlashcardItem(props: any) {
   return (
     <>
       {/* {props.deckCards.map((card: CardContentType, index: number) => ( */}
-        <StyledEditCardContainer>
-          <Editable
-            defaultValue="Type here"
-            isPreviewFocusable={!isEditing}
-            onEdit={handleOnEdit}
-            onSubmit={handleOnSubmit}
-            onCancel={handleOnCancel}
-          >
-            <EditablePreview
-              sx={{
-                display: isEditing ? 'none' : 'initial',
-              }}
-            ></EditablePreview>
-            <EditableInput />
-          </Editable>
-        </StyledEditCardContainer>
+      <StyledEditCardContainer>
+        <Editable
+          defaultValue="Type here"
+          isPreviewFocusable={!isEditing}
+          onEdit={handleOnEdit}
+          onSubmit={handleOnSubmit}
+          onCancel={handleOnCancel}
+        >
+          <EditablePreview
+            sx={{
+              display: isEditing ? 'none' : 'initial',
+            }}
+          ></EditablePreview>
+          <EditableInput />
+        </Editable>
+      </StyledEditCardContainer>
       {/* ))} */}
     </>
   );
 }
 
-export default FlashcardItem;
+export default EditFlashcard;

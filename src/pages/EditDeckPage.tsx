@@ -51,7 +51,7 @@ function EditDeckPage({ deckData }: DeckDataProps) {
             <h1>デック編集</h1>
             <VocabContainer>
               {deckData.map((deck, id) => (
-                <ul>
+                <ul key={id}>
                   <h2>Set {deck.setNumber}</h2>
                   <EditFlashcard key={id} cards={deck.cards} />
                 </ul>
