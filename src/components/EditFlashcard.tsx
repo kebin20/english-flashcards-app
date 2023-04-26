@@ -21,16 +21,19 @@ const StyledEditCardContainer = styled.div`
     background: transparent;
     border: transparent;
   }
+
+  @media only screen and (max-width: 600px) {
+    gap:0;
+  }
 `;
 
 function EditFlashcard({ cards }: { cards: CardContentType[] }) {
   const cardContent = cards.map((card) => ({
+    cardNumber: card.cardNumber,
     fuText: card.furigana,
     enText: card.english,
     jpText: card.japanese,
   }));
-
-  console.log(cardContent)
 
   const [cardText, setCardText] = useState();
 
@@ -52,24 +55,25 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
 
   return (
     <>
-      {/* {props.deckCards.map((card: CardContentType, index: number) => ( */}
-      <StyledEditCardContainer>
-        <Editable
-          defaultValue="Type here"
-          isPreviewFocusable={!isEditing}
-          onEdit={handleOnEdit}
-          onSubmit={handleOnSubmit}
-          onCancel={handleOnCancel}
-        >
-          <EditablePreview
-            sx={{
-              display: isEditing ? 'none' : 'initial',
-            }}
-          ></EditablePreview>
-          <EditableInput />
-        </Editable>
-      </StyledEditCardContainer>
-      {/* ))} */}
+      {cardContent.map((card: any, index: number) => (
+        <StyledEditCardContainer>
+          <span>{card.cardNumber}.</span>
+          <Editable
+            defaultValue={card.fuText}
+            isPreviewFocusable={!isEditing}
+            onEdit={handleOnEdit}
+            onSubmit={handleOnSubmit}
+            onCancel={handleOnCancel}
+          >
+            <EditablePreview
+              sx={{
+                display: isEditing ? 'none' : 'initial',
+              }}
+            ></EditablePreview>
+            <EditableInput />
+          </Editable>
+        </StyledEditCardContainer>
+      ))}
     </>
   );
 }
