@@ -29,24 +29,46 @@ const StyledEditCardContainer = styled.div`
 
 function EditFlashcard({ cards }: { cards: CardContentType[] }) {
   const cardContent = cards.map((card) => ({
+    id: card.id,
     cardNumber: card.cardNumber,
     fuText: card.furigana,
     enText: card.english,
     jpText: card.japanese,
   }));
 
-  const [cardText, setCardText] = useState();
+  const [cardText, setCardText] = useState(cardContent);
+  console.log(cardText[0]);
 
-  // const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
   function handleOnEdit() {
     setIsEditing(true);
   }
 
-  function handleOnSubmit(nextValue: string) {
+  function handleOnSubmitFurigana(nextValue: string, cardId: string) {
+    setCardText((prevCardText) => {
+      const updatedCardText = prevCardText.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            fuText: nextValue,
+          };
+        }
+        return card;
+      });
+      return updatedCardText;
+    });
     setIsEditing(false);
-    // setValue(nextValue);
+  }
+
+  function handleOnSubmitEnglish(nextValue: any) {
+    setIsEditing(false);
+    // setCardText(nextValue);
+  }
+
+  function handleOnSubmitJapanese(nextValue: any) {
+    setIsEditing(false);
+    // setCardText(nextValue);
   }
 
   function handleOnCancel() {
@@ -56,13 +78,43 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
   return (
     <>
       {cardContent.map((card: any, index: number) => (
-        <StyledEditCardContainer>
+        <StyledEditCardContainer key={card.id}>
           <span>{card.cardNumber}.</span>
           <Editable
             defaultValue={card.fuText}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
-            onSubmit={handleOnSubmit}
+            onSubmit={(nextValue: string) =>
+              handleOnSubmitFurigana(nextValue, card.id)
+            }
+            onCancel={handleOnCancel}
+          >
+            <EditablePreview
+              sx={{
+                display: isEditing ? 'none' : 'initial',
+              }}
+            ></EditablePreview>
+            <EditableInput />
+          </Editable>
+          <Editable
+            defaultValue={card.enText}
+            isPreviewFocusable={!isEditing}
+            onEdit={handleOnEdit}
+            onSubmit={handleOnSubmitEnglish}
+            onCancel={handleOnCancel}
+          >
+            <EditablePreview
+              sx={{
+                display: isEditing ? 'none' : 'initial',
+              }}
+            ></EditablePreview>
+            <EditableInput />
+          </Editable>
+          <Editable
+            defaultValue={card.jpText}
+            isPreviewFocusable={!isEditing}
+            onEdit={handleOnEdit}
+            onSubmit={handleOnSubmitJapanese}
             onCancel={handleOnCancel}
           >
             <EditablePreview
