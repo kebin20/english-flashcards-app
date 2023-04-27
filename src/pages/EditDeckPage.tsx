@@ -4,7 +4,7 @@ import EditFlashcard from '../components/EditFlashcard';
 import LoginModal from '../components/LoginModal';
 
 import styled from 'styled-components';
-import { DeckDataProps } from '../interfaces';
+import { DeckDataProps, FlashcardSetData } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -33,7 +33,13 @@ text-align: center;
 }
 `;
 
-function EditDeckPage({ deckData }: DeckDataProps) {
+function EditDeckPage({
+  deckData,
+  onPassChangedDeckUp,
+}: {
+  deckData: FlashcardSetData[];
+  onPassChangedDeckUp: any;
+}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleLogin(
@@ -53,7 +59,11 @@ function EditDeckPage({ deckData }: DeckDataProps) {
               {deckData.map((deck, id) => (
                 <ul key={id}>
                   <h2>Set {deck.setNumber}</h2>
-                  <EditFlashcard key={id} cards={deck.cards} />
+                  <EditFlashcard
+                    key={id}
+                    cards={deck.cards}
+                    onPassChangedDeckUp={onPassChangedDeckUp}
+                  />
                 </ul>
               ))}
             </VocabContainer>

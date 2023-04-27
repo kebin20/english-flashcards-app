@@ -94,6 +94,10 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
+  function handleChangedDeck(newModifiedDeck: any) {
+    console.log(newModifiedDeck);
+  }
+
   // /* Error Handling */
 
   let content: ReactNode = (
@@ -163,7 +167,12 @@ function App() {
           {content}
           <Route
             path="/edit-deck"
-            element={<EditDeckPage deckData={deck} to={''} />}
+            element={
+              <EditDeckPage
+                deckData={deck}
+                onPassChangedDeckUp={handleChangedDeck}
+              />
+            }
           />
           <Route
             path="/revise"

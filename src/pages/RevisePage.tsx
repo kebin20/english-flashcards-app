@@ -65,50 +65,6 @@ function RevisePage({
     onPassRevisedVocabDataUp(cardDeck);
   }, [vocabData]);
 
-  // const [cardDeck, setCardDeck] = useState(vocabData);
-  // const [cardIndex, setCardIndex] = useState(0);
-
-  // const { isFlipped, flipCard } = useContext(FlashcardContext);
-
-  // // Get the current state of the flashcards and display it on screen
-  // useEffect(() => {
-  //   const storedRevisedCardsDeck = JSON.parse(
-  //     localStorage.getItem("revisedCardsDeck") || "[]"
-  //   );
-  //   if (storedRevisedCardsDeck.length > 0) {
-  //     setCardDeck(storedRevisedCardsDeck);
-  //   }
-  // }, []);
-
-  // //Vocab navigation
-  // function goForward() {
-  //   setCardIndex((prevIndex) =>
-  //     prevIndex >= cardDeck.length - 1 ? 0 : prevIndex + 1
-  //   );
-  // }
-
-  // function goBack() {
-  //   setCardIndex((prevIndex) =>
-  //     prevIndex <= 0 ? cardDeck.length - 1 : prevIndex - 1
-  //   );
-  // }
-
-  // // Main button functions
-
-  // function vocabLearnt() {
-  //   const cardToRemove = cardDeck[cardIndex];
-  //   setCardDeck((prevDeck) =>
-  //     prevDeck.filter((card) => card.id !== cardToRemove.id)
-  //   );
-  //   // To store current state of deck
-  //   localStorage.setItem(
-  //     "revisedCardsDeck",
-  //     JSON.stringify(cardDeck.filter((card) => card.id !== cardToRemove.id))
-  //   );
-  // }
-
-  // useEffect(() => onPassRevisedVocabDataUp(cardDeck), [vocabData]);
-
   return (
     <>
       <Container>

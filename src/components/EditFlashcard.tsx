@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Editable, EditableInput, EditablePreview } from '@chakra-ui/editable';
 import { CardContentType } from '../interfaces';
@@ -27,7 +27,13 @@ const StyledEditCardContainer = styled.div`
   }
 `;
 
-function EditFlashcard({ cards }: { cards: CardContentType[] }) {
+function EditFlashcard({
+  cards,
+  onPassChangedDeckUp,
+}: {
+  cards: CardContentType[];
+  onPassChangedDeckUp: any;
+}) {
   const cardContent = cards.map((card) => ({
     id: card.id,
     cardNumber: card.cardNumber,
@@ -37,9 +43,11 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
   }));
 
   const [cardText, setCardText] = useState(cardContent);
-  console.log(cardText[0]);
-
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    onPassChangedDeckUp(cardText);
+  }, [cardText]);
 
   function handleOnEdit() {
     setIsEditing(true);
@@ -61,14 +69,36 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
     setIsEditing(false);
   }
 
-  function handleOnSubmitEnglish(nextValue: any) {
+  function handleOnSubmitEnglish(nextValue: string, cardId: string) {
+    setCardText((prevCardText) => {
+      const updatedCardText = prevCardText.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            enText: nextValue,
+          };
+        }
+        return card;
+      });
+      return updatedCardText;
+    });
     setIsEditing(false);
-    // setCardText(nextValue);
   }
 
-  function handleOnSubmitJapanese(nextValue: any) {
+  function handleOnSubmitJapanese(nextValue: string, cardId: string) {
+    setCardText((prevCardText) => {
+      const updatedCardText = prevCardText.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            jpText: nextValue,
+          };
+        }
+        return card;
+      });
+      return updatedCardText;
+    });
     setIsEditing(false);
-    // setCardText(nextValue);
   }
 
   function handleOnCancel() {
@@ -77,7 +107,7 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
 
   return (
     <>
-      {cardContent.map((card: any, index: number) => (
+      {cardContent.map((card) => (
         <StyledEditCardContainer key={card.id}>
           <span>{card.cardNumber}.</span>
           <Editable
@@ -100,7 +130,9 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
             defaultValue={card.enText}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
-            onSubmit={handleOnSubmitEnglish}
+            onSubmit={(nextValue: string) =>
+              handleOnSubmitEnglish(nextValue, card.id)
+            }
             onCancel={handleOnCancel}
           >
             <EditablePreview
@@ -114,7 +146,9 @@ function EditFlashcard({ cards }: { cards: CardContentType[] }) {
             defaultValue={card.jpText}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
-            onSubmit={handleOnSubmitJapanese}
+            onSubmit={(nextValue: string) =>
+              handleOnSubmitJapanese(nextValue, card.id)
+            }
             onCancel={handleOnCancel}
           >
             <EditablePreview
