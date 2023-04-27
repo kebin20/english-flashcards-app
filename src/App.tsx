@@ -10,7 +10,7 @@ import FlashcardScreen from './components/FlashcardScreen';
 
 import deckData from './flashcard-data';
 
-import { CardContentType, FlashcardSetData } from './interfaces';
+import { CardContentType, FlashcardSetData, ModifiedCardType } from './interfaces';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
@@ -94,7 +94,7 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
-  function handleChangedDeck(newModifiedDeck: any) {
+  function handleChangedDeck(newModifiedDeck: ModifiedCardType[]) {
     console.log(newModifiedDeck);
   }
 

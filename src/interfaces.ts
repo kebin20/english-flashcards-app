@@ -14,6 +14,14 @@ export type CardContentType = {
   japanese: string;
 };
 
+export type ModifiedCardType = {
+  id: string;
+  cardNumber: number;
+  fuText: string;
+  enText: string;
+  jpText: string;
+};
+
 export interface FlashcardSetData {
   id: string;
   setNumber: number;
@@ -25,7 +33,6 @@ export interface FlashcardProps {
   onFlip?: () => void;
   currentCard: CardContentType;
 }
-
 
 // Buttons & Link
 export interface ArrowButtonProps {
