@@ -94,10 +94,9 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
-  function handleUpdateCard(deckId: string, cardId: string, newCardData: CardContentType) {
+  function handleUpdateCard(cardId: string, newCardData: CardContentType) {
     setDeck(prevDeck => {
       return prevDeck.map(deck => {
-        if (deck.id === deckId) {
           return {
             ...deck,
             cards: deck.cards.map(card => {
@@ -110,7 +109,6 @@ function App() {
               return card;
             })
           };
-        }
         return deck;
       });
     });

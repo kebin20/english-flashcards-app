@@ -4,7 +4,7 @@ import EditFlashcard from '../components/EditFlashcard';
 import LoginModal from '../components/LoginModal';
 
 import styled from 'styled-components';
-import { DeckDataProps, FlashcardSetData } from '../interfaces';
+import { CardContentType, DeckDataProps, FlashcardSetData } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -48,6 +48,7 @@ function EditDeckPage({
     setIsLoggedIn(loginState);
   }
 
+
   return (
     <>
       <EditDeckContainer>
@@ -61,7 +62,6 @@ function EditDeckPage({
                   <h2>Set {deck.setNumber}</h2>
                   <EditFlashcard
                     key={id}
-                    deckId={deck.id}
                     cards={deck.cards}
                     onUpdateCard={onUpdateCard}
                   />
