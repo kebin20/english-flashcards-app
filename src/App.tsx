@@ -30,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  const [deck, setDeck] = useState<FlashcardSetData[]>([]);
+  const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
 
@@ -77,11 +77,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (deck.length === 0) {
-      writeFlashcardData(deckData);
-      fetchFlashcardHandler();
-    }
-  }, [deck.length]);
+    // if (deck.length === 0) {
+    writeFlashcardData(deck);
+    fetchFlashcardHandler();
+    // }
+  }, []);
 
   // RevisedVocab data flow and passing state up
   function handleVocabData(

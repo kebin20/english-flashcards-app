@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Editable, EditableInput, EditablePreview } from '@chakra-ui/editable';
 import { CardContentType } from '../interfaces';
@@ -51,41 +51,41 @@ function EditFlashcard({
   }
 
 
-  function handleUpdateCardText(cardId: string, field: string, value: string) {
-    setCardText((prevCardText) => {
-      const updatedCardText = prevCardText.map((card) => {
-        if (card.id === cardId) {
-          return {
-            ...card,
-            [field]: value,
-          };
-        }
-        return card;
-      });
-      return updatedCardText;
-    });
+  // function handleUpdateCardText(cardId: string, field: string, value: string) {
+  //   setCardText((prevCardText) => {
+  //     const updatedCardText = prevCardText.map((card) => {
+  //       if (card.id === cardId) {
+  //         return {
+  //           ...card,
+  //           [field]: value,
+  //         };
+  //       }
+  //       return card;
+  //     });
+  //     return updatedCardText;
+  //   });
   
-    const updatedCardData = {
-      cardId,
-      japanese: field === 'japanese' ? value : cardText.find((card) => card.id === cardId)?.japanese || '',
-      english: field === 'english' ? value : cardText.find((card) => card.id === cardId)?.english || '',
-      furigana: field === 'furigana' ? value : cardText.find((card) => card.id === cardId)?.furigana || '',
-    };
+  //   const updatedCardData = {
+  //     cardId,
+  //     japanese: field === 'japanese' ? value : cardText.find((card) => card.id === cardId)?.japanese || '',
+  //     english: field === 'english' ? value : cardText.find((card) => card.id === cardId)?.english || '',
+  //     furigana: field === 'furigana' ? value : cardText.find((card) => card.id === cardId)?.furigana || '',
+  //   };
   
-    handleSaveChanges(updatedCardData, cardId);
-  }
+  //   handleSaveChanges(updatedCardData, cardId);
+  // }
   
-  function handleOnSubmitFurigana(nextValue: string, cardId: string) {
-    handleUpdateCardText(cardId, 'furigana', nextValue);
-  }
+  // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
+  //   handleUpdateCardText(cardId, 'furigana', nextValue);
+  // }
   
-  function handleOnSubmitEnglish(nextValue: string, cardId: string) {
-    handleUpdateCardText(cardId, 'english', nextValue);
-  }
+  // function handleOnSubmitEnglish(nextValue: string, cardId: string) {
+  //   handleUpdateCardText(cardId, 'english', nextValue);
+  // }
   
-  function handleOnSubmitJapanese(nextValue: string, cardId: string) {
-    handleUpdateCardText(cardId, 'japanese', nextValue);
-  }
+  // function handleOnSubmitJapanese(nextValue: string, cardId: string) {
+  //   handleUpdateCardText(cardId, 'japanese', nextValue);
+  // }
 
   // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
   //   setCardText((prevCardText) => {
