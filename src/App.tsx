@@ -109,10 +109,10 @@ function App() {
               return card;
             })
           };
-        return deck;
       });
     });
   }
+
   // /* Error Handling */
 
   let content: ReactNode = (
