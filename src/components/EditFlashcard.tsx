@@ -29,76 +29,114 @@ const StyledEditCardContainer = styled.div`
 
 function EditFlashcard({
   cards,
-  onPassChangedDeckUp,
+  onUpdateCard,
 }: {
   cards: CardContentType[];
-  onPassChangedDeckUp: any;
+  onUpdateCard: any;
 }) {
   const cardContent = cards.map((card) => ({
     id: card.id,
     cardNumber: card.cardNumber,
-    fuText: card.furigana,
-    enText: card.english,
-    jpText: card.japanese,
+    furigana: card.furigana,
+    english: card.english,
+    japanese: card.japanese,
   }));
 
   const [cardText, setCardText] = useState(cardContent);
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
-    onPassChangedDeckUp(cardText);
-  }, [cardText]);
+  function handleSaveChanges(updatedCardData: CardContentType, cardId: string) {
+    onUpdateCard(cardId, updatedCardData);
+    setIsEditing(false);
+  }
+
+
+  function handleUpdateCardText(cardId: string, field: string, value: string) {
+    setCardText((prevCardText) => {
+      const updatedCardText = prevCardText.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            [field]: value,
+          };
+        }
+        return card;
+      });
+      return updatedCardText;
+    });
+  
+    const updatedCardData = {
+      cardId,
+      japanese: field === 'japanese' ? value : cardText.find((card) => card.id === cardId)?.japanese || '',
+      english: field === 'english' ? value : cardText.find((card) => card.id === cardId)?.english || '',
+      furigana: field === 'furigana' ? value : cardText.find((card) => card.id === cardId)?.furigana || '',
+    };
+  
+    handleSaveChanges(updatedCardData, cardId);
+  }
+  
+  function handleOnSubmitFurigana(nextValue: string, cardId: string) {
+    handleUpdateCardText(cardId, 'furigana', nextValue);
+  }
+  
+  function handleOnSubmitEnglish(nextValue: string, cardId: string) {
+    handleUpdateCardText(cardId, 'english', nextValue);
+  }
+  
+  function handleOnSubmitJapanese(nextValue: string, cardId: string) {
+    handleUpdateCardText(cardId, 'japanese', nextValue);
+  }
+
+  // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
+  //   setCardText((prevCardText) => {
+  //     const updatedCardText = prevCardText.map((card) => {
+  //       if (card.id === cardId) {
+  //         return {
+  //           ...card,
+  //           furigana: nextValue,
+  //         };
+  //       }
+  //       return card;
+  //     });
+  //     return updatedCardText;
+  //   });
+  //   setIsEditing(false);
+  // }
+
+  // function handleOnSubmitEnglish(nextValue: string, cardId: string) {
+  //   setCardText((prevCardText) => {
+  //     const updatedCardText = prevCardText.map((card) => {
+  //       if (card.id === cardId) {
+  //         return {
+  //           ...card,
+  //           english: nextValue,
+  //         };
+  //       }
+  //       return card;
+  //     });
+  //     return updatedCardText;
+  //   });
+  //   setIsEditing(false);
+  // }
+
+  // function handleOnSubmitJapanese(nextValue: string, cardId: string) {
+  //   setCardText((prevCardText) => {
+  //     const updatedCardText = prevCardText.map((card) => {
+  //       if (card.id === cardId) {
+  //         return {
+  //           ...card,
+  //           japanese: nextValue,
+  //         };
+  //       }
+  //       return card;
+  //     });
+  //     return updatedCardText;
+  //   });
+  //   setIsEditing(false);
+  // }
 
   function handleOnEdit() {
     setIsEditing(true);
-  }
-
-  function handleOnSubmitFurigana(nextValue: string, cardId: string) {
-    setCardText((prevCardText) => {
-      const updatedCardText = prevCardText.map((card) => {
-        if (card.id === cardId) {
-          return {
-            ...card,
-            fuText: nextValue,
-          };
-        }
-        return card;
-      });
-      return updatedCardText;
-    });
-    setIsEditing(false);
-  }
-
-  function handleOnSubmitEnglish(nextValue: string, cardId: string) {
-    setCardText((prevCardText) => {
-      const updatedCardText = prevCardText.map((card) => {
-        if (card.id === cardId) {
-          return {
-            ...card,
-            enText: nextValue,
-          };
-        }
-        return card;
-      });
-      return updatedCardText;
-    });
-    setIsEditing(false);
-  }
-
-  function handleOnSubmitJapanese(nextValue: string, cardId: string) {
-    setCardText((prevCardText) => {
-      const updatedCardText = prevCardText.map((card) => {
-        if (card.id === cardId) {
-          return {
-            ...card,
-            jpText: nextValue,
-          };
-        }
-        return card;
-      });
-      return updatedCardText;
-    });
-    setIsEditing(false);
   }
 
   function handleOnCancel() {
@@ -111,7 +149,7 @@ function EditFlashcard({
         <StyledEditCardContainer key={card.id}>
           <span>{card.cardNumber}.</span>
           <Editable
-            defaultValue={card.fuText}
+            defaultValue={card.furigana}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>
@@ -127,7 +165,7 @@ function EditFlashcard({
             <EditableInput />
           </Editable>
           <Editable
-            defaultValue={card.enText}
+            defaultValue={card.english}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>
@@ -143,7 +181,7 @@ function EditFlashcard({
             <EditableInput />
           </Editable>
           <Editable
-            defaultValue={card.jpText}
+            defaultValue={card.japanese}
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>

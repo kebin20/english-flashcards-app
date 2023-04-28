@@ -35,10 +35,10 @@ text-align: center;
 
 function EditDeckPage({
   deckData,
-  onPassChangedDeckUp,
+  onUpdateCard,
 }: {
   deckData: FlashcardSetData[];
-  onPassChangedDeckUp: any;
+  onUpdateCard: any;
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -61,8 +61,9 @@ function EditDeckPage({
                   <h2>Set {deck.setNumber}</h2>
                   <EditFlashcard
                     key={id}
+                    deckId={deck.id}
                     cards={deck.cards}
-                    onPassChangedDeckUp={onPassChangedDeckUp}
+                    onUpdateCard={onUpdateCard}
                   />
                 </ul>
               ))}

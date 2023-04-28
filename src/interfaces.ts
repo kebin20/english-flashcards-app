@@ -14,14 +14,6 @@ export type CardContentType = {
   japanese: string;
 };
 
-export type ModifiedCardType = {
-  id: string;
-  cardNumber: number;
-  fuText: string;
-  enText: string;
-  jpText: string;
-};
-
 export interface FlashcardSetData {
   id: string;
   setNumber: number;

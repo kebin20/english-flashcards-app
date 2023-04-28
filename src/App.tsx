@@ -10,7 +10,7 @@ import FlashcardScreen from './components/FlashcardScreen';
 
 import deckData from './flashcard-data';
 
-import { CardContentType, FlashcardSetData, ModifiedCardType } from './interfaces';
+import { CardContentType, FlashcardSetData } from './interfaces';
 
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
@@ -94,10 +94,27 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
-  function handleChangedDeck(newModifiedDeck: ModifiedCardType[]) {
-    console.log(newModifiedDeck);
+  function handleUpdateCard(deckId: string, cardId: string, newCardData: CardContentType) {
+    setDeck(prevDeck => {
+      return prevDeck.map(deck => {
+        if (deck.id === deckId) {
+          return {
+            ...deck,
+            cards: deck.cards.map(card => {
+              if (card.id === cardId) {
+                return {
+                  ...card,
+                  ...newCardData
+                };
+              }
+              return card;
+            })
+          };
+        }
+        return deck;
+      });
+    });
   }
-
   // /* Error Handling */
 
   let content: ReactNode = (
@@ -170,7 +187,7 @@ function App() {
             element={
               <EditDeckPage
                 deckData={deck}
-                onPassChangedDeckUp={handleChangedDeck}
+                onUpdateCard={handleUpdateCard}
               />
             }
           />
