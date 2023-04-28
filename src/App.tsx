@@ -34,6 +34,8 @@ function App() {
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
 
+  console.log(deck);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(null);
@@ -95,20 +97,20 @@ function App() {
   }
 
   function handleUpdateCard(cardId: string, newCardData: CardContentType) {
-    setDeck(prevDeck => {
-      return prevDeck.map(deck => {
-          return {
-            ...deck,
-            cards: deck.cards.map(card => {
-              if (card.id === cardId) {
-                return {
-                  ...card,
-                  ...newCardData
-                };
-              }
-              return card;
-            })
-          };
+    setDeck((prevDeck) => {
+      return prevDeck.map((deck) => {
+        return {
+          ...deck,
+          cards: deck.cards.map((card) => {
+            if (card.id === cardId) {
+              return {
+                ...card,
+                ...newCardData,
+              };
+            }
+            return card;
+          }),
+        };
       });
     });
   }
@@ -183,10 +185,7 @@ function App() {
           <Route
             path="/edit-deck"
             element={
-              <EditDeckPage
-                deckData={deck}
-                onUpdateCard={handleUpdateCard}
-              />
+              <EditDeckPage deckData={deck} onUpdateCard={handleUpdateCard} />
             }
           />
           <Route
