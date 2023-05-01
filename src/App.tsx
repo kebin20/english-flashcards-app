@@ -96,17 +96,18 @@ function App() {
     setVocabData(newRevisedVocabData);
   }
 
-  function handleUpdateCard(cardId: string, newCardData: CardContentType) {
+  function handleUpdateCard(
+    cardId: string,
+    newCardData: CardContentType,
+    cardNumber: number
+  ) {
     setDeck((prevDeck) => {
       return prevDeck.map((deck) => {
         return {
           ...deck,
           cards: deck.cards.map((card) => {
-            if (card.id === cardId) {
-              return {
-                ...card,
-                ...newCardData,
-              };
+            if (card.id === cardId && card.cardNumber === cardNumber) {
+              return { ...card, ...newCardData };
             }
             return card;
           }),

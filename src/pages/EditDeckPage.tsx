@@ -38,7 +38,7 @@ function EditDeckPage({
   onUpdateCard,
 }: {
   deckData: FlashcardSetData[];
-  onUpdateCard: any;
+  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number) => void;
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

@@ -32,7 +32,7 @@ function EditFlashcard({
   onUpdateCard,
 }: {
   cards: CardContentType[];
-  onUpdateCard: any;
+  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number) => void;
 }) {
   const cardContent = cards.map((card) => ({
     id: card.id,
@@ -45,47 +45,73 @@ function EditFlashcard({
   const [cardText, setCardText] = useState(cardContent);
   const [isEditing, setIsEditing] = useState(false);
 
-  function handleSaveChanges(updatedCardData: CardContentType, cardId: string) {
-    onUpdateCard(cardId, updatedCardData);
+  function handleSaveChanges(updatedCardData: CardContentType, cardId: string, cardNumber: number) {
+    onUpdateCard(cardId, updatedCardData, cardNumber);
     setIsEditing(false);
   }
 
+  function handleUpdateCardText(
+    cardId: string,
+    field: string,
+    value: string,
+    cardNumber: number
+  ) {
+    setCardText((prevCardText) => {
+      const updatedCardText = prevCardText.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            [field]: value,
+          };
+        }
+        return card;
+      });
+      return updatedCardText;
+    });
 
-  // function handleUpdateCardText(cardId: string, field: string, value: string) {
-  //   setCardText((prevCardText) => {
-  //     const updatedCardText = prevCardText.map((card) => {
-  //       if (card.id === cardId) {
-  //         return {
-  //           ...card,
-  //           [field]: value,
-  //         };
-  //       }
-  //       return card;
-  //     });
-  //     return updatedCardText;
-  //   });
-  
-  //   const updatedCardData = {
-  //     cardId,
-  //     japanese: field === 'japanese' ? value : cardText.find((card) => card.id === cardId)?.japanese || '',
-  //     english: field === 'english' ? value : cardText.find((card) => card.id === cardId)?.english || '',
-  //     furigana: field === 'furigana' ? value : cardText.find((card) => card.id === cardId)?.furigana || '',
-  //   };
-  
-  //   handleSaveChanges(updatedCardData, cardId);
-  // }
-  
-  // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
-  //   handleUpdateCardText(cardId, 'furigana', nextValue);
-  // }
-  
-  // function handleOnSubmitEnglish(nextValue: string, cardId: string) {
-  //   handleUpdateCardText(cardId, 'english', nextValue);
-  // }
-  
-  // function handleOnSubmitJapanese(nextValue: string, cardId: string) {
-  //   handleUpdateCardText(cardId, 'japanese', nextValue);
-  // }
+    const updatedCardData = {
+      id: cardId,
+      cardNumber: cardNumber,
+      japanese:
+        field === 'japanese'
+          ? value
+          : cardText.find((card) => card.id === cardId)?.japanese || '',
+      english:
+        field === 'english'
+          ? value
+          : cardText.find((card) => card.id === cardId)?.english || '',
+      furigana:
+        field === 'furigana'
+          ? value
+          : cardText.find((card) => card.id === cardId)?.furigana || '',
+    };
+    console.log(updatedCardData);
+    handleSaveChanges(updatedCardData, cardId, cardNumber);
+  }
+
+  function handleOnSubmitFurigana(
+    nextValue: string,
+    cardId: string,
+    cardNumber: number
+  ) {
+    handleUpdateCardText(cardId, 'furigana', nextValue, cardNumber);
+  }
+
+  function handleOnSubmitEnglish(
+    nextValue: string,
+    cardId: string,
+    cardNumber: number
+  ) {
+    handleUpdateCardText(cardId, 'english', nextValue, cardNumber);
+  }
+
+  function handleOnSubmitJapanese(
+    nextValue: string,
+    cardId: string,
+    cardNumber: number
+  ) {
+    handleUpdateCardText(cardId, 'japanese', nextValue, cardNumber);
+  }
 
   // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
   //   setCardText((prevCardText) => {
@@ -153,7 +179,7 @@ function EditFlashcard({
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>
-              handleOnSubmitFurigana(nextValue, card.id)
+              handleOnSubmitFurigana(nextValue, card.id, card.cardNumber)
             }
             onCancel={handleOnCancel}
           >
@@ -169,7 +195,7 @@ function EditFlashcard({
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>
-              handleOnSubmitEnglish(nextValue, card.id)
+              handleOnSubmitEnglish(nextValue, card.id, card.cardNumber)
             }
             onCancel={handleOnCancel}
           >
@@ -185,7 +211,7 @@ function EditFlashcard({
             isPreviewFocusable={!isEditing}
             onEdit={handleOnEdit}
             onSubmit={(nextValue: string) =>
-              handleOnSubmitJapanese(nextValue, card.id)
+              handleOnSubmitJapanese(nextValue, card.id, card.cardNumber)
             }
             onCancel={handleOnCancel}
           >
