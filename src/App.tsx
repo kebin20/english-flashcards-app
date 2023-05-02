@@ -28,21 +28,20 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getDatabase();
 
 function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   console.log(deck);
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [error, setError] = useState(null);
-
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: FlashcardSetData[]) {
-    const db = getDatabase();
+    // const db = getDatabase();
     set(ref(db, 'flashcards'), {
       decks,
     });
