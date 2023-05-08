@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logo from '../assets/flash-card.png';
 
-const StyledNavBar = styled.nav`
+const StyledNavBar = styled.header`
   position: fixed;
   width: 100%;
   padding: 0.7em 1.5em;
@@ -111,7 +111,28 @@ function Navbar() {
       </HamburgerButton>
 
       {toggle && (
-        <NavMobileMenu>
+        <nav>
+          <NavMobileMenu>
+            <li>
+              <Link onClick={() => setToggle(false)} to="/menu">
+                全部のセット
+              </Link>
+            </li>
+            <li>
+              <Link onClick={() => setToggle(false)} to="/revise">
+                覚えていない文
+              </Link>
+            </li>
+            <li>
+              <Link onClick={() => setToggle(false)} to="/edit-deck">
+                編集
+              </Link>
+            </li>
+          </NavMobileMenu>
+        </nav>
+      )}
+      <nav>
+        <NavMenu>
           <li>
             <Link onClick={() => setToggle(false)} to="/menu">
               全部のセット
@@ -127,25 +148,8 @@ function Navbar() {
               編集
             </Link>
           </li>
-        </NavMobileMenu>
-      )}
-      <NavMenu>
-        <li>
-          <Link onClick={() => setToggle(false)} to="/menu">
-            全部のセット
-          </Link>
-        </li>
-        <li>
-          <Link onClick={() => setToggle(false)} to="/revise">
-            覚えていない文
-          </Link>
-        </li>
-        <li>
-          <Link onClick={() => setToggle(false)} to="/edit-deck">
-            編集
-          </Link>
-        </li>
-      </NavMenu>
+        </NavMenu>
+      </nav>
     </StyledNavBar>
   );
 }
