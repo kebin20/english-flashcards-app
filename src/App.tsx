@@ -34,7 +34,7 @@ function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
-  const [anyChanges, setAnyChanges] = useState(false);
+  // const [anyChanges, setAnyChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -86,7 +86,7 @@ function App() {
     writeFlashcardData(deck);
     fetchFlashcardHandler();
     // }
-  }, [anyChanges]);
+  }, []);
 
   // RevisedVocab data flow and passing state up
   function handleVocabData(
@@ -120,7 +120,7 @@ function App() {
         };
       });
     });
-    setAnyChanges(handleChanges);
+    // setAnyChanges(handleChanges);
   }
 
   // /* Error Handling */

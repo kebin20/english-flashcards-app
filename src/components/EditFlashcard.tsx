@@ -59,9 +59,6 @@ function EditFlashcard({
   ) {
     onUpdateCard(cardId, updatedCardData, cardNumber, hasChanges);
     setIsEditing(false);
-  }
-
-  function confirmSaveChanges() {
     setHasChanges(true);
   }
 
@@ -188,9 +185,6 @@ function EditFlashcard({
             ></EditablePreview>
             <EditableInput />
           </Editable>
-          <button onClick={confirmSaveChanges}>
-            Save Changes
-          </button>
         </StyledEditCardContainer>
       ))}
     </>
