@@ -36,7 +36,6 @@ function EditFlashcard({
     cardId: string,
     updatedCardData: CardContentType,
     cardNumber: number,
-    hasChanges: boolean
   ) => void;
 }) {
   const cardContent = cards.map((card) => ({
@@ -49,17 +48,15 @@ function EditFlashcard({
 
   const [cardText, setCardText] = useState(cardContent);
   const [isEditing, setIsEditing] = useState(false);
-  const [hasChanges, setHasChanges] = useState(false);
+
 
   function handleSaveChanges(
     updatedCardData: CardContentType,
     cardId: string,
     cardNumber: number,
-    hasChanges: boolean
   ) {
-    onUpdateCard(cardId, updatedCardData, cardNumber, hasChanges);
+    onUpdateCard(cardId, updatedCardData, cardNumber);
     setIsEditing(false);
-    setHasChanges(true);
   }
 
   function handleUpdateCardText(
@@ -97,7 +94,7 @@ function EditFlashcard({
           ? value
           : cardText.find((card) => card.id === cardId)?.furigana || '',
     };
-    handleSaveChanges(updatedCardData, cardId, cardNumber, hasChanges);
+    handleSaveChanges(updatedCardData, cardId, cardNumber);
   }
 
   function handleOnSubmitFurigana(

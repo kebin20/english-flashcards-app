@@ -34,7 +34,6 @@ function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
-  // const [anyChanges, setAnyChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -82,10 +81,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // if (deck.length === 0) {
     writeFlashcardData(deck);
     fetchFlashcardHandler();
-    // }
   }, []);
 
   // RevisedVocab data flow and passing state up
@@ -104,8 +101,7 @@ function App() {
   function handleUpdateCard(
     cardId: string,
     newCardData: CardContentType,
-    cardNumber: number,
-    handleChanges: boolean
+    cardNumber: number
   ) {
     setDeck((prevDeck) => {
       return prevDeck.map((deck) => {
@@ -120,7 +116,6 @@ function App() {
         };
       });
     });
-    // setAnyChanges(handleChanges);
   }
 
   // /* Error Handling */
