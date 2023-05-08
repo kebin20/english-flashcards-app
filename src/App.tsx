@@ -34,6 +34,7 @@ function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
+  const [anyChanges, setAnyChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,7 +42,6 @@ function App() {
 
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: FlashcardSetData[]) {
-    // const db = getDatabase();
     set(ref(db, 'flashcards'), {
       decks,
     })
@@ -86,7 +86,7 @@ function App() {
     writeFlashcardData(deck);
     fetchFlashcardHandler();
     // }
-  }, []);
+  }, [anyChanges]);
 
   // RevisedVocab data flow and passing state up
   function handleVocabData(
@@ -104,7 +104,8 @@ function App() {
   function handleUpdateCard(
     cardId: string,
     newCardData: CardContentType,
-    cardNumber: number
+    cardNumber: number,
+    handleChanges: boolean
   ) {
     setDeck((prevDeck) => {
       return prevDeck.map((deck) => {
@@ -119,6 +120,7 @@ function App() {
         };
       });
     });
+    setAnyChanges(handleChanges);
   }
 
   // /* Error Handling */

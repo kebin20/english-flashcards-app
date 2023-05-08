@@ -32,7 +32,12 @@ function EditFlashcard({
   onUpdateCard,
 }: {
   cards: CardContentType[];
-  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number) => void;
+  onUpdateCard: (
+    cardId: string,
+    updatedCardData: CardContentType,
+    cardNumber: number,
+    hasChanges: boolean
+  ) => void;
 }) {
   const cardContent = cards.map((card) => ({
     id: card.id,
@@ -44,10 +49,20 @@ function EditFlashcard({
 
   const [cardText, setCardText] = useState(cardContent);
   const [isEditing, setIsEditing] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
 
-  function handleSaveChanges(updatedCardData: CardContentType, cardId: string, cardNumber: number) {
-    onUpdateCard(cardId, updatedCardData, cardNumber);
+  function handleSaveChanges(
+    updatedCardData: CardContentType,
+    cardId: string,
+    cardNumber: number,
+    hasChanges: boolean
+  ) {
+    onUpdateCard(cardId, updatedCardData, cardNumber, hasChanges);
     setIsEditing(false);
+  }
+
+  function confirmSaveChanges() {
+    setHasChanges(true);
   }
 
   function handleUpdateCardText(
@@ -85,8 +100,7 @@ function EditFlashcard({
           ? value
           : cardText.find((card) => card.id === cardId)?.furigana || '',
     };
-    console.log(updatedCardData);
-    handleSaveChanges(updatedCardData, cardId, cardNumber);
+    handleSaveChanges(updatedCardData, cardId, cardNumber, hasChanges);
   }
 
   function handleOnSubmitFurigana(
@@ -112,54 +126,6 @@ function EditFlashcard({
   ) {
     handleUpdateCardText(cardId, 'japanese', nextValue, cardNumber);
   }
-
-  // function handleOnSubmitFurigana(nextValue: string, cardId: string) {
-  //   setCardText((prevCardText) => {
-  //     const updatedCardText = prevCardText.map((card) => {
-  //       if (card.id === cardId) {
-  //         return {
-  //           ...card,
-  //           furigana: nextValue,
-  //         };
-  //       }
-  //       return card;
-  //     });
-  //     return updatedCardText;
-  //   });
-  //   setIsEditing(false);
-  // }
-
-  // function handleOnSubmitEnglish(nextValue: string, cardId: string) {
-  //   setCardText((prevCardText) => {
-  //     const updatedCardText = prevCardText.map((card) => {
-  //       if (card.id === cardId) {
-  //         return {
-  //           ...card,
-  //           english: nextValue,
-  //         };
-  //       }
-  //       return card;
-  //     });
-  //     return updatedCardText;
-  //   });
-  //   setIsEditing(false);
-  // }
-
-  // function handleOnSubmitJapanese(nextValue: string, cardId: string) {
-  //   setCardText((prevCardText) => {
-  //     const updatedCardText = prevCardText.map((card) => {
-  //       if (card.id === cardId) {
-  //         return {
-  //           ...card,
-  //           japanese: nextValue,
-  //         };
-  //       }
-  //       return card;
-  //     });
-  //     return updatedCardText;
-  //   });
-  //   setIsEditing(false);
-  // }
 
   function handleOnEdit() {
     setIsEditing(true);
@@ -222,6 +188,9 @@ function EditFlashcard({
             ></EditablePreview>
             <EditableInput />
           </Editable>
+          <button onClick={confirmSaveChanges}>
+            Save Changes
+          </button>
         </StyledEditCardContainer>
       ))}
     </>

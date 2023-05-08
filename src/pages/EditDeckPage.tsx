@@ -4,7 +4,7 @@ import EditFlashcard from '../components/EditFlashcard';
 import LoginModal from '../components/LoginModal';
 
 import styled from 'styled-components';
-import { CardContentType, DeckDataProps, FlashcardSetData } from '../interfaces';
+import { CardContentType, FlashcardSetData } from '../interfaces';
 
 const EditDeckContainer = styled.div`
 display:flex;
@@ -38,7 +38,7 @@ function EditDeckPage({
   onUpdateCard,
 }: {
   deckData: FlashcardSetData[];
-  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number) => void;
+  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number, hasChanges: boolean) => void;
 }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
