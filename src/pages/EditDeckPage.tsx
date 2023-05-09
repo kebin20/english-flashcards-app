@@ -52,8 +52,8 @@ function EditDeckPage({
   return (
     <>
       <EditDeckContainer>
-        {isLoggedIn && <LoginModal onSetLogin={handleLogin} />}
-        {!isLoggedIn && (
+        {!isLoggedIn && <LoginModal onSetLogin={handleLogin} />}
+        {isLoggedIn && (
           <>
             <h1>デック編集</h1>
             <VocabContainer>
