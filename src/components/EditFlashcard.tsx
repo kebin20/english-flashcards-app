@@ -8,7 +8,7 @@ const StyledEditCardContainer = styled.div`
   border-radius: var(--round);
   box-shadow: var(--lg-shadow);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   gap: 3em;
   padding: 1.5em;
@@ -24,6 +24,7 @@ const StyledEditCardContainer = styled.div`
 
   @media only screen and (max-width: 600px) {
     gap:0;
+    flex-direction: column;
   }
 `;
 
@@ -35,7 +36,7 @@ function EditFlashcard({
   onUpdateCard: (
     cardId: string,
     updatedCardData: CardContentType,
-    cardNumber: number,
+    cardNumber: number
   ) => void;
 }) {
   const cardContent = cards.map((card) => ({
@@ -49,11 +50,10 @@ function EditFlashcard({
   const [cardText, setCardText] = useState(cardContent);
   const [isEditing, setIsEditing] = useState(false);
 
-
   function handleSaveChanges(
     updatedCardData: CardContentType,
     cardId: string,
-    cardNumber: number,
+    cardNumber: number
   ) {
     onUpdateCard(cardId, updatedCardData, cardNumber);
     setIsEditing(false);
