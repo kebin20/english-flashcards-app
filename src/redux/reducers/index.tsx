@@ -1,7 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import isLoadingReducer from "./isLoadingReducer";
-
 import errorReducer from "./errorReducer";
 
 const rootReducer = combineReducers({

@@ -22,7 +22,7 @@ import { RootState } from "./redux/reducers/index";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase();
+const db = getDatabase(app);
 
 function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
