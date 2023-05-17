@@ -28,8 +28,6 @@ function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.isLoading);
