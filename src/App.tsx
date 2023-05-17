@@ -73,7 +73,7 @@ function App() {
 
   useEffect(() => {
     fetchFlashcardHandler();
-    // writeFlashcardData(deck);
+    writeFlashcardData(deck);
   }, []);
 
   // RevisedVocab data flow and passing state up
