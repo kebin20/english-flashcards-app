@@ -1,21 +1,24 @@
-import React, { useState, useEffect, useCallback, ReactNode } from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { firebaseConfig } from './firebaseConfig';
+import React, { useState, useEffect, useCallback, ReactNode } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { firebaseConfig } from "./firebaseConfig";
 
-import NavBar from './components/Navbar';
-import WelcomePage from './pages/WelcomePage';
-import MenuPage from './pages/MenuPage';
-import EditDeckPage from './pages/EditDeckPage';
-import RevisePage from './pages/RevisePage';
-import AllCardsPage from './pages/AllCardsPage';
-import FlashcardScreen from './components/FlashcardScreen';
+import NavBar from "./components/Navbar";
+import WelcomePage from "./pages/WelcomePage";
+import MenuPage from "./pages/MenuPage";
+import EditDeckPage from "./pages/EditDeckPage";
+import RevisePage from "./pages/RevisePage";
+import AllCardsPage from "./pages/AllCardsPage";
+import FlashcardScreen from "./components/FlashcardScreen";
 
-import deckData from './flashcard-data';
+import deckData from "./flashcard-data";
 
-import { CardContentType, FlashcardSetData } from './interfaces';
+import { CardContentType, FlashcardSetData } from "./interfaces";
 
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from 'firebase/database';
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
+
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/reducers/index";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -25,34 +28,37 @@ function App() {
   const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
   const [allCards, setAllCards] = useState<CardContentType[]>([]);
   const [vocabData, setVocabData] = useState<CardContentType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+  const error = useSelector((state: RootState) => state.error);
 
   console.log(deck);
 
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: FlashcardSetData[]) {
-    set(ref(db, 'flashcards'), {
+    set(ref(db, "flashcards"), {
       decks,
     })
       .then(() => {
-        console.log('Data updated successfully.');
+        console.log("Data updated successfully.");
       })
       .catch((error) => {
-        console.error('Error updating data:', error);
+        console.error("Error updating data:", error);
       });
   }
 
   /* Fetching flashcard from Firebase*/
   const fetchFlashcardHandler = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+    dispatch({ type: "SET_LOADING", payload: true });
     try {
       const response = await fetch(
-        'https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json'
+        "https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json"
       );
       if (!response.ok) {
-        throw new Error('An error has occurred');
+        throw new Error("An error has occurred");
       }
 
       const data = await response.json();
@@ -66,9 +72,9 @@ function App() {
       const flattenedDecksArr = decksArr.flat();
       setAllCards(flattenedDecksArr);
     } catch (error: any) {
-      setError(error.message);
+      dispatch({ type: "SET_ERROR", payload: error.message });
     }
-    setIsLoading(false);
+    dispatch({ type: "SET_LOADING", payload: false });
   }, []);
 
   useEffect(() => {
