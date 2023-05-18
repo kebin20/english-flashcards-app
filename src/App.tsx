@@ -33,8 +33,6 @@ function App() {
   const isLoading = useSelector((state: RootState) => state.isLoading);
   const error = useSelector((state: RootState) => state.error);
 
-  console.log(deck);
-
   /* Upload initial data to Firebase */
   function writeFlashcardData(decks: FlashcardSetData[]) {
     set(ref(db, "flashcards"), {
