@@ -37,7 +37,7 @@ Users should be able to:
 - CSS Grid
 - CSS Modules
 - [Firebase](https://firebase.google.com/) - Backend as a Service
-- [TypeScript](https://www.typescriptlang.org/) - TypeScript - Strongly typed programming language on top of JS
+- [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language on top of JS
 - [React](https://reactjs.org/) - JS framework
 - [React Router](https://reactrouter.com/en/main) - React routing library
 - [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
