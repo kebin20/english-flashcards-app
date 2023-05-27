@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import classes from './Navbar.module.css';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import logo from '../assets/flash-card.png';
+import React, { useState } from "react";
+import classes from "./Navbar.module.css";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logo from "../assets/flash-card.png";
 
 const StyledNavBar = styled.header`
   position: fixed;
@@ -11,7 +11,7 @@ const StyledNavBar = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1em;
+  gap: 0.4em;
   background-color: var(--clr-white);
   box-shadow: var(--lg-shadow);
   z-index: 1000;
@@ -39,7 +39,7 @@ const Logo = styled.img`
   width: 3em;
 
   @media only screen and (max-width: 600px) {
-   width: 2.5em;
+    width: 2.5em;
   }
 `;
 
