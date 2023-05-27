@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import React from 'react';
-import { ButtonProps } from '../../interfaces';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import React from "react";
+import { ButtonProps } from "../../interfaces";
 
 const StyledDeckButton = styled(Link)`
   position: relative;
@@ -28,7 +28,7 @@ const StyledDeckButton = styled(Link)`
   @media only screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 0.7em 1.5em;
+    padding: 0.7em 1.2em;
   }
 `;
 
