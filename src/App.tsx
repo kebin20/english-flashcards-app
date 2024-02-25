@@ -2,23 +2,24 @@ import React, { useState, useEffect, useCallback, ReactNode } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { firebaseConfig } from "./firebaseConfig";
 
-import NavBar from "./components/Navbar";
-import WelcomePage from "./pages/WelcomePage";
-import MenuPage from "./pages/MenuPage";
+import NavBar from "@/components/Navbar";
+import WelcomePage from "@/pages/WelcomePage";
+import MenuPage from "@/pages/MenuPage";
 import EditDeckPage from "./pages/EditDeckPage";
-import RevisePage from "./pages/RevisePage";
-import AllCardsPage from "./pages/AllCardsPage";
-import FlashcardScreen from "./components/FlashcardScreen";
+import RevisePage from "@/pages/RevisePage";
+import AllCardsPage from "@/pages/AllCardsPage";
+import FlashcardScreen from "@/components/FlashcardScreen";
 
-import deckData from "./flashcard-data";
+import deckData from "@/flashcard-data";
 
-import { CardContentType, FlashcardSetData } from "./interfaces";
+import { CardContentType, FlashcardSetData } from "@/interfaces";
 
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
 
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./redux/reducers/index";
+import { RootState } from "@/redux/reducers/index";
+import LoginModal from "@/components/LoginModal";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -180,12 +181,6 @@ function App() {
               }
             />
             {content}
-            <Route
-              path="/edit-deck"
-              element={
-                <EditDeckPage deckData={deck} onUpdateCard={handleUpdateCard} />
-              }
-            />
             <Route
               path="/revise"
               element={
