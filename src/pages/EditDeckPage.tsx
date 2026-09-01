@@ -1,77 +1,130 @@
-import React, { useState } from 'react';
+import { useMemo, useState } from "react";
+import type { DeckSource, Flashcard, FlashcardSet } from "@/types";
 
-import EditFlashcard from '../components/EditFlashcard';
-import LoginModal from '../components/LoginModal';
+type EditDeckPageProps = {
+  decks: FlashcardSet[];
+  onReset: () => void;
+  onUpdateCard: (cardId: string, card: Flashcard) => void;
+  source: DeckSource;
+};
 
-import styled from 'styled-components';
-import { CardContentType, FlashcardSetData } from '../interfaces';
+const sourceLabels: Record<DeckSource, string> = {
+  fallback: "内蔵データ",
+  local: "このブラウザで編集済み",
+  remote: "オンライン単語帳",
+};
 
-const EditDeckContainer = styled.div`
-display:flex;
-gap: 1em;
-flex-direction: column;
-justify-content: center;
-margin-inline: 2em;
-padding-top: 6em;
-padding-bottom: 6em;
-`;
+function EditDeckPage({ decks, onReset, onUpdateCard, source }: EditDeckPageProps) {
+  const [query, setQuery] = useState("");
+  const [isConfirmingReset, setIsConfirmingReset] = useState(false);
 
-const VocabContainer = styled.div`
-border-radius: var(--round);
-background-color: var(--clr-white);
-box-shadow: var(--lg-shadow);
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 2em;
-text-align: center;
+  const visibleDecks = useMemo(() => {
+    const normalisedQuery = query.trim().toLocaleLowerCase();
+    if (!normalisedQuery) return decks;
 
-& ul {
-  display: grid;
-  gap: 1.5em;
-  padding-left: 0;
-}
-`;
+    return decks
+      .map((deck) => ({
+        ...deck,
+        cards: deck.cards.filter((card) =>
+          [card.cardNumber.toString(), card.english, card.furigana, card.japanese]
+            .join(" ")
+            .toLocaleLowerCase()
+            .includes(normalisedQuery),
+        ),
+      }))
+      .filter((deck) => deck.cards.length > 0);
+  }, [decks, query]);
 
-function EditDeckPage({
-  deckData,
-  onUpdateCard,
-}: {
-  deckData: FlashcardSetData[];
-  onUpdateCard: (cardId: string, updatedCardData: CardContentType, cardNumber: number) => void;
-}) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const updateField = (card: Flashcard, field: keyof Flashcard, value: string) => {
+    onUpdateCard(card.id, { ...card, [field]: value });
+  };
 
-  function handleLogin(
-    loginState: boolean | ((prevState: boolean) => boolean)
-  ) {
-    setIsLoggedIn(loginState);
-  }
-
+  const confirmReset = () => {
+    onReset();
+    setIsConfirmingReset(false);
+  };
 
   return (
-    <>
-      <EditDeckContainer>
-        {!isLoggedIn && <LoginModal onSetLogin={handleLogin} />}
-        {isLoggedIn && (
-          <>
-            <h1>デック編集</h1>
-            <VocabContainer>
-              {deckData.map((deck, id) => (
-                <ul key={id}>
-                  <h2>Set {deck.setNumber}</h2>
-                  <EditFlashcard
-                    key={id}
-                    cards={deck.cards}
-                    onUpdateCard={onUpdateCard}
-                  />
-                </ul>
-              ))}
-            </VocabContainer>
-          </>
+    <section className="page-shell content-page edit-page">
+      <div className="page-heading edit-heading">
+        <div>
+          <span className="eyebrow">Personalise your deck</span>
+          <h1>カードを編集</h1>
+          <p>変更はこのブラウザだけに自動保存されます。共有データが書き換わることはありません。</p>
+        </div>
+        <span className={`source-badge source-${source}`}>{sourceLabels[source]}</span>
+      </div>
+
+      <div className="edit-toolbar">
+        <label className="search-field">
+          <span className="sr-only">カードを検索</span>
+          <span aria-hidden="true">⌕</span>
+          <input
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="英語・日本語・カード番号で検索"
+            type="search"
+            value={query}
+          />
+        </label>
+        {!isConfirmingReset ? (
+          <button className="text-button danger-text" onClick={() => setIsConfirmingReset(true)} type="button">
+            編集をすべてリセット
+          </button>
+        ) : (
+          <div className="reset-confirmation" role="alert">
+            <span>本当に元に戻しますか？</span>
+            <button onClick={confirmReset} type="button">戻す</button>
+            <button onClick={() => setIsConfirmingReset(false)} type="button">キャンセル</button>
+          </div>
         )}
-      </EditDeckContainer>
-    </>
+      </div>
+
+      <div className="edit-decks">
+        {visibleDecks.map((deck) => (
+          <details className="edit-set" key={deck.id} open={query.length > 0 || deck.setNumber === 1}>
+            <summary>
+              <span>セット {deck.setNumber}</span>
+              <small>{deck.cards.length}枚</small>
+            </summary>
+            <div className="edit-card-list">
+              {deck.cards.map((card) => (
+                <fieldset className="edit-card" key={card.id}>
+                  <legend>カード {card.cardNumber}</legend>
+                  <label>
+                    <span>読み方</span>
+                    <input
+                      onChange={(event) => updateField(card, "furigana", event.target.value)}
+                      value={card.furigana}
+                    />
+                  </label>
+                  <label>
+                    <span>英語</span>
+                    <input
+                      lang="en"
+                      onChange={(event) => updateField(card, "english", event.target.value)}
+                      value={card.english}
+                    />
+                  </label>
+                  <label>
+                    <span>日本語</span>
+                    <input
+                      onChange={(event) => updateField(card, "japanese", event.target.value)}
+                      value={card.japanese}
+                    />
+                  </label>
+                </fieldset>
+              ))}
+            </div>
+          </details>
+        ))}
+        {visibleDecks.length === 0 && (
+          <div className="empty-state compact-empty">
+            <h2>カードが見つかりません</h2>
+            <p>別のキーワードを試してください。</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 

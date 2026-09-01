@@ -1,56 +1,36 @@
-import React from "react";
-import styled from "styled-components";
-import { FlashcardProps } from "../interfaces";
+import type { Flashcard as FlashcardType } from "@/types";
 
-const StyledCardButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  padding: 2em;
-  border-radius: var(--rounder);
-  border: transparent;
-  background-color: var(--clr-white);
-  box-shadow: var(--lg-shadow);
-  margin-inline: 2em;
-  gap: 2em;
+type FlashcardProps = {
+  card: FlashcardType;
+  isFlipped: boolean;
+  onFlip: () => void;
+};
 
-  @media only screen and (max-width: 600px) {
-    padding: 1em;
-    font-size: var(--fs-200);
-    margin-inline: 0em;
-  }
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2em;
-
-  @media only screen and (max-width: 600px) {
-    gap: 3em;
-  }
-`;
-
-const EnglishSide = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-function Flashcard({ isFlipped, currentCard, onFlip }: FlashcardProps) {
-  const { cardNumber, english, furigana, japanese } = currentCard;
-
+function Flashcard({ card, isFlipped, onFlip }: FlashcardProps) {
   return (
-    <StyledCardButton onClick={onFlip}>
-      <span>{cardNumber}</span>
-      <InnerContainer>
-        {!isFlipped && <h1>{japanese}</h1>}
-        {isFlipped && (
-          <EnglishSide>
-            <p>{furigana}</p>
-            <h1>{english}</h1>
-          </EnglishSide>
-        )}
-      </InnerContainer>
-    </StyledCardButton>
+    <button
+      aria-label={`カード ${card.cardNumber}。${isFlipped ? "日本語を見る" : "英語を見る"}`}
+      aria-pressed={isFlipped}
+      className={`flashcard${isFlipped ? " is-flipped" : ""}`}
+      onClick={onFlip}
+      type="button"
+    >
+      <span className="flashcard-inner">
+        <span aria-hidden={isFlipped} className="flashcard-face flashcard-front">
+          <span className="card-number">#{card.cardNumber}</span>
+          <span className="card-language">日本語</span>
+          <strong>{card.japanese}</strong>
+          <span className="flip-hint">タップして英語を見る</span>
+        </span>
+        <span aria-hidden={!isFlipped} className="flashcard-face flashcard-back">
+          <span className="card-number">#{card.cardNumber}</span>
+          <span className="card-language">English</span>
+          <span className="furigana">{card.furigana}</span>
+          <strong lang="en">{card.english}</strong>
+          <span className="flip-hint">タップして日本語に戻る</span>
+        </span>
+      </span>
+    </button>
   );
 }
 

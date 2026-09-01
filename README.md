@@ -1,54 +1,50 @@
- ![english-flashcard-app](./public/screenshot.png)
+# English Flashcards App v2
 
-# English Flashcards App
+A responsive English/Japanese flashcard app for practising sentences learned in Japanese elementary school.
 
-## Table of contents
+- Live site: [english-flashcard.netlify.app](https://english-flashcard.netlify.app/)
+- Repository: [github.com/kebin20/english-flashcards-app](https://github.com/kebin20/english-flashcards-app)
 
-- [Overview](#overview)
-  - [Main Function](#main-function)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [Continued development](#continued-development)
+## What changed in v2
 
-## Overview
+- Upgraded to React 19, React Router 7, Vite 8, TypeScript 6, and Node 24.
+- Rebuilt the interface with a responsive, accessible visual system.
+- Added animated card flipping, shuffling, progress feedback, keyboard controls, and a persisted review queue.
+- Restored the missing card editor route and made edits persist safely in the current browser.
+- Added runtime validation and an offline fallback for the remote flashcard data.
+- Removed the accidental Firebase write on startup and all unused Redux, Chakra UI, Firebase SDK, styled-components, XLSX, and animation dependencies.
+- Added strict linting, type-checking, regression tests, and an explicit Netlify deployment configuration.
 
-### Main Function
+## Local development
 
-Users should be able to:
-- Access flashcard sets and start revising vocabulary that has been learnt in the past year. 
-- Sort through the cards one by one and being able to see the the English and Japanese sides.
-- Store cards needing to be learnt and revise them in a separate page.
-- Remove cards that have been learnt from current deck.
-- Being able to edit the master deck and editing the card contents (WIP)
+Requirements:
 
-### Links
+- Node.js 24 (the exact version is recorded in `.nvmrc`)
+- Yarn 1.x
 
-- Solution URL: [Github Repo](https://github.com/kebin20/english-flashcards-app)
-- Live Site URL: [English Flashcard App](https://english-flashcard.netlify.app/)
+```bash
+yarn install
+yarn dev
+```
 
-## My process
+Useful commands:
 
-### Built with
+```bash
+yarn lint
+yarn typecheck
+yarn test
+yarn build
+yarn verify
+```
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- CSS Modules
-- [Firebase](https://firebase.google.com/) - Backend as a Service
-- [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language on top of JS
-- [React](https://reactjs.org/) - JS framework
-- [React Router](https://reactrouter.com/en/main) - React routing library
-- [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+`yarn verify` runs the full quality gate: lint, type-check, tests, and production build.
 
-## What I learnt & Challenges I faced
+## Data and privacy
 
-- See my blog post on [DEV.to](https://dev.to/kebin20/my-learning-journey-through-my-english-flashcard-project-2odb)!
+The shared Firebase Realtime Database is read-only from the app. If it is unavailable, the bundled 98-card deck is used automatically.
 
-### Continued development & future implementations
+Study progress, review cards, and card edits are stored in the browser's local storage. Editing a card never modifies the shared database or another learner's deck.
 
-- Enable users to edit the master deck and change the content of the flashcards first (WIP)
- - Afterwards, being able to delete the cards/sets and add new ones as the user wishes.
-- Add a button to randomise the flashcards for extra variety.
-- Add animation for the cards when they flip. 
+## Deployment
+
+The repository includes `netlify.toml` and the existing SPA redirect. Netlify should build with Node 24, run `yarn build`, and publish `dist`. Keeping the current Netlify site connected to this repository preserves the existing public URL.

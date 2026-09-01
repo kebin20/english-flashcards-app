@@ -1,201 +1,113 @@
-import React, { useState, useEffect, useCallback, ReactNode } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { firebaseConfig } from "./firebaseConfig";
-
-import NavBar from "@/components/Navbar";
-import WelcomePage from "@/pages/WelcomePage";
+import { useMemo } from "react";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import { useDecks } from "@/hooks/useDecks";
+import { useReviewQueue } from "@/hooks/useReviewQueue";
+import { STORAGE_KEYS } from "@/lib/storage";
+import EditDeckPage from "@/pages/EditDeckPage";
 import MenuPage from "@/pages/MenuPage";
-import EditDeckPage from "./pages/EditDeckPage";
-import RevisePage from "@/pages/RevisePage";
-import AllCardsPage from "@/pages/AllCardsPage";
-import FlashcardScreen from "@/components/FlashcardScreen";
-
-import deckData from "@/flashcard-data";
-
-import { CardContentType, FlashcardSetData } from "@/interfaces";
-
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
-
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/reducers/index";
-import LoginModal from "@/components/LoginModal";
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+import StudyPage from "@/pages/StudyPage";
+import WelcomePage from "@/pages/WelcomePage";
 
 function App() {
-  const [deck, setDeck] = useState<FlashcardSetData[]>(deckData);
-  const [allCards, setAllCards] = useState<CardContentType[]>([]);
-  const [vocabData, setVocabData] = useState<CardContentType[]>([]);
-
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state: RootState) => state.isLoading);
-  const error = useSelector((state: RootState) => state.error);
-
-  /* Upload initial data to Firebase */
-  function writeFlashcardData(decks: FlashcardSetData[]) {
-    set(ref(db, "flashcards"), {
-      decks,
-    })
-      .then(() => {
-        console.log("Data updated successfully.");
-      })
-      .catch((error) => {
-        console.error("Error updating data:", error);
-      });
-  }
-
-  /* Fetching flashcard from Firebase*/
-  const fetchFlashcardHandler = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true });
-    try {
-      const response = await fetch(
-        "https://english-flashcards-app-962bb-default-rtdb.asia-southeast1.firebasedatabase.app/flashcards.json"
-      );
-      if (!response.ok) {
-        throw new Error("An error has occurred");
-      }
-
-      const data = await response.json();
-      setDeck(data.decks);
-
-      // Obtain all of the cards arrays, join them and flatten it
-      const decksArr = [];
-      for (let i = 0; i < data.decks.length; i++) {
-        decksArr.push(data.decks[i].cards);
-      }
-      const flattenedDecksArr = decksArr.flat();
-      setAllCards(flattenedDecksArr);
-    } catch (error: any) {
-      dispatch({ type: "SET_ERROR", payload: error.message });
-    }
-    dispatch({ type: "SET_LOADING", payload: false });
-  }, []);
-
-  useEffect(() => {
-    fetchFlashcardHandler();
-    writeFlashcardData(deck);
-  }, []);
-
-  // RevisedVocab data flow and passing state up
-  function handleVocabData(
-    newVocabData: React.SetStateAction<CardContentType[]>
-  ) {
-    setVocabData(newVocabData);
-  }
-
-  function handleRevisedVocabData(
-    newRevisedVocabData: React.SetStateAction<CardContentType[]>
-  ) {
-    setVocabData(newRevisedVocabData);
-  }
-
-  function handleUpdateCard(
-    cardId: string,
-    newCardData: CardContentType,
-    cardNumber: number
-  ) {
-    setDeck((prevDeck) => {
-      return prevDeck.map((deck) => {
-        return {
-          ...deck,
-          cards: deck.cards.map((card) => {
-            if (card.id === cardId && card.cardNumber === cardNumber) {
-              return { ...card, ...newCardData };
-            }
-            return card;
-          }),
-        };
-      });
-    });
-    // writeFlashcardData(deck);
-  }
-
-  // /* Error Handling */
-
-  let content: ReactNode = (
-    <Route
-      path="#"
-      element={
-        <>
-          <h2>Data not found</h2>
-        </>
-      }
-    />
-  );
-
-  if (deck.length > 0) {
-    content = deck.map((card, index) => (
-      <Route
-        key={card.id}
-        path={`/set-${index}`}
-        element={
-          <FlashcardScreen
-            key={card.id}
-            onPassVocabDataUp={handleVocabData}
-            incomingDeck={deck[index]}
-            vocabData={vocabData}
-            storageItem={`cardDeckSet${card.setNumber}`}
-          />
-        }
-      />
-    ));
-  }
-
-  if (error) {
-    content = <Route path="#" element={<>{error}</>} />;
-  }
-
-  if (isLoading) {
-    content = (
-      <Route
-        path="#"
-        element={
-          <>
-            <h2>Loading...</h2>
-          </>
-        }
-      />
-    );
-  }
+  const { decks, isLoading, notice, resetDecks, source, updateCard } = useDecks();
+  const { addReviewCard, removeReviewCard, reviewCards } = useReviewQueue();
+  const allCards = useMemo(() => decks.flatMap((deck) => deck.cards), [decks]);
 
   return (
-    <>
-      <BrowserRouter>
-        <NavBar />
-        <main>
-          <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/menu" element={<MenuPage deck={deck} />} />
+    <BrowserRouter>
+      <a className="skip-link" href="#main-content">
+        メインコンテンツへ移動
+      </a>
+      <Navbar reviewCount={reviewCards.length} />
+      {notice && <div className="data-notice">{notice}</div>}
+      <main id="main-content">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <WelcomePage
+                isLoading={isLoading}
+                setCount={decks.length}
+                totalCards={allCards.length}
+              />
+            }
+          />
+          <Route
+            path="/menu"
+            element={<MenuPage decks={decks} reviewCount={reviewCards.length} />}
+          />
+          <Route
+            path="/all-cards"
+            element={
+              <StudyPage
+                cards={allCards}
+                eyebrow="すべてのセット"
+                onNeedsReview={addReviewCard}
+                storageKey="allCards"
+                title="全カード練習"
+              />
+            }
+          />
+          {decks.map((deck, index) => (
             <Route
-              path="/all-cards"
+              key={deck.id}
+              path={`/set-${index}`}
               element={
-                <AllCardsPage
-                  vocabData={vocabData}
-                  incomingDeck={allCards}
-                  onPassVocabDataUp={handleVocabData}
-                  storageItem="allCards"
+                <StudyPage
+                  cards={deck.cards}
+                  eyebrow={`セット ${deck.setNumber}`}
+                  onNeedsReview={addReviewCard}
+                  storageKey={`cardDeckSet${deck.setNumber}`}
+                  title={`セット ${deck.setNumber} を練習`}
                 />
               }
             />
-            {content}
-            <Route
-              path="/revise"
-              element={
-                <RevisePage
-                  vocabData={vocabData}
-                  storageItem="revisedCardsDeck"
-                  incomingDeck={vocabData}
-                  onPassRevisedVocabDataUp={handleRevisedVocabData}
-                />
-              }
-            />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </>
+          ))}
+          <Route
+            path="/revise"
+            element={
+              <StudyPage
+                cards={reviewCards}
+                emptyDescription="練習中に「あとでもう一度」を選んだカードがここに集まります。"
+                emptyTitle="復習カードはありません"
+                eyebrow="マイリスト"
+                onKnown={removeReviewCard}
+                storageKey={STORAGE_KEYS.reviewQueue}
+                title="もう一度練習"
+                variant="review"
+              />
+            }
+          />
+          <Route
+            path="/edit-deck"
+            element={
+              <EditDeckPage
+                decks={decks}
+                onReset={resetDecks}
+                onUpdateCard={updateCard}
+                source={source}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <section className="page-shell centered-page">
+                <div className="empty-state">
+                  <span className="eyebrow">404</span>
+                  <h1>ページが見つかりません</h1>
+                  <p>リンクが古いか、URLが間違っているようです。</p>
+                  <Link className="button button-primary" to="/">
+                    ホームへ戻る
+                  </Link>
+                </div>
+              </section>
+            }
+          />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
 
