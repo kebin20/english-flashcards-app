@@ -5,6 +5,8 @@ A responsive English/Japanese flashcard app for practising sentences learned in 
 - Live site: [english-flashcard.netlify.app](https://english-flashcard.netlify.app/)
 - Repository: [github.com/kebin20/english-flashcards-app](https://github.com/kebin20/english-flashcards-app)
 
+V1 was originally designed and built manually. V2 was modernized, debugged, and redesigned with OpenAI Codex while preserving the same public URL.
+
 ## V1 → V2 visual comparison
 
 ### V1 — original interface
